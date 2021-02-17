@@ -32,7 +32,7 @@ export default function Faq() {
                   <span className="question">{f.q}</span>
                   <span className="icon">
                     <svg
-                      className={`${activeItem === 1 ? 'rotate' : ''}`}
+                      className={`${activeItem === f.id ? 'rotate' : ''}`}
                       stroke="currentColor"
                       fill="none"
                       viewBox="0 0 24 24"
