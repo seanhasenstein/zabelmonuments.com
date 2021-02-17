@@ -1,150 +1,111 @@
-import * as React from "react"
+import React from 'react';
+import Layout from '../components/Layout';
+import LinkButton from '../components/common/LinkButton';
+import StoreTabs from '../components/StoreTabs';
+import Testimonials from '../components/Testimonials';
+import { Hero, Welcome, FamiliesDiv, EveryLife } from '../styles/HomeStyles';
+import StoreFront from '../images/store-front.png';
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: "300",
-  fontSize: "24px",
-  maxWidth: "560px",
-}
-
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: "16px",
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: "14px",
-}
-
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-// data
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#000000",
-  },
-]
-
-// markup
-const IndexPage = () => {
+export default function Index() {
   return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
+    <Layout>
+      <Hero>
+        <div className="inner">
+          <h2>Every Life is Worth Remembering</h2>
+          <p>
+            Let us help tell a story that will reflect the spirit of your loved
+            one.
+          </p>
+          <LinkButton slug="/contact">
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {link.text}
-              </a>
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              Schedule an Appointment
+            </>
+          </LinkButton>
+        </div>
+      </Hero>
+      <Welcome>
+        <div className="row">
+          <div className="welcome-text">
+            <h3>Welcome to Zabel Monmuments</h3>
+            <p>
+              Serving East Central Wisconsin since 1970, Zabel Monuments has
+              been bringing comfort and personalized memorials to generations of
+              caring families. Three generations of the Zabel family have worked
+              as the designers, engravers and stone carvers in the Green Bay,
+              Manitowoc and Sheboygan areas.
+            </p>
+            <div className="links">
+              <LinkButton slug="/why-choose-us">Why Choose Us?</LinkButton>
+              <LinkButton slug="faq">Frequently Asked Questions</LinkButton>
+            </div>
+          </div>
+          <div className="stores">
+            <StoreTabs />
+          </div>
+        </div>
+      </Welcome>
+      <FamiliesDiv>
+        <div className="inner">
+          <div className="img">
+            <img src={StoreFront} alt="Zabel Monuments Store" />
+          </div>
+          <div className="text">
+            <h3>Families Trust Zabel Monuments</h3>
+            <p>
+              For years families have trusted us and appreciate our
+              old-fashioned integrity and award-winning artistry. We have a
+              legacy and reputation for elegant craftsmanship, meticulous
+              attention to detail, unique design, superior selection, and
+              thoughtful consideration - all of which brightly stand out as our
+              professionals work with families here at Zabel Monuments.
+            </p>
+          </div>
+        </div>
+      </FamiliesDiv>
+      <EveryLife>
+        <div className="inner">
+          <h3>Every Life is Worth Remembering</h3>
+          <div className="row">
+            <div>
+              <p>
+                At Zabel Monuments, a cemetery memorial or headstone isn’t just
+                chosen out of a catalog...it is designed to tell a story and
+                reflect the spirit of those who are memorialized.
+              </p>
+              <p>
+                A memorial is one of the most personal purchases a family can
+                make. Our family also understands and respects that this is an
+                important part of the grieving and healing process after a
+                death.
+              </p>
+            </div>
+            <div>
+              <p>
+                As a society, we memorialize our loved ones because they have
+                lived, not because they have died. We believe a memorial is more
+                than just a headstone. It is a permanent tribute to those we
+                love. It is a means for future generations to reflect on
+                someone’s life. It can be dedicated in a cemetery, a private
+                personal place, or a public setting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </EveryLife>
+      <Testimonials />
+    </Layout>
+  );
 }
-
-export default IndexPage
