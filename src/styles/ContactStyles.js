@@ -6,35 +6,31 @@ export const ContactStyles = styled.div`
 
   .inner {
     margin: 0 auto;
-    max-width: 1000px;
+    padding: 0 1.25rem;
+    max-width: 1040px;
     width: 100%;
   }
 
-  .row {
-    display: flex;
-  }
-
-  .column:first-of-type {
-    padding: 0 4rem 0 0;
-    width: 55%;
-  }
-
-  .column:last-of-type {
-    padding: 4rem 0 0 0;
-    width: 45%;
-  }
-
   div.header {
-    padding: 0 0 0.25rem 0;
+    padding: 0 0 3.5rem 0;
 
     p {
       margin: 0;
+      line-height: 1.75;
     }
   }
 
-  form {
-    margin: 3rem 0 0;
+  .row {
+    max-width: 620px;
+    width: 100%;
+  }
+
+  .text-inputs {
     max-width: 400px;
+  }
+
+  form {
+    margin: 0;
     width: 100%;
   }
 
@@ -42,23 +38,43 @@ export const ContactStyles = styled.div`
     margin: 0 0 1.125rem;
     display: flex;
     flex-direction: column;
+
+    &.choose-store {
+      margin: 0 0 3.5rem;
+    }
   }
 
   .radio-group {
-    margin-bottom: 1.75rem;
+    margin: 0.75rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
     li {
-      margin: 0 0 0.75rem;
-
-      &:last-of-type {
-        margin: 0;
-      }
+      margin: 0.5rem 0;
+      width: 48.5%;
+      border-radius: 0.375rem;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
       label {
+        margin: 0;
+        position: relative;
         display: flex;
         align-items: center;
         font-size: 0.875rem;
         color: #4b5563;
+        cursor: pointer;
+        padding: 0.875rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.375rem;
+        z-index: 100;
+
+        &.active {
+          background-color: rgb(240, 249, 255);
+          border-color: rgb(186, 230, 253);
+          z-index: 200;
+        }
       }
 
       input {
@@ -102,11 +118,9 @@ export const ContactStyles = styled.div`
   }
 
   .radio-title {
-    margin: 0 0 0.25rem;
-    font-size: 0.875rem;
+    margin: 0;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.025em;
-    text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
   }
 
@@ -120,7 +134,7 @@ export const ContactStyles = styled.div`
   input,
   textarea {
     margin: 0;
-    padding: 0.5rem 0.75rem;
+    padding: 0.625rem 0.75rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.8125rem;
     line-height: 1.25rem;
@@ -158,7 +172,13 @@ export const ContactStyles = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
-    /* color: #e02424; */
     color: #e61e2b;
+  }
+
+  @media (max-width: 600px) {
+    .radio-group li {
+      max-width: 350px;
+      width: 100%;
+    }
   }
 `;

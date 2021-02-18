@@ -133,71 +133,86 @@ export default function Contact({ location }) {
       <ContactStyles>
         <div className="inner">
           <div className="row">
-            <div className="column">
-              <div className="header">
-                <h2>Contact Us</h2>
-                <p>
-                  Please use fill out this form to ask any questions that you
-                  have or to schedule an appointment.
-                </p>
-              </div>
-              <form action="POST" onSubmit={handleSubmit}>
-                <div className="field">
-                  <div className="radio-title">
-                    Who would you like to contact?
-                  </div>
-                  <ul className="radio-group">
-                    <li>
-                      <label>
-                        <input
-                          type="radio"
-                          value={stores.greenBay}
-                          checked={state.selectedStore === stores.greenBay}
-                          onChange={updateField('selectedStore')}
-                          name="store"
-                        />
-                        Green Bay Store
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input
-                          type="radio"
-                          value={stores.manitowoc}
-                          checked={state.selectedStore === stores.manitowoc}
-                          onChange={updateField('selectedStore')}
-                          name="store"
-                        />
-                        Manitowoc Store
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input
-                          type="radio"
-                          value={stores.sheboygan}
-                          checked={state.selectedStore === stores.sheboygan}
-                          onChange={updateField('selectedStore')}
-                          name="store"
-                        />
-                        Sheboygan Store
-                      </label>
-                    </li>
-                    <li>
-                      <label>
-                        <input
-                          type="radio"
-                          value={stores.askOurCM}
-                          checked={state.selectedStore === stores.askOurCM}
-                          onChange={updateField('selectedStore')}
-                          name="store"
-                        />
-                        Ask our Certified Memorialist
-                      </label>
-                    </li>
-                  </ul>
+            <div className="header">
+              <h2>Contact Us</h2>
+              <p>
+                How can we help you? Use this form for any questions that you
+                have or if you would like to schedule an appointment.
+              </p>
+            </div>
+            <form action="POST" onSubmit={handleSubmit}>
+              <div className="field choose-store">
+                <div className="radio-title">
+                  Who would you like to contact?
                 </div>
-
+                <ul className="radio-group">
+                  <li>
+                    <label
+                      className={
+                        state.selectedStore === stores.greenBay ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.greenBay}
+                        checked={state.selectedStore === stores.greenBay}
+                        onChange={updateField('selectedStore')}
+                        name="store"
+                      />
+                      Green Bay Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        state.selectedStore === stores.manitowoc ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.manitowoc}
+                        checked={state.selectedStore === stores.manitowoc}
+                        onChange={updateField('selectedStore')}
+                        name="store"
+                      />
+                      Manitowoc Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        state.selectedStore === stores.sheboygan ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.sheboygan}
+                        checked={state.selectedStore === stores.sheboygan}
+                        onChange={updateField('selectedStore')}
+                        name="store"
+                      />
+                      Sheboygan Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        state.selectedStore === stores.askOurCM ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.askOurCM}
+                        checked={state.selectedStore === stores.askOurCM}
+                        onChange={updateField('selectedStore')}
+                        name="store"
+                      />
+                      Ask our Certified Memorialist
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div className="text-inputs">
                 <div className="field">
                   <label htmlFor="name">Your Name</label>
                   <input
@@ -262,39 +277,34 @@ export default function Contact({ location }) {
                     tabIndex="-1"
                   />
                 </div>
-                <Button
-                  type="submit"
-                  className="submit"
-                  disabled={state.status === 'PENDING'}
-                >
-                  {state.status === 'PENDING' ? (
-                    'Loading...'
-                  ) : (
-                    <>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                      Send your message
-                    </>
-                  )}
-                </Button>
-              </form>
-            </div>
-            {/* <pre>{JSON.stringify(state, null, 2)}</pre>
-          <pre>{JSON.stringify(location.state, null, 2)}</pre> */}
-            <div className="column">
-              <StoreTabs store={state.selectedStore} />
-            </div>
+              </div>
+              <Button
+                type="submit"
+                className="submit"
+                disabled={state.status === 'PENDING'}
+              >
+                {state.status === 'PENDING' ? (
+                  'Loading...'
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Send your message
+                  </>
+                )}
+              </Button>
+            </form>
           </div>
         </div>
       </ContactStyles>
