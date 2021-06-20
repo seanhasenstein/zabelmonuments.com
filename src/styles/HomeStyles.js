@@ -17,26 +17,32 @@ export const Hero = styled.div`
     font-family: 'Merriweather', serif;
     font-size: 1.625rem;
     font-weight: 600;
-    /* color: #e4f2da;
-    color: #c2c6e7; */
-    color: #ddf3ff;
+    color: #fff;
   }
 
   p {
-    margin: 2.25rem 0 2.75rem;
+    margin: 2.5rem 0 2.75rem;
     max-width: 450px;
     font-size: 1.25rem;
     color: #fafafd;
     line-height: 1.25;
   }
+
+  a:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: rgb(13, 11, 9) 0px 0px 0px 2px, #cee7bd 0px 0px 0px 4px,
+      rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  }
 `;
 
 export const Welcome = styled.div`
-  margin: 5rem 0 8rem;
+  padding: 6rem 0;
+  background-color: #f5f4f1;
 
   h3 {
-    margin: 0 0 1.25rem;
-    font-size: 1.25rem;
+    margin: 0 0 1.5rem;
+    font-size: 1.375rem;
     color: #323842;
   }
 
@@ -60,7 +66,8 @@ export const Welcome = styled.div`
   }
 
   .links {
-    margin: 1.5rem 0 0;
+    display: flex;
+    margin: 2rem 0 0;
 
     a:first-of-type {
       margin: 0 1rem 0 0;
@@ -69,12 +76,11 @@ export const Welcome = styled.div`
 `;
 
 export const FamiliesDiv = styled.div`
-  margin: 6rem 0;
   width: 100%;
-  background-color: #f5f4f1;
+  /* background-color: #f5f4f1; */
 
   .inner {
-    padding: 2.5rem 0;
+    padding: 4rem 0;
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
@@ -86,10 +92,10 @@ export const FamiliesDiv = styled.div`
     position: relative;
 
     img {
-      margin-top: -3.75rem;
-      position: absolute;
+      /* margin-top: -3.75rem; */
+      /* position: absolute; */
       width: 100%;
-      border-radius: 0.25rem;
+      border-radius: 0.125rem;
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
         rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -102,18 +108,18 @@ export const FamiliesDiv = styled.div`
   }
 
   h3 {
-    margin: 0 0 1.25rem;
+    margin: 0;
     font-size: 1.25rem;
     color: #323842;
   }
 
   p {
-    margin: 0;
+    margin: 1.5rem 0 0;
   }
 `;
 
 export const EveryLife = styled.div`
-  margin: 11rem 0 0;
+  padding: 5rem 0;
   width: 100%;
 
   .inner {

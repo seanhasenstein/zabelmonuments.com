@@ -4,7 +4,7 @@ export const StoreTabsDiv = styled.div`
   width: 100%;
 
   .inner {
-    border-radius: 0.375rem;
+    border-radius: 0.25rem;
     background-color: #2a2720;
   }
 
@@ -13,8 +13,8 @@ export const StoreTabsDiv = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background: #fff;
-    border-bottom: 3px solid rgba(9, 8, 7, 0.89);
+    background-color: #fff;
+    border-bottom: 1px solid #090807;
 
     button {
       margin: 0;
@@ -36,11 +36,11 @@ export const StoreTabsDiv = styled.div`
       }
 
       &:nth-of-type(1) {
-        border-radius: 0.375rem 0 0 0;
+        border-radius: 0.25rem 0 0 0;
       }
 
       &:nth-of-type(3) {
-        border-radius: 0 0.375rem 0 0;
+        border-radius: 0 0.25rem 0 0;
       }
 
       &:nth-of-type(even) {
@@ -52,13 +52,13 @@ export const StoreTabsDiv = styled.div`
         margin-top: -6px;
         color: rgba(255, 255, 255, 1);
         background-color: #2a2720;
-        border-radius: 0.375rem 0.375rem 0 0;
+        border-radius: 0.25rem 0.25rem 0 0;
       }
     }
   }
 
   .store {
-    padding: 2rem 2.5rem;
+    padding: 2.25rem 2.5rem 3rem;
   }
 
   .item {
@@ -112,7 +112,7 @@ export const StoreTabsDiv = styled.div`
       justify-content: center;
       align-items: center;
       background-color: #14120f;
-      border: 2px solid #000;
+      border: 2px solid #090807;
       border-radius: 50%;
     }
 
@@ -137,19 +137,19 @@ export const StoreTabsDiv = styled.div`
   }
 
   .store-information {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.375rem;
     padding: 0.25rem 0.5rem 0.25rem 0.25rem;
     display: inline-flex;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     color: #fff;
-    background-color: #000;
+    background-color: #090807;
     border-radius: 9999px;
 
     .name {
       padding: 0.125rem 0.75rem;
-      background-color: #ce9b3b;
+      background-color: #d79e32;
       font-size: 0.6875rem;
       font-weight: 600;
       line-height: 1.25rem;

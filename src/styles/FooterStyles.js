@@ -27,8 +27,8 @@ export const FooterContainer = styled.footer`
     }
 
     h3 {
-      margin: 1.75rem 0 0;
-      font-size: 1.125rem;
+      margin: 1.875rem 0 0;
+      font-size: 1.25rem;
       font-style: italic;
     }
   }
@@ -57,7 +57,7 @@ export const FooterContainer = styled.footer`
   }
 
   li {
-    margin: 0.25rem 0;
+    margin: 0.5rem 0;
   }
 
   .certifications {

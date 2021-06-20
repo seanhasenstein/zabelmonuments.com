@@ -8,12 +8,9 @@ export const TestimonialsSection = styled.div`
 
   .inner {
     margin: 0 auto;
-    padding: 3rem;
     position: relative;
     max-width: 800px;
     width: 100%;
-    /* height: 418px; */
-    background-color: #f7f6f3;
   }
 
   h3 {
@@ -26,9 +23,19 @@ export const TestimonialsSection = styled.div`
     letter-spacing: 0.25em;
   }
 
+  ul {
+    display: flex;
+  }
+
   li {
-    display: none;
+    height: 338px;
+    padding: 3rem 3rem 2rem;
+    /* display: none; */
+    display: flex;
+    width: 800px;
+    justify-content: center;
     text-align: center;
+    background-color: #f7f6f3;
 
     &.active {
       display: flex;

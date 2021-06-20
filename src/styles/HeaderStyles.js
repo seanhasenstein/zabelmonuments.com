@@ -16,11 +16,10 @@ export const SecondaryNav = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.025em;
-    color: rgba(255, 255, 255, 0.7);
-    transition: color 200ms ease-in-out;
+    color: rgba(255, 255, 255, 0.9);
 
     &:hover {
-      color: rgba(255, 255, 255, 0.9);
+      text-decoration: underline;
     }
   }
 `;
@@ -51,6 +50,7 @@ export const PrimaryNav = styled.nav`
   a {
     margin: 0 1.5rem;
     padding: 0 0.25rem;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     letter-spacing: 0.025em;
     color: rgba(255, 255, 255, 0.85);

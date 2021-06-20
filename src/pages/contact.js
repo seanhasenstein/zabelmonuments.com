@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Layout from '../components/Layout';
-import StoreTabs from '../components/StoreTabs';
 import Button from '../components/common/Button';
 import { emailIsValid } from '../utils';
 import { ContactStyles } from '../styles/ContactStyles';
