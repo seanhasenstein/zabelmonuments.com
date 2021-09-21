@@ -9,6 +9,10 @@ export function formatPhoneNumber(number) {
   return result.join('');
 }
 
+export function removeNonDigits(input) {
+  return input.replace(/\D/g, '');
+}
+
 export function slugify(value) {
   const result = value.toLowerCase().split(' ');
   return result.join('-');

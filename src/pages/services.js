@@ -1,20 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
+import SEO from '../components/Seo';
 
 export default function Services() {
   return (
     <Layout>
+      <SEO title="Our Services | Zabel Monuments" urlPath="services" />
       <PageShell>
-        <h2>Our Services</h2>
-        <p>
-          Our main focus is to provide the best quality and workmanship for each
-          and every one of our customers. And in addition to designing and
-          installing custom cemetery memorials, we also provide various other
-          services.
-        </p>
-
-        <div>
+        <ServicePageStyles>
+          <h2>Our Services</h2>
+          <p>
+            Our main focus is to provide the best quality and workmanship for
+            each and every one of our customers. And in addition to designing
+            and installing custom cemetery memorials, we also provide various
+            other services.
+          </p>
           <ul>
             <li>Designing and installing of custom cemetery memorials</li>
             <li>
@@ -32,8 +34,21 @@ export default function Services() {
               and commercial)
             </li>
           </ul>
-        </div>
+        </ServicePageStyles>
       </PageShell>
     </Layout>
   );
 }
+
+const ServicePageStyles = styled.div`
+  ul {
+    padding: 0.5rem 0 0 1.25rem;
+  }
+
+  li {
+    list-style-type: disc;
+    padding: 0.75rem 0;
+    font-size: 0.9375rem;
+    color: #475569;
+  }
+`;

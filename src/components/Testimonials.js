@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TestimonialsSection } from '../styles/TestimonialStyles';
+import React from 'react';
+import styled from 'styled-components';
 
 const quotes = [
   {
@@ -70,20 +70,20 @@ const direction = {
 };
 
 export default function Testimonials() {
-  const [activeQuote, setActiveQuote] = useState(1);
+  const [activeQuote, setActiveQuote] = React.useState(0);
 
   const handleClick = dir => {
     if (dir === direction.next) {
-      if (activeQuote === quotes.length) {
-        setActiveQuote(1);
+      if (activeQuote === quotes.length - 1) {
+        setActiveQuote(0);
       } else {
         setActiveQuote(activeQuote + 1);
       }
     }
 
     if (dir === direction.prev) {
-      if (activeQuote === 1) {
-        setActiveQuote(quotes.length);
+      if (activeQuote === 0) {
+        setActiveQuote(quotes.length - 1);
       } else {
         setActiveQuote(activeQuote - 1);
       }
@@ -91,22 +91,16 @@ export default function Testimonials() {
   };
 
   return (
-    <TestimonialsSection>
+    <TestimonialStyles>
       <div className="inner">
-        <h3>Testimonials</h3>
-        <ul>
-          {quotes.map((q, i, a) => (
-            <li key={q.id} className={activeQuote === q.id ? 'active' : ''}>
-              <div className="main">
-                <blockquote>"{q.quote}"</blockquote>
-                <p className="from">{q.from}</p>
-              </div>
-              <div className="count">
-                {i + 1}/{a.length}
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="card">
+          <h3>Testimonials</h3>
+          <blockquote>"{quotes[activeQuote].quote}"</blockquote>
+          <p className="from">{quotes[activeQuote].from}</p>
+          <div className="count">
+            {activeQuote + 1} of {quotes.length}
+          </div>
+        </div>
         <div>
           <button
             className="prev-btn"
@@ -146,6 +140,153 @@ export default function Testimonials() {
           </button>
         </div>
       </div>
-    </TestimonialsSection>
+    </TestimonialStyles>
   );
 }
+
+const TestimonialStyles = styled.div`
+  padding: 5rem 0 8rem;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f8fafc;
+
+  .inner {
+    margin: 0 auto;
+    position: relative;
+    max-width: 60rem;
+    width: 100%;
+  }
+
+  .card {
+    padding: 3.5rem 4rem 3rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 0.125rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1150px;
+      width: 1000px;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 0.125rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -1150px;
+      width: 1000px;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 0.125rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    }
+  }
+
+  h3 {
+    margin: 0 0 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  blockquote {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    min-height: 8rem;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    color: #475569;
+    text-align: center;
+  }
+
+  .from {
+    margin: 0;
+    font-family: 'Merriweather', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #0f172a;
+    letter-spacing: 0.2em;
+    text-align: center;
+  }
+
+  .count {
+    margin: 1.75rem auto 0;
+    padding: 0.375rem 0.75rem;
+    display: inline-flex;
+    font-family: 'Merriweather', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #e2e8f0;
+    letter-spacing: 0.1em;
+    text-shadow: 0 1px 0 #0f172a;
+    text-align: center;
+    line-height: 1;
+    background-color: #475569;
+    border: 1px solid #334155;
+    box-shadow: inset 0 1px 1px #64748b;
+    border-radius: 9999px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    padding: 0.5rem;
+    position: absolute;
+    top: 10.875rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+    cursor: pointer;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+
+    &:hover {
+      color: #475569;
+    }
+
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+
+  .prev-btn {
+    left: -90px;
+  }
+
+  .next-btn {
+    right: -90px;
+  }
+`;
