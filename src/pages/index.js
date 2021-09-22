@@ -10,7 +10,7 @@ import heroImage from '../images/hero.jpg';
 import greenbay from '../images/greenbay.jpg';
 import manitowoc from '../images/manitowoc.jpg';
 import sheboygan from '../images/sheboygan.jpg';
-import family from '../images/featured-1.jpg';
+import featured from '../images/featured.jpg';
 
 const stores = [
   {
@@ -205,7 +205,10 @@ export default function Index() {
           <div className="inner">
             <div className="row">
               <div className="featured-image">
-                <img src={family} alt="Family on the beach holding hands" />
+                <img
+                  src={featured}
+                  alt="Headstone with pink flowers laying on top."
+                />
               </div>
               <div className="written-copy">
                 <h3>Every Life is Worth Remembering</h3>

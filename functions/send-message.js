@@ -2,6 +2,7 @@ require('dotenv').config();
 const api_key = process.env.MG_API_KEY;
 const domain = process.env.MG_DOMAIN;
 const mailgun = require('mailgun-js')({ apiKey: api_key, domain });
+const createEmailTemplate = require('./utils');
 
 const TO_EMAIL_ADDRESSES = {
   ['green-bay']: process.env.GREENBAY_STORE_EMAIL,
@@ -10,58 +11,69 @@ const TO_EMAIL_ADDRESSES = {
   ['ask-our-cm']: process.env.CERTIFIED_MEMORIALIST_EMAIL,
 };
 
+const stores = {
+  'green-bay': 'Green Bay',
+  manitowoc: 'Manitowoc',
+  sheboygan: 'Sheboygan',
+  'ask-our-cm': 'Ask Our Certified Memorialist',
+};
+
+function removeNonDigits(input) {
+  return input.replace(/\D/g, '');
+}
+
+function formatPhoneNumber(number) {
+  const digits = removeNonDigits(number);
+  const split = digits.split('');
+  const result = split.map((item, index) => {
+    if (index === 0) return `(${item}`;
+    if (index === 2) return `${item}) `;
+    if (index === 5) return `${item}-`;
+    else return item;
+  });
+  return result.join('');
+}
+
 exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body);
-    const { store, name, email, phone, message, honeypot } = body;
     const id = Date.now();
+    const store = stores[body.store];
+    const name = body.name.trim();
+    const email = body.email.trim().toLowerCase();
+    const phone = formatPhoneNumber(body.phone.trim());
+    const message = body.message.trim();
+    const honeypot = body.honeypot;
 
     if (honeypot) {
       return {
         statusCode: 400,
-        body: 'The honeypot was triggered!',
+        body: 'Honeypot triggered!',
       };
     }
 
-    const requiredFields = ['store', 'name', 'email', 'phone', 'message'];
-    const missingFields = requiredFields.filter(f => !body[f]);
-    const isValid = missingFields.length === 0 ? true : false;
+    const mailgunData = {
+      from: process.env.FROM_EMAIL_ADDRESS,
+      to: TO_EMAIL_ADDRESSES[body.store],
+      subject: `Message from ${name} (ID: ${id})`,
+      text: `Store - ${store} \nName - ${name} \nEmail - ${email} \nPhone - ${phone} \n\nMessage - ${message} \n\n*This message was sent from the zabelmonuments.com contact form.`,
+      html: createEmailTemplate(store, name, email, phone, message),
+      'h:Reply-To': email,
+    };
 
-    if (isValid) {
-      const mailgunData = {
-        from: process.env.FROM_EMAIL_ADDRESS,
-        to: TO_EMAIL_ADDRESSES[store],
-        bcc: process.env.BCC_EMAIL_ADDRESS,
-        'h:Reply-To': email,
-        subject: `Message from ${name} (ID: ${id})`,
-        text: `Store - ${TO_EMAIL_ADDRESSES[store]} \nName - ${name} \nEmail - ${email} \nPhone - ${phone} \n\nMessage - ${message} \n\n*This message was sent from the zabelmonuments.com contact form.`,
-      };
+    await mailgun.messages().send(mailgunData);
 
-      return mailgun
-        .messages()
-        .send(mailgunData)
-        .then(() => ({
-          statusCode: 200,
-          body: JSON.stringify({
-            message: `Message (ID: ${id}) sent successfully!`,
-            messageId: id,
-          }),
-        }))
-        .catch(error => ({ statusCode: 500, body: error }));
-    } else {
-      const errorMessage = `The following fields are required but were not provided: [${missingFields.join(
-        ', '
-      )}]`;
-
-      return {
-        statusCode: 400,
-        body: errorMessage,
-      };
-    }
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: `Message (ID: ${id}) sent successfully!`,
+        messageId: id,
+      }),
+    };
   } catch (error) {
     return {
       statusCode: 500,
-      body: error,
+      body: error.message,
     };
   }
 };

@@ -1,9 +1,10 @@
 import React from 'react';
+import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useQueryParam, StringParam } from 'use-query-params';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import axios from 'axios';
+import axios from 'axios';
 import styled from 'styled-components';
 import { removeNonDigits } from '../utils';
 import Layout from '../components/Layout';
@@ -19,6 +20,7 @@ const stores = {
 export default function Contact() {
   const [store, setStore] = useQueryParam('store', StringParam);
   const [activeClass, setActiveClass] = React.useState();
+  const [serverError, setServerError] = React.useState(false);
 
   React.useEffect(() => {
     if (!store) {
@@ -45,7 +47,7 @@ export default function Contact() {
       .required('Email address is required'),
     phone: Yup.string()
       .transform(value => removeNonDigits(value))
-      .matches(new RegExp(/^\d{10}$/), 'Phone number must 10 digits')
+      .matches(new RegExp(/^\d{10}$/), 'Phone number must have 10 digits')
       .required('Phone number is required'),
     message: Yup.string().required('A message is required'),
   });
@@ -66,11 +68,25 @@ export default function Contact() {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={values => {
-                console.log('form submitted...');
-                console.log(values);
-                // check for honeypot
-                // todo: add axios call to serverless fn
+              onSubmit={async values => {
+                try {
+                  if (values.honeypot !== '') {
+                    return;
+                  }
+                  const data = { ...values, store };
+                  console.log(data);
+                  const response = await axios.post(
+                    '/.netlify/functions/send-message',
+                    { ...data }
+                  );
+                  console.log(response);
+
+                  if (response.status === 200) {
+                    navigate('/success');
+                  }
+                } catch (error) {
+                  setServerError(true);
+                }
               }}
             >
               {({ isSubmitting }) => (
@@ -167,7 +183,11 @@ export default function Contact() {
                       </div>
                       <div className="field">
                         <label htmlFor="phone">Phone Number</label>
-                        <Field name="phone" id="phone" />
+                        <Field
+                          name="phone"
+                          id="phone"
+                          placeholder="(___) ___-____"
+                        />
                         <ErrorMessage
                           component="div"
                           name="phone"
@@ -191,7 +211,11 @@ export default function Contact() {
                       <Field name="honeypot" id="honeypot" tabIndex="-1" />
                     </div>
                   </div>
-                  <button className="submit-button" disabled={isSubmitting}>
+                  <button
+                    type="submit"
+                    className="submit-button"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? (
                       'Loading...'
                     ) : (
@@ -213,6 +237,11 @@ export default function Contact() {
                       </>
                     )}
                   </button>
+                  {serverError && (
+                    <div className="server-error">
+                      Server error: Please try sending your message again.
+                    </div>
+                  )}
                 </Form>
               )}
             </Formik>
@@ -448,6 +477,13 @@ const ContactStyles = styled.div`
   .validation-error {
     margin: 0.25rem 0 0;
     font-size: 0.75rem;
+    font-weight: 500;
+    color: #e40764;
+  }
+
+  .server-error {
+    margin: 1rem 0 0;
+    font-size: 0.8125rem;
     font-weight: 500;
     color: #e40764;
   }
