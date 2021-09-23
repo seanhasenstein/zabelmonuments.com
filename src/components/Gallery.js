@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
+import { slugify } from '../utils';
 import Layout from './Layout';
 import Lightbox from './Lightbox';
 
@@ -63,56 +64,60 @@ export default function Gallery({ images, title }) {
     setInitFocusedImg(e.currentTarget);
   };
 
+  const handleSelectChange = e => {
+    navigate(`/gallery/${e.target.value}`);
+  };
+
   return (
     <>
       <Layout>
         <GalleryPageStyles>
-          <aside>
-            <div className="container">
-              {galleryLinks.map(l => (
-                <Link
-                  key={l.id}
-                  to={`/gallery/${l.slug}`}
-                  partiallyActive={true}
-                  activeClassName="current"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </div>
-          </aside>
-          <div className="gallery">
-            <h2>{title} Gallery</h2>
-            <div className="grid">
-              {images.length > 0 &&
-                images.map((image, index) => (
-                  <button
-                    key={image.node.id}
-                    onClick={e => handleClick(e, index)}
-                    className="grid-item"
+          <div className="wrapper">
+            <aside>
+              <div className="container">
+                {galleryLinks.map(l => (
+                  <Link
+                    key={l.id}
+                    to={`/gallery/${l.slug}`}
+                    partiallyActive={true}
+                    activeClassName="current"
                   >
-                    <div className="img-container">
-                      <img src={image.node.secure_url} alt="TODO" />
-                    </div>
-                  </button>
+                    {l.label}
+                  </Link>
                 ))}
-            </div>
-            <ul>
-              {/* {images.allCloudinaryMedia.nodes.map(({ secure_url }, i) => (
-                  <a key={i} href="#" onClick={e => handleClick(e, i)}>
-                    <li>
-                      <div>
+              </div>
+            </aside>
+            <div className="gallery">
+              <h2>{title} Gallery</h2>
+              <div className="mobile-nav">
+                <select onChange={handleSelectChange} value={slugify(title)}>
+                  {galleryLinks.map(l => (
+                    <option key={l.id} value={l.slug}>
+                      {l.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid">
+                {images.length > 0 &&
+                  images.map((image, index) => (
+                    <button
+                      key={image.node.id}
+                      onClick={e => handleClick(e, index)}
+                      className="grid-item"
+                    >
+                      <div className="img-container">
                         <img
-                          src={secure_url}
-                          alt={`${title} photo ${i + 1} of ${
-                            images.allCloudinaryMedia.nodes.length
+                          src={image.node.secure_url}
+                          alt={`${title} photo ${index + 1} of ${
+                            images.length
                           }`}
                         />
                       </div>
-                    </li>
-                  </a>
-                ))} */}
-            </ul>
+                    </button>
+                  ))}
+              </div>
+            </div>
           </div>
         </GalleryPageStyles>
       </Layout>
@@ -136,15 +141,23 @@ Gallery.propTypes = {
 };
 
 const GalleryPageStyles = styled.div`
-  margin: 0 auto;
-  padding: 5rem 0 6rem;
-  display: flex;
-  max-width: 1000px;
-  width: 100%;
+  padding: 0 1.5rem;
+
+  .wrapper {
+    margin: 0 auto;
+    padding: 5rem 0 6rem;
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
+  }
 
   h2 {
     margin: 0 0 2rem;
     font-size: 1.5rem;
+  }
+
+  .mobile-nav {
+    display: none;
   }
 
   .gallery {
@@ -232,24 +245,64 @@ const GalleryPageStyles = styled.div`
       &.current,
       &.current:hover {
         margin-top: -1px;
-        /* background-color: #e5bd73; */
         font-weight: 500;
         color: #fff;
-        /* text-shadow: 0 1px 1px #d8971e; */
+        text-shadow: 0 1px 1px #527c34;
+        background-color: #6ea546;
         border-top: none;
-        /* border-bottom: 1px solid #dfad52; */
+        border-bottom: 1px solid #527c34;
         border-radius: 0.125rem 0 0 0.125rem;
 
-        background-color: #6ea546;
-        border-bottom: 1px solid #527c34;
-        text-shadow: 0 1px 1px #527c34;
-
         &:after {
-          /* border-left: 1.125rem solid #e5bd73; */
-
           border-left: 1.125rem solid #6ea546;
         }
       }
+    }
+  }
+
+  @media (max-width: 991px) {
+    aside {
+      padding: 0 3rem 0 0;
+      max-width: 19rem;
+    }
+
+    .img-container {
+      height: 7rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .wrapper {
+      padding: 3.5rem 0;
+    }
+
+    h2 {
+      margin: 0 0 1.75rem;
+      text-align: center;
+    }
+
+    .mobile-nav {
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    aside {
+      display: none;
+    }
+
+    .grid-item {
+      width: 33.33%;
+    }
+
+    .img-container {
+      height: 9rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .grid-item {
+      width: 50%;
     }
   }
 `;

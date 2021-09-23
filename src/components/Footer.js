@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import logo from '../images/logo.png';
-import cert1 from '../images/aioca.png';
-import cert2 from '../images/mb.png';
-import cert3 from '../images/waomb.png';
+import Logo from '../images/logo.png';
+import AIOCA from '../images/aioca.png';
+import MB from '../images/mb.png';
+import WAOMB from '../images/waomb.png';
 
 export default function Footer() {
   return (
@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="inner">
         <div className="brand">
           <div className="logo">
-            <img src={logo} alt="Zabel Monuments" />
+            <img src={Logo} alt="Zabel Monuments" />
           </div>
           <h3>Every Life is Worth Remembering</h3>
         </div>
@@ -22,17 +22,17 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={cert1} alt="American Institute of Commemorative Art" />
+            <img src={AIOCA} alt="American Institute of Commemorative Art" />
           </a>
           <a
             href="https://monumentbuilders.org/"
             target="_blank"
             rel="noreferrer"
           >
-            <img src={cert2} alt="Monument Builders" />
+            <img src={MB} alt="Monument Builders" />
           </a>
           <a href="http://wambonline.org/" target="_blank" rel="noreferrer">
-            <img src={cert3} alt="WI Association of Monument Builders" />
+            <img src={WAOMB} alt="WI Association of Monument Builders" />
           </a>
         </div>
         <div className="nav">

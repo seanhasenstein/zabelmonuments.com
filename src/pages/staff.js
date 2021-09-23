@@ -44,7 +44,7 @@ const profiles = [
     image: null,
   },
   {
-    id: 4,
+    id: 5,
     name: 'John Zabel',
     bio: [
       'John is a 2nd generation memorialist and past owner of Zabel Monuments. John was involved in all aspects of the business. Now retired, John enjoys his time “up nort” in Three Lakes at his cabin with his wife Nancy. John and Nancy have three adult children and eight grandchildren. He is a member of Redeemer Lutheran Church and the Manitowoc Yacht Club.',
@@ -125,6 +125,12 @@ const StaffPageStyles = styled.div`
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .photo {
+      max-width: 8rem;
     }
   }
 `;

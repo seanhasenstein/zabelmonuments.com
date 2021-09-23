@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import NavLinkItem from './NavLinkItem';
-import logo from '../images/logo.png';
 import { Link } from 'gatsby';
+import styled from 'styled-components';
+import Logo from '../images/logo.png';
 
 const primaryNavItems = [
   { id: 1, slug: '/', text: 'Home' },
@@ -25,6 +24,18 @@ const secondaryNavItems = [
 ];
 
 export default function Header() {
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.body.style.overflow = 'inherit';
+    };
+  }, [open]);
+
   return (
     <HeaderStyles>
       <div className="secondary-nav">
@@ -34,18 +45,72 @@ export default function Header() {
           </Link>
         ))}
       </div>
-      <div className="primary-nav">
+      <div className={`primary-nav ${open ? 'open' : ''}`}>
         <div className="inner">
-          <div className="logo">
-            <Link to="/">
-              <img src={logo} alt="Zabel Monuments" />
-            </Link>
+          <div className="mobile-header-container">
+            <div className="logo">
+              <Link to="/">
+                <img src={Logo} alt="Zabel Monuments" />
+              </Link>
+            </div>
+            <button
+              type="button"
+              className="mobile-button"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? (
+                <>
+                  <span className="sr-only">Close navigation menu</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <span className="sr-only">Open navigation menu</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </>
+              )}
+            </button>
           </div>
-          <nav>
-            {primaryNavItems.map(i => (
-              <NavLinkItem key={i.id} slug={i.slug} text={i.text} />
-            ))}
-          </nav>
+          <div className={`mobile-nav-container ${open ? 'open' : ''}`}>
+            <nav>
+              {primaryNavItems.map(i => (
+                <Link key={i.id} to={`${i.slug}`}>
+                  {i.text}
+                </Link>
+              ))}
+            </nav>
+            <div className="mobile-secondary-nav">
+              {secondaryNavItems.map(i => (
+                <Link key={i.id} to={i.slug}>
+                  {i.text}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </HeaderStyles>
@@ -71,6 +136,11 @@ const HeaderStyles = styled.header`
         text-decoration: underline;
       }
     }
+  }
+
+  .mobile-secondary-nav,
+  .mobile-button {
+    display: none;
   }
 
   .primary-nav {
@@ -117,6 +187,129 @@ const HeaderStyles = styled.header`
       &:last-of-type {
         margin-right: 0;
         padding-right: 0;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .secondary-nav {
+      justify-content: center;
+    }
+
+    .primary-nav {
+      .inner {
+        flex-direction: column;
+      }
+    }
+
+    .logo {
+      padding-bottom: 0.875rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .secondary-nav {
+      display: none;
+    }
+
+    .primary-nav {
+      padding-bottom: 0;
+    }
+
+    .primary-nav .open {
+      height: calc(100vh);
+    }
+
+    .mobile-header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-button {
+      padding: 0.5rem;
+      display: block;
+      background-color: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+
+    .mobile-header-container,
+    .mobile-nav-container,
+    .inner {
+      width: 100%;
+    }
+
+    .mobile-nav-container {
+      display: none;
+
+      &.open {
+        display: block;
+      }
+    }
+
+    nav {
+      padding: 0 0 0.75rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+      a,
+      a:first-of-type {
+        margin: 0;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    .mobile-secondary-nav {
+      padding: 0.5rem 1.5rem;
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      background-color: #1a1915;
+
+      a {
+        padding: 0.625rem 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.5);
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        &:hover {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 350px) {
+    .mobile-nav-container a {
+      padding: 0.5rem 0.25rem;
+    }
+    .mobile-secondary-nav {
+      padding: 0.375rem 1.25rem;
+
+      a {
+        padding: 0.5rem 0;
       }
     }
   }

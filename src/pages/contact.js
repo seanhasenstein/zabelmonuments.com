@@ -1,14 +1,14 @@
 import React from 'react';
 import { navigate } from 'gatsby';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useQueryParam, StringParam } from 'use-query-params';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import styled from 'styled-components';
 import { removeNonDigits } from '../utils';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
+import BackgroundImage from '../images/contact-background.jpg';
 
 const stores = {
   greenBay: 'green-bay',
@@ -74,12 +74,10 @@ export default function Contact() {
                     return;
                   }
                   const data = { ...values, store };
-                  console.log(data);
                   const response = await axios.post(
                     '/.netlify/functions/send-message',
                     { ...data }
                   );
-                  console.log(response);
 
                   if (response.status === 200) {
                     navigate('/success');
@@ -252,13 +250,13 @@ export default function Contact() {
   );
 }
 
-Contact.propTypes = {
-  location: PropTypes.object,
-};
-
 const ContactStyles = styled.div`
   padding: 3.5rem 0;
   width: 100%;
+  background-image: url(${BackgroundImage});
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
 
   .inner {
     margin: 0 auto;
@@ -489,8 +487,18 @@ const ContactStyles = styled.div`
   }
 
   @media (max-width: 600px) {
+    background-size: 225%;
+
     .radio-group li {
-      max-width: 350px;
+      width: 100%;
+    }
+
+    .grid-col-2 {
+      grid-template-columns: 1fr;
+      gap: 0rem;
+    }
+
+    .submit-button {
       width: 100%;
     }
   }

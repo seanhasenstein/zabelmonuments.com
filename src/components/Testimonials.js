@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const quotes = [
+const testimonials = [
   {
     id: 1,
     quote:
@@ -64,229 +64,225 @@ const quotes = [
   },
 ];
 
-const direction = {
-  prev: 'PREVIOUS',
-  next: 'NEXT',
-};
-
 export default function Testimonials() {
   const [activeQuote, setActiveQuote] = React.useState(0);
 
-  const handleClick = dir => {
-    if (dir === direction.next) {
-      if (activeQuote === quotes.length - 1) {
-        setActiveQuote(0);
-      } else {
-        setActiveQuote(activeQuote + 1);
-      }
+  const handlePrevClick = () => {
+    if (activeQuote === 0) {
+      return;
     }
+    setActiveQuote(prevQuote => prevQuote - 1);
+  };
 
-    if (dir === direction.prev) {
-      if (activeQuote === 0) {
-        setActiveQuote(quotes.length - 1);
-      } else {
-        setActiveQuote(activeQuote - 1);
-      }
+  const handleNextClick = () => {
+    if (activeQuote === testimonials.length - 1) {
+      return;
     }
+    setActiveQuote(prevQuote => prevQuote + 1);
   };
 
   return (
-    <TestimonialStyles>
-      <div className="inner">
-        <div className="card">
+    <TestimonialsStyles activeQuote={activeQuote}>
+      <div className="testimonial-container">
+        <div className="testimonials-wrapper">
           <h3>Testimonials</h3>
-          <blockquote>"{quotes[activeQuote].quote}"</blockquote>
-          <p className="from">{quotes[activeQuote].from}</p>
-          <div className="count">
-            {activeQuote + 1} of {quotes.length}
+          <div className="grid">
+            {testimonials.map((t, i, a) => (
+              <div
+                key={t.id}
+                className={`grid-item ${activeQuote === i ? 'active' : ''}`}
+              >
+                <blockquote>"{t.quote}"</blockquote>
+                <div className="from">{t.from}</div>
+                <div className="count">
+                  {i + 1} of {a.length}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="buttons">
+            <button
+              type="button"
+              onClick={handlePrevClick}
+              disabled={activeQuote === 0}
+            >
+              <span className="sr-only">Previous Testimonial</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={handleNextClick}
+              disabled={activeQuote === testimonials.length - 1}
+            >
+              <span className="sr-only">Next Testimonial</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="prev-btn"
-            onClick={() => handleClick(direction.prev)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            className="next-btn"
-            onClick={() => handleClick(direction.next)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
       </div>
-    </TestimonialStyles>
+    </TestimonialsStyles>
   );
 }
 
-const TestimonialStyles = styled.div`
-  padding: 5rem 0 8rem;
-  position: relative;
+const TestimonialsStyles = styled.div`
+  padding: 0 1.5rem 6rem;
   width: 100%;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #f8fafc;
 
-  .inner {
+  .testimonial-container {
     margin: 0 auto;
-    position: relative;
-    max-width: 60rem;
+    max-width: 62.5rem;
     width: 100%;
   }
 
-  .card {
-    padding: 3.5rem 4rem 3rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 0.125rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -1150px;
-      width: 1000px;
-      height: 100%;
-      background-color: #fff;
-      border-radius: 0.125rem;
-      border: 1px solid #e2e8f0;
-      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -1150px;
-      width: 1000px;
-      height: 100%;
-      background-color: #fff;
-      border-radius: 0.125rem;
-      border: 1px solid #e2e8f0;
-      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    }
+  h3 {
+    margin: 0 0 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: center;
+    color: #0369a1;
   }
 
-  h3 {
-    margin: 0 0 1.5rem;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #94a3b8;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
+  .grid {
+    margin: 0 auto;
+    max-width: 54rem;
+    width: 100%;
+    display: flex;
+  }
+
+  .grid-item {
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 0.125rem;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    transform: ${props => `translateX(${props.activeQuote * -100}%)`};
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+      transition: transform 500ms ease-out, opacity 500ms linear 100ms;
+    }
   }
 
   blockquote {
-    margin: 0 0 1.5rem;
-    padding: 0;
-    min-height: 8rem;
-    display: flex;
-    align-items: center;
-    line-height: 2;
-    color: #475569;
+    margin: 0 auto 1.5rem;
+    max-width: 42rem;
+    width: 100%;
+    font-size: 0.9375rem;
     text-align: center;
+    line-height: 1.65;
+    color: #334155;
   }
 
   .from {
-    margin: 0;
-    font-family: 'Merriweather', sans-serif;
-    font-size: 1rem;
+    font-family: 'Merriweather', serif;
+    font-size: 0.9375rem;
     font-weight: 600;
     font-style: italic;
-    color: #0f172a;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.075em;
     text-align: center;
+    color: #1e293b;
   }
 
   .count {
-    margin: 1.75rem auto 0;
-    padding: 0.375rem 0.75rem;
-    display: inline-flex;
-    font-family: 'Merriweather', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 600;
+    position: absolute;
+    width: 4rem;
+    right: 0.75rem;
+    bottom: 1.25rem;
+    font-family: 'Merriweather', serif;
+    font-size: 0.75rem;
     font-style: italic;
-    color: #e2e8f0;
-    letter-spacing: 0.1em;
-    text-shadow: 0 1px 0 #0f172a;
+    color: #94a3b8;
     text-align: center;
-    line-height: 1;
-    background-color: #475569;
-    border: 1px solid #334155;
-    box-shadow: inset 0 1px 1px #64748b;
-    border-radius: 9999px;
   }
 
-  .prev-btn,
-  .next-btn {
-    padding: 0.5rem;
-    position: absolute;
-    top: 10.875rem;
-    background-color: transparent;
-    border: none;
+  .buttons {
+    margin: 1.5rem 0 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: #94a3b8;
-    cursor: pointer;
-    border-radius: 9999px;
-    border: 2px solid transparent;
+    gap: 0.5rem;
 
-    &:hover {
-      color: #475569;
-    }
+    button {
+      padding: 0.375rem 0.5rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
-    svg {
-      height: 1.5rem;
-      width: 1.5rem;
+      &:hover {
+        color: #475569;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+          rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.075) 0px 2px 3px 0px;
+      }
+
+      &:disabled {
+        color: #e2e8f0;
+        background-color: rgba(255, 255, 255, 0.75);
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+          rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+      }
+
+      svg {
+        height: 1.25rem;
+        width: 1.25rem;
+      }
     }
   }
 
-  .prev-btn {
-    left: -90px;
-  }
+  @media (max-width: 500px) {
+    .grid-item {
+      padding: 2rem;
+    }
 
-  .next-btn {
-    right: -90px;
+    .count {
+      bottom: -2.5rem;
+      right: unset;
+      left: 0;
+    }
+
+    .buttons {
+      justify-content: flex-end;
+    }
   }
 `;

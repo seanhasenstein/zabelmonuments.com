@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import coupon from '../images/coupon.jpg';
+import CouponImage from '../images/coupon.jpg';
 
 export default function Coupon() {
   return (
@@ -15,22 +14,14 @@ export default function Coupon() {
             Please print this page and present with your purchase to receive
             this discount.
           </p>
-          <img src={coupon} alt="Website coupon graphic" />
+          <img src={CouponImage} alt="Website coupon graphic" />
         </CouponStyles>
       </PageShell>
     </Layout>
   );
 }
 
-Coupon.propTypes = {
-  location: PropTypes.object,
-};
-
 const CouponStyles = styled.div`
-  p {
-    margin: 0 0 2rem;
-  }
-
   img {
     max-width: 24rem;
     width: 100%;

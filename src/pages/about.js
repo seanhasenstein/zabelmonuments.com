@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
 import SEO from '../components/Seo';
-import cert1 from '../images/aioca.png';
-import cert2 from '../images/waomb.png';
-import cert3 from '../images/mb.png';
+import AIOCA from '../images/aioca.png';
+import WAOMB from '../images/waomb.png';
+import MB from '../images/mb.png';
 
 export default function About() {
   return (
@@ -36,7 +36,7 @@ export default function About() {
           <div className="item certification">
             <div className="logo">
               <img
-                src={cert1}
+                src={AIOCA}
                 alt="American Institute of Commemorative Art logo"
               />
             </div>
@@ -51,7 +51,7 @@ export default function About() {
               </p>
               <a
                 href="https://www.monuments-aica.com/"
-                className="external-link"
+                className="external-link-button"
               >
                 Visit their website
                 <svg
@@ -73,7 +73,7 @@ export default function About() {
           <div className="item certification">
             <div className="logo">
               <img
-                src={cert2}
+                src={WAOMB}
                 alt="Wisconsin Association of Monument Builders logo"
               />
             </div>
@@ -84,7 +84,7 @@ export default function About() {
                 generations serve as the President of the Wisconsin Association
                 of Monument Builders.
               </p>
-              <a href="http://wambonline.org/" className="external-link">
+              <a href="http://wambonline.org/" className="external-link-button">
                 Visit their website
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export default function About() {
           </div>
           <div className="item certification">
             <div className="logo">
-              <img src={cert3} alt="Monument Builders of North America logo" />
+              <img src={MB} alt="Monument Builders of North America logo" />
             </div>
             <div className="text">
               <h3>Monument Builders of North America</h3>
@@ -112,7 +112,10 @@ export default function About() {
                 We are members and active participants of our national
                 association - Monument Builders of North America.
               </p>
-              <a href="https://monumentbuilders.org/" className="external-link">
+              <a
+                href="https://monumentbuilders.org/"
+                className="external-link-button"
+              >
                 Visit their website
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,11 +141,7 @@ export default function About() {
 
 const AboutPageStyles = styled.div`
   h3 {
-    margin: 0;
-  }
-
-  p {
-    margin-bottom: 1.5rem;
+    margin: 0 0 1rem;
   }
 
   .item {
@@ -170,7 +169,7 @@ const AboutPageStyles = styled.div`
     }
   }
 
-  .external-link {
+  .external-link-button {
     margin: 1rem 0 0;
     padding: 0.625rem 1rem;
     display: inline-flex;

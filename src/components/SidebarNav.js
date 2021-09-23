@@ -64,7 +64,8 @@ const SidebarNavStyles = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: 21rem;
+  max-width: 21rem;
+  width: 100%;
 
   .container {
     padding: 0.5rem 0.375rem 0.5rem 0.5rem;
@@ -122,6 +123,15 @@ const SidebarNavStyles = styled.div`
         border-left: 1.125rem solid #6ea546;
       }
     }
+  }
+
+  @media (max-width: 991px) {
+    padding: 0 4rem 0 0;
+    max-width: 18rem;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
   }
 
   @media print {
