@@ -2,12 +2,13 @@ import React from 'react';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { useQueryParam, StringParam } from 'use-query-params';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { removeNonDigits } from '../utils';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
+import FormItem from '../components/FormItem';
 import BackgroundImage from '../images/contact-background.jpg';
 
 const stores = {
@@ -68,28 +69,25 @@ export default function Contact() {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={async values => {
-                try {
-                  if (values.honeypot !== '') {
-                    return;
-                  }
-                  const data = { ...values, store };
-                  const response = await axios.post(
-                    '/.netlify/functions/send-message',
-                    { ...data }
-                  );
+              onSubmit={(values, actions) => {
+                if (values.honeypot) return;
 
-                  if (response.status === 200) {
+                const data = { ...values, store };
+
+                axios
+                  .post('/.netlify/functions/send-message', { ...data })
+                  .then(() => {
                     navigate('/success');
-                  }
-                } catch (error) {
-                  setServerError(true);
-                }
+                  })
+                  .catch(() => {
+                    setServerError(true);
+                    actions.setSubmitting(false);
+                  });
               }}
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <div className="field choose-store">
+                  <div className="section">
                     <h3>Who would you like to contact?</h3>
                     <ul className="radio-group">
                       <li>
@@ -158,56 +156,24 @@ export default function Contact() {
                       </li>
                     </ul>
                   </div>
-                  <div>
+                  <div className="section">
                     <h3>Please fill out this form:</h3>
-                    <div className="field">
-                      <label htmlFor="name">Your Name</label>
-                      <Field name="name" id="name" />
-                      <ErrorMessage
-                        component="div"
-                        name="name"
-                        className="validation-error"
-                      />
-                    </div>
+                    <FormItem name="name" label="Your name" />
                     <div className="grid-col-2">
-                      <div className="field">
-                        <label htmlFor="email">Email Address</label>
-                        <Field name="email" id="email" />
-                        <ErrorMessage
-                          component="div"
-                          name="email"
-                          className="validation-error"
-                        />
-                      </div>
-                      <div className="field">
-                        <label htmlFor="phone">Phone Number</label>
-                        <Field
-                          name="phone"
-                          id="phone"
-                          placeholder="(___) ___-____"
-                        />
-                        <ErrorMessage
-                          component="div"
-                          name="phone"
-                          className="validation-error"
-                        />
-                      </div>
+                      <FormItem name="email" label="Email address" />
+                      <FormItem name="phone" label="Phone number" />
                     </div>
-                    <div className="field">
-                      <label htmlFor="message">Your Message</label>
-                      <Field as="textarea" name="message" id="message" />
-                      <ErrorMessage
-                        component="div"
-                        name="message"
-                        className="validation-error"
-                      />
-                    </div>
-                    <div className="field" id="honeypot">
-                      <label htmlFor="honeypot">
-                        Please leave this field blank.
-                      </label>
-                      <Field name="honeypot" id="honeypot" tabIndex="-1" />
-                    </div>
+                    <FormItem
+                      as="textarea"
+                      name="message"
+                      label="How can we help you?"
+                    />
+                    <FormItem
+                      name="honeypot"
+                      label="Please leave this field blank"
+                      className="sr-only"
+                      tabIndex="-1"
+                    />
                   </div>
                   <button
                     type="submit"
@@ -279,20 +245,22 @@ const ContactStyles = styled.div`
     width: 100%;
   }
 
+  .section {
+    margin: 2.5rem 0 0;
+    padding: 2.5rem 0 0;
+    border-top: 1px solid #e2e8f0;
+  }
+
   .grid-col-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  .field {
+  .form-item {
     margin: 0 0 1.5rem;
     display: flex;
     flex-direction: column;
-
-    &.choose-store {
-      margin: 3rem 0 3.5rem;
-    }
   }
 
   .radio-group {
@@ -372,12 +340,10 @@ const ContactStyles = styled.div`
 
   h3 {
     margin: 0 0 1.5rem;
-    padding: 2.125rem 0 0;
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     color: #475569;
-    border-top: 1px solid #e2e8f0;
   }
 
   label {
