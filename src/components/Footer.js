@@ -112,7 +112,7 @@ export default function Footer() {
             <h4>Other</h4>
             <ul>
               <li>
-                <Link to="/webiste-coupon">Website Coupon</Link>
+                <Link to="/coupon">Website Coupon</Link>
               </li>
               <li>
                 <Link to="/guarantee">100% Guarantee</Link>
