@@ -10,11 +10,8 @@ export default function Layout({ children }) {
     <>
       <GlobalStyles />
       <Helmet>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
-          rel="stylesheet"
-        />
+        <html lang="en" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
       </Helmet>
       <Header />
       {children}
