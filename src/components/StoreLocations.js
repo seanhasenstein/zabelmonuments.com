@@ -148,24 +148,26 @@ export default function StoreLocations() {
                   </a>
                 </div>
               </div>
-              <Link
-                to={`/contact?store=${slugify(store.address.city)}`}
-                state={{ store: slugify(store.address.city) }}
-                className="contact-link"
-              >
-                Contact us
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+              <div className="actions">
+                <Link
+                  to={`/contact?store=${slugify(store.address.city)}`}
+                  state={{ store: slugify(store.address.city) }}
+                  className="contact-link"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
+                  Contact us
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         ))}
@@ -181,7 +183,6 @@ const StoreLocationStyles = styled.div`
 
   .row {
     margin: 0 auto;
-    padding: 0 0 6rem;
     display: flex;
     gap: 2rem;
     max-width: 1000px;
@@ -205,20 +206,24 @@ const StoreLocationStyles = styled.div`
       display: flex;
       border-width: 5px 5px 0 5px;
       border-style: solid;
+      background-color: #fff;
       border-color: #fff;
-      border-radius: 0.5rem 0.5rem 0 0;
+      border-radius: 0.125rem 0.125rem 0 0;
 
       img {
         width: 100%;
+        background-color: #fff;
+        border-radius: 0.125rem 0.125rem 0 0;
       }
 
-      &::before {
+      &::after {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        border-radius: 0.125rem 0.125rem 0 0;
         box-shadow: inset 0 30px 40px rgba(0, 0, 0, 0.7);
       }
     }
@@ -327,35 +332,44 @@ const StoreLocationStyles = styled.div`
     }
   }
 
+  .actions {
+    padding: 0.25rem;
+    display: flex;
+    background-color: #f1f5f9;
+    border-radius: 0.5rem;
+  }
+
   .contact-link {
-    margin: 0.5rem 0 0;
     padding: 0.4375rem 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: #334155;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.1875rem;
+    color: #0369a1;
+    background-color: #fff;
+    border-radius: 0.25rem;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-
-    &:hover {
-      border-color: #cbd5e1;
-
-      svg {
-        transform: translateX(2px);
-      }
-    }
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
     svg {
       margin-left: 0.375rem;
       height: 0.875rem;
       width: 0.875rem;
-      color: #94a3b8;
+      color: #cbd5e1;
+    }
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.15) 0px 1px 3px 0px,
+        rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+
+      svg {
+        transform: translateX(1px);
+      }
     }
   }
 

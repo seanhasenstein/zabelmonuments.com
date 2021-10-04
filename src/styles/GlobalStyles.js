@@ -31,11 +31,16 @@ export const GlobalStyles = createGlobalStyle`
 
   button {
     margin: 0;
+    cursor: pointer;
   }
 
   ul {
     padding: 0;
     list-style-type: none;
+  }
+
+  img {
+    width: 100%;
   }
 
   .sr-only {
