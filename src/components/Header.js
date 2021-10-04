@@ -13,14 +13,15 @@ const primaryNavItems = [
 ];
 
 const secondaryNavItems = [
-  { id: 1, slug: '/coupon', text: 'Website Coupon' },
-  { id: 2, slug: '/faq', text: 'FAQ' },
-  { id: 3, slug: '/guarantee', text: '100% Guarantee' },
   {
-    id: 4,
+    id: 1,
     slug: '/contact?store=ask-our-cm',
     text: 'Ask Our Certified Memorialist',
   },
+  { id: 2, slug: '/faq', text: "FAQ's" },
+  { id: 3, slug: '/granite-colors', text: 'Granite Colors' },
+  { id: 4, slug: '/coupon', text: 'Website Coupon' },
+  { id: 5, slug: '/guarantee', text: '100% Guarantee' },
 ];
 
 export default function Header() {

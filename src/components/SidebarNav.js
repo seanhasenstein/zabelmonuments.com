@@ -5,36 +5,41 @@ import styled from 'styled-components';
 const links = [
   {
     id: 1,
-    text: 'Our Services',
-    to: '/services',
-  },
-  {
-    id: 2,
-    text: 'Why Choose Us?',
-    to: '/why-choose-us',
-  },
-  {
-    id: 3,
     text: 'About Us',
     to: '/about',
   },
   {
-    id: 4,
-    text: 'Our History',
-    to: '/history',
-  },
-  {
-    id: 5,
-    text: 'Meet Our Staff',
-    to: '/staff',
-  },
-  {
-    id: 6,
+    id: 2,
     text: 'FAQ',
     to: '/faq',
   },
   {
+    id: 3,
+    text: 'Granite Colors',
+    to: '/granite-colors',
+  },
+  {
+    id: 4,
+    text: 'Meet Our Staff',
+    to: '/staff',
+  },
+  {
+    id: 5,
+    text: 'Our History',
+    to: '/history',
+  },
+  {
+    id: 6,
+    text: 'Our Services',
+    to: '/services',
+  },
+  {
     id: 7,
+    text: 'Why Choose Us?',
+    to: '/why-choose-us',
+  },
+  {
+    id: 8,
     text: '100% Guarantee',
     to: '/guarantee',
   },

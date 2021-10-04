@@ -40,23 +40,25 @@ export default function Footer() {
             <h4>Learn More</h4>
             <ul className="nav-list">
               <li>
-                <Link to="/why-choose-us">Why Choose Us?</Link>
+                <Link to="/about">About Us</Link>
               </li>
-              <li>
-                <Link to="/services">Our Services</Link>
-              </li>
-
               <li>
                 <Link to="/faq">Frequently Asked Questions</Link>
               </li>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/granite-colors">Granite Colors</Link>
               </li>
               <li>
                 <Link to="/staff">Meet Our Staff</Link>
               </li>
               <li>
                 <Link to="/history">Our History</Link>
+              </li>
+              <li>
+                <Link to="/services">Our Services</Link>
+              </li>
+              <li>
+                <Link to="/why-choose-us">Why Choose Us?</Link>
               </li>
             </ul>
           </div>
@@ -85,9 +87,6 @@ export default function Footer() {
               <li>
                 <Link to="/gallery/garden-art">Garden Art</Link>
               </li>
-              <li>
-                <Link to="/gallery/granite-colors">Granite Color</Link>
-              </li>
             </ul>
           </div>
           <div className="section">
@@ -104,7 +103,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/contact?store=ask-our-cm">
-                  Ask Our Certified Memorialst
+                  Ask Our Certified Memorialist
                 </Link>
               </li>
             </ul>
@@ -139,6 +138,7 @@ const FooterStyles = styled.footer`
     margin: 0 0 0.875rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: #fff;
