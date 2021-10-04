@@ -37,11 +37,6 @@ const galleryLinks = [
     label: 'Garden Art',
     slug: 'garden-art',
   },
-  {
-    id: 7,
-    label: 'Granite Colors',
-    slug: 'granite-colors',
-  },
 ];
 
 export default function Gallery({ images, title }) {
@@ -88,7 +83,9 @@ export default function Gallery({ images, title }) {
               </div>
             </aside>
             <div className="gallery">
-              <h2>{title} Gallery</h2>
+              <h2>
+                <span>{title} Gallery</span>
+              </h2>
               <div className="mobile-nav">
                 <select onChange={handleSelectChange} value={slugify(title)}>
                   {galleryLinks.map(l => (
@@ -99,38 +96,45 @@ export default function Gallery({ images, title }) {
                 </select>
               </div>
               <div className="grid">
-                {images.length > 0 &&
-                  images.map((image, index) => (
-                    <button
-                      key={image.node.id}
-                      onClick={e => handleClick(e, index)}
-                      className="grid-item"
-                    >
-                      <div className="img-container">
+                {images.length === 0 ? (
+                  <div className="empty-message">
+                    There are currently no images in this gallery.
+                  </div>
+                ) : (
+                  <>
+                    {images.map((image, index) => (
+                      <button
+                        key={image.node.id}
+                        onClick={e => handleClick(e, index)}
+                        className="grid-item"
+                      >
                         <img
                           src={image.node.secure_url}
                           alt={`${title} photo ${index + 1} of ${
                             images.length
                           }`}
                         />
-                      </div>
-                    </button>
-                  ))}
+                      </button>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>
         </GalleryPageStyles>
       </Layout>
-      <Lightbox
-        showLightbox={showLightbox}
-        selectedImg={selectedImg}
-        setSelectedImg={setSelectedImg}
-        setShowLightbox={setShowLightbox}
-        images={images}
-        initFocusedImg={initFocusedImg}
-        shouldReturnFocus={shouldReturnFocus}
-        title={title}
-      />
+      {images.length === 0 ? null : (
+        <Lightbox
+          showLightbox={showLightbox}
+          selectedImg={selectedImg}
+          setSelectedImg={setSelectedImg}
+          setShowLightbox={setShowLightbox}
+          images={images}
+          initFocusedImg={initFocusedImg}
+          shouldReturnFocus={shouldReturnFocus}
+          title={title}
+        />
+      )}
     </>
   );
 }
@@ -153,7 +157,27 @@ const GalleryPageStyles = styled.div`
 
   h2 {
     margin: 0 0 2rem;
-    font-size: 1.5rem;
+    position: relative;
+    font-size: 1.25rem;
+    text-align: center;
+
+    span {
+      padding: 0 1.5rem;
+      position: relative;
+      background-color: #f8fafc;
+      z-index: 200;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.875rem;
+      width: 100%;
+      height: 1px;
+      background-color: #cbd5e1;
+      z-index: 10;
+    }
   }
 
   .mobile-nav {
@@ -167,30 +191,47 @@ const GalleryPageStyles = styled.div`
   .grid {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.875rem;
   }
 
   .grid-item {
     padding: 0;
     position: relative;
-    width: 25%;
-    background-color: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-  }
-
-  .img-container {
-    padding: 0.5rem;
-    width: 100%;
-    height: 9rem;
+    height: 9.6875rem;
+    width: calc(25% - 0.65625rem);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border: 5px solid #fff;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      box-shadow: inset 0 -70px 70px rgba(20, 20, 20, 0.25);
+      transition: box-shadow 200ms ease-in-out;
+    }
+
+    &:hover ::after {
+      box-shadow: inset 0 -70px 70px rgba(20, 20, 20, 0);
+    }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  .empty-message {
+    color: #64748b;
   }
 
   aside {
@@ -265,13 +306,9 @@ const GalleryPageStyles = styled.div`
       padding: 0 3rem 0 0;
       max-width: 19rem;
     }
-
-    .img-container {
-      height: 7rem;
-    }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 900px) {
     .wrapper {
       padding: 3.5rem 0;
     }
@@ -292,17 +329,13 @@ const GalleryPageStyles = styled.div`
     }
 
     .grid-item {
-      width: 33.33%;
-    }
-
-    .img-container {
-      height: 9rem;
+      width: calc(33.33% - 0.5833rem);
     }
   }
 
   @media (max-width: 500px) {
     .grid-item {
-      width: 50%;
+      width: calc(50% - 0.4375rem);
     }
   }
 `;

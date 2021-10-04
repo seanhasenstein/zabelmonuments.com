@@ -51,7 +51,7 @@ export default function Lightbox({
         }
         break;
       case 'Tab':
-        // SHIFT + TAB KEYS ***********
+        // SHIFT + TAB KEYS
         if (e.shiftKey) {
           e.preventDefault();
           if (closeBtn === activeElement) {
@@ -63,7 +63,7 @@ export default function Lightbox({
             else closeBtn.focus();
           }
 
-          // TAB KEY ***********
+          // TAB KEY
         } else {
           e.preventDefault();
           if (nextBtn === activeElement) closeBtn.focus();
@@ -121,77 +121,66 @@ export default function Lightbox({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
+              fillRule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clipRule="evenodd"
             />
           </svg>
         </button>
         <div className="actions">
-          <button
-            onClick={handlePrevious}
-            className="previous-button flex-grow"
-            ref={prevImgBtn}
-            area-label="Previous Image"
-            disabled={selectedImg === 0}
-          >
-            <span className="sr-only">Previous Image</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {selectedImg === 0 ? null : (
+            <button
+              onClick={handlePrevious}
+              className="previous-button"
+              ref={prevImgBtn}
+              area-label="Previous Image"
+              disabled={selectedImg === 0}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16l-4-4m0 0l4-4m-4 4h18"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={handleNext}
-            className="next-button flex-grow"
-            ref={nextImgBtn}
-            aria-label="Next Image"
-            disabled={selectedImg === images.length - 1}
-          >
-            <span className="sr-only">Next Image</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              <span className="sr-only">Previous Image</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          )}
+          {selectedImg === images.length - 1 ? null : (
+            <button
+              onClick={handleNext}
+              className="next-button"
+              ref={nextImgBtn}
+              aria-label="Next Image"
+              disabled={selectedImg === images.length - 1}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
+              <span className="sr-only">Next Image</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </LightboxStyles>
   );
 }
-
-Lightbox.propTypes = {
-  showLightbox: PropTypes.bool.isRequired,
-  selectedImg: PropTypes.number.isRequired,
-  setSelectedImg: PropTypes.func.isRequired,
-  setShowLightbox: PropTypes.func.isRequired,
-  images: PropTypes.array,
-  title: PropTypes.string.isRequired,
-};
 
 const LightboxStyles = styled.div`
   display: none;
@@ -203,9 +192,8 @@ const LightboxStyles = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 50;
-
-  background-color: #f8fafc;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.85);
 
   &.active {
     display: flex;
@@ -225,47 +213,52 @@ const LightboxStyles = styled.div`
   }
 
   .close-button {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.125rem;
+    height: 2.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: transparent;
-    color: #94a3b8;
-    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #18181b;
+    border-radius: 9999px;
     border: none;
     cursor: pointer;
 
     svg {
-      height: 1.75rem;
-      width: 1.75rem;
+      height: 1.25rem;
+      width: 1.25rem;
     }
 
     &:hover {
-      color: #0f172a;
+      transform: scale(106%);
     }
   }
 
   .previous-button,
   .next-button {
-    padding: 0;
+    padding: 0.5rem;
     position: absolute;
     top: calc(50% - 1rem);
-    background: transparent;
-    color: #94a3b8;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #262626;
+    border-radius: 9999px;
     border: none;
     cursor: pointer;
 
     svg {
-      height: 2rem;
-      width: 2rem;
+      height: 1.375rem;
+      width: 1.375rem;
     }
 
     &:hover {
-      color: #0f172a;
+      color: #171717;
+      transform: scale(106%);
     }
 
     &:disabled {
@@ -282,26 +275,58 @@ const LightboxStyles = styled.div`
   }
 
   @media (max-width: 600px) {
+    background-color: #fafafa;
+
     .container {
       width: 100%;
       height: 75%;
     }
 
     .actions {
-      margin: 0.5rem 1rem 0 0;
+      margin: 0.875rem 1.5rem 0 0;
       display: flex;
       justify-content: flex-end;
-      gap: 0.25rem;
+      gap: 0.75rem;
+    }
+
+    .close-button,
+    .previous-button,
+    .next-button {
+      background-color: #fafafa;
+      color: #a3a3a3;
+    }
+
+    .close-button {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      svg {
+        height: 1.75rem;
+        width: 1.75rem;
+      }
     }
 
     .previous-button,
     .next-button {
-      padding: 0 0.5rem;
       position: relative;
       top: unset;
       left: unset;
       right: unset;
       bottom: unset;
+
+      svg {
+        height: 1.75rem;
+        width: 1.75rem;
+      }
     }
   }
 `;
+
+Lightbox.propTypes = {
+  showLightbox: PropTypes.bool.isRequired,
+  selectedImg: PropTypes.number.isRequired,
+  setSelectedImg: PropTypes.func.isRequired,
+  setShowLightbox: PropTypes.func.isRequired,
+  images: PropTypes.array,
+  title: PropTypes.string.isRequired,
+};
