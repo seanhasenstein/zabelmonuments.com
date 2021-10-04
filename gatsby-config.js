@@ -1,13 +1,9 @@
 require('dotenv').config();
 
 module.exports = {
-  siteMetadata: {
-    title: 'Zabel Monuments | Manitowoc, Sheboygan, & Green Bay Wisconsin',
-  },
   plugins: [
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-use-query-params',
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-use-query-params`,
     {
       resolve: `gatsby-source-cloudinary`,
       options: {
@@ -18,6 +14,7 @@ module.exports = {
         prefix: `zabel-monuments/gallery`,
         maxResults: 1000,
         tags: true,
+        context: true,
       },
     },
   ],
