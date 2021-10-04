@@ -98,7 +98,7 @@ export default function Gallery({ images, title }) {
               <div className="grid">
                 {images.length === 0 ? (
                   <div className="empty-message">
-                    There are currently no images in this gallery.
+                    There are currently no photos in this gallery.
                   </div>
                 ) : (
                   <>
@@ -311,11 +311,6 @@ const GalleryPageStyles = styled.div`
   @media (max-width: 900px) {
     .wrapper {
       padding: 3.5rem 0;
-    }
-
-    h2 {
-      margin: 0 0 1.75rem;
-      text-align: center;
     }
 
     .mobile-nav {
