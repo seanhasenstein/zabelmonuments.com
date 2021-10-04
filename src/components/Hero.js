@@ -16,9 +16,33 @@ export default function Hero() {
           </p>
           <div className="links">
             <Link to="/contact?store=manitowoc" className="primary-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
               Schedule an appointment
             </Link>
             <Link to="/faq" className="secondary-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                  clipRule="evenodd"
+                />
+              </svg>
               Frequently asked questions
             </Link>
           </div>
@@ -89,6 +113,12 @@ const HeroStyles = styled.div`
       box-shadow: #2a2721 0px 0px 0px 2px, #4f46e5 0px 0px 0px 4px,
         rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
+
+    svg {
+      margin: 0 0.5rem 0 0;
+      height: 1rem;
+      width: 1rem;
+    }
   }
 
   .primary-link {
@@ -100,6 +130,10 @@ const HeroStyles = styled.div`
     &:hover {
       background-color: #77b34c;
     }
+
+    svg {
+      color: #a1ca83;
+    }
   }
 
   .secondary-link {
@@ -108,8 +142,16 @@ const HeroStyles = styled.div`
 
     &:hover {
       color: rgba(255, 255, 255, 1);
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.025);
       border-color: rgba(255, 255, 255, 0.75);
+
+      svg {
+        color: rgba(255, 255, 255, 0.75);
+      }
+    }
+
+    svg {
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 

@@ -9,7 +9,6 @@ import { removeNonDigits } from '../utils';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
 import FormItem from '../components/FormItem';
-import BackgroundImage from '../images/contact-background.jpg';
 
 const stores = {
   greenBay: 'green-bay',
@@ -219,10 +218,6 @@ export default function Contact() {
 const ContactStyles = styled.div`
   padding: 3.5rem 0;
   width: 100%;
-  background-image: url(${BackgroundImage});
-  background-size: 100%;
-  background-position: top center;
-  background-repeat: no-repeat;
 
   .inner {
     margin: 0 auto;

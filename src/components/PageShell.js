@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SidebarNav from './SidebarNav';
-import pageBackground from '../images/page-background.jpg';
 
 export default function PageShell({ children }) {
   return (
@@ -21,10 +20,6 @@ PageShell.propTypes = {
 
 const PageContainer = styled.div`
   padding: 5rem 1.5rem;
-  background-image: url(${pageBackground});
-  background-size: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
 
   .page-container {
     margin: 0 auto;
@@ -40,6 +35,7 @@ const PageContainer = styled.div`
     margin: 0 0 1.5rem;
     padding: 0 0 0.875rem;
     font-size: 1.5rem;
+    letter-spacing: 0.0125em;
     border-bottom: 1px solid #e2e8f0;
   }
 
