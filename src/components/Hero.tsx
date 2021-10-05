@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import BackgroundImage from '../images/hero.jpg';
+//@ts-ignore
+import BackgroundImage from '../assets/images/hero.jpg';
 
 export default function Hero() {
   return (

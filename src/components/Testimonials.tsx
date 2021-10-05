@@ -146,7 +146,7 @@ export default function Testimonials() {
   );
 }
 
-const TestimonialsStyles = styled.div`
+const TestimonialsStyles = styled.div<{ activeQuote: number }>`
   padding: 0 1.5rem 4rem;
   overflow-x: hidden;
 

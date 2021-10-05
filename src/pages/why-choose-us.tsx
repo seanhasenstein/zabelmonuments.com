@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
@@ -85,7 +84,11 @@ export default function WhyChooseUs() {
   );
 }
 
-function WhyChooseUsItem({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+function WhyChooseUsItem({ children }: Props) {
   return (
     <li>
       <svg
@@ -124,7 +127,3 @@ const WhyChooseUsListStyles = styled.ul`
     }
   }
 `;
-
-WhyChooseUsItem.propTypes = {
-  children: PropTypes.node.isRequired,
-};

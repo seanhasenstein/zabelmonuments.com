@@ -1,6 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Image } from '../types';
+
+type Props = {
+  showLightbox: boolean;
+  selectedImg: number;
+  setSelectedImg: React.Dispatch<React.SetStateAction<number>>;
+  setShowLightbox: React.Dispatch<React.SetStateAction<boolean>>;
+  images: Image[];
+  title: string;
+};
 
 export default function Lightbox({
   showLightbox,
@@ -9,7 +18,7 @@ export default function Lightbox({
   setShowLightbox,
   images,
   title,
-}) {
+}: Props) {
   const prevImgBtn = React.useRef(null);
   const nextImgBtn = React.useRef(null);
   const closeLightboxBtn = React.useRef(null);
@@ -321,12 +330,3 @@ const LightboxStyles = styled.div`
     }
   }
 `;
-
-Lightbox.propTypes = {
-  showLightbox: PropTypes.bool.isRequired,
-  selectedImg: PropTypes.number.isRequired,
-  setSelectedImg: PropTypes.func.isRequired,
-  setShowLightbox: PropTypes.func.isRequired,
-  images: PropTypes.array,
-  title: PropTypes.string.isRequired,
-};

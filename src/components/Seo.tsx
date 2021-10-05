@@ -1,12 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+
+type Props = {
+  title?: string;
+  description?: string;
+  urlPath?: string;
+};
 
 export default function SEO({
   title = 'Zabel Monuments | Manitowoc, Green Bay, Sheboygan, WI',
   description = '',
   urlPath = '',
-}) {
+}: Props) {
   return (
     <Helmet defer={false}>
       <title>{title}</title>
@@ -15,9 +20,3 @@ export default function SEO({
     </Helmet>
   );
 }
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  urlPath: PropTypes.string,
-};

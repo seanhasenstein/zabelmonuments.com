@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link, navigate } from 'gatsby';
 import { slugify } from '../utils';
+import { Image } from '../types';
 import Layout from './Layout';
 import Lightbox from './Lightbox';
 
@@ -39,7 +39,12 @@ const galleryLinks = [
   },
 ];
 
-export default function Gallery({ images, title }) {
+type Props = {
+  images: Image[];
+  title: string;
+};
+
+export default function Gallery({ images, title }: Props) {
   const [showLightbox, setShowLightbox] = React.useState(false);
   const [selectedImg, setSelectedImg] = React.useState(0);
   const [shouldReturnFocus, setShouldReturnFocus] = React.useState(false);
@@ -130,19 +135,12 @@ export default function Gallery({ images, title }) {
           setSelectedImg={setSelectedImg}
           setShowLightbox={setShowLightbox}
           images={images}
-          initFocusedImg={initFocusedImg}
-          shouldReturnFocus={shouldReturnFocus}
           title={title}
         />
       )}
     </>
   );
 }
-
-Gallery.propTypes = {
-  images: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 const GalleryPageStyles = styled.div`
   padding: 0 1.5rem;

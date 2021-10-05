@@ -1,9 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SidebarNav from './SidebarNav';
 
-export default function PageShell({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function PageShell({ children }: Props) {
   return (
     <PageContainer>
       <div className="page-container">
@@ -13,10 +16,6 @@ export default function PageShell({ children }) {
     </PageContainer>
   );
 }
-
-PageShell.propTypes = {
-  children: PropTypes.any.isRequired,
-};
 
 const PageContainer = styled.div`
   padding: 5rem 1.5rem;

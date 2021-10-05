@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import FeaturedImage from '../images/featured.jpg';
+//@ts-ignore
+import FeaturedImage from '../assets/images/featured.jpg';
 
 export default function Featured() {
   return (
     <FeaturedStyles>
       <div className="grid">
         <div className="grid-image">
-          <img
-            src={FeaturedImage}
-            alt="Pink flowers sitting on top of gravestone."
-          />
+          <img src={FeaturedImage} alt="Pink flowers on top of a gravestone" />
         </div>
         <div className="grid-content">
           <div className="content-container">

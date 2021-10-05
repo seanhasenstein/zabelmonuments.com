@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
-import logo from '../images/logo-small.png';
+//@ts-ignore
+import logo from '../assets/images/logo-small.png';
 
 export default function Success() {
   return (

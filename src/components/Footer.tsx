@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import Logo from '../images/logo.png';
-import AIOCA from '../images/aioca.png';
-import MB from '../images/mb.png';
-import WAOMB from '../images/waomb.png';
 
 export default function Footer() {
   return (
@@ -12,7 +9,13 @@ export default function Footer() {
       <div className="inner">
         <div className="brand">
           <div className="logo">
-            <img src={Logo} alt="Zabel Monuments" />
+            <StaticImage
+              src="../assets/images/logo.png"
+              alt="Zabel Monuments"
+              placeholder="none"
+              width={200}
+              quality={100}
+            />
           </div>
           <h3>Every Life is Worth Remembering</h3>
         </div>
@@ -22,17 +25,35 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={AIOCA} alt="American Institute of Commemorative Art" />
+            <StaticImage
+              src="../assets/images/aioca.png"
+              alt="American Institute of Commemorative Art"
+              placeholder="none"
+              width={42}
+              quality={100}
+            />
           </a>
           <a
             href="https://monumentbuilders.org/"
             target="_blank"
             rel="noreferrer"
           >
-            <img src={MB} alt="Monument Builders" />
+            <StaticImage
+              src="../assets/images/mb.png"
+              alt="Monument Builders"
+              placeholder="none"
+              width={42}
+              quality={100}
+            />
           </a>
           <a href="http://wambonline.org/" target="_blank" rel="noreferrer">
-            <img src={WAOMB} alt="WI Association of Monument Builders" />
+            <StaticImage
+              src="../assets/images/waomb.png"
+              alt="Wisconsin Association of Monument Builders"
+              placeholder="none"
+              width={42}
+              quality={100}
+            />
           </a>
         </div>
         <div className="nav">

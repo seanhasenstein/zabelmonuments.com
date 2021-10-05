@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import Logo from '../images/logo.png';
 
 const primaryNavItems = [
   { id: 1, slug: '/', text: 'Home' },
@@ -51,7 +51,13 @@ export default function Header() {
           <div className="mobile-header-container">
             <div className="logo">
               <Link to="/">
-                <img src={Logo} alt="Zabel Monuments" />
+                <StaticImage
+                  src="../assets/images/logo.png"
+                  alt="Zabel Monuments"
+                  placeholder="none"
+                  width={200}
+                  quality={100}
+                />
               </Link>
             </div>
             <button
@@ -159,11 +165,8 @@ const HeaderStyles = styled.header`
   }
 
   .logo {
+    padding-bottom: 0.375rem;
     width: 12.5rem;
-
-    img {
-      width: 100%;
-    }
   }
 
   nav {

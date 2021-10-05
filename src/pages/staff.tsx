@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
 import SEO from '../components/Seo';
-import eric from '../images/staff/eric.jpg';
-import jamie from '../images/staff/jamie.jpg';
+//@ts-ignore
+import eric from '../assets/images/staff/eric.jpg';
+//@ts-ignore
+import jamie from '../assets/images/staff/jamie.jpg';
 
 const profiles = [
   {
@@ -108,6 +110,9 @@ const StaffPageStyles = styled.div`
 
     img {
       width: 100%;
+      border: 6px solid #fff;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     }
   }
 

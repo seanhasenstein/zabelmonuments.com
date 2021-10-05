@@ -1,6 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Field, ErrorMessage } from 'formik';
+
+type Props = {
+  as?: string;
+  className?: string;
+  placeholder?: string;
+  tabIndex?: string;
+  name: string;
+  label: string;
+};
 
 export default function FormItem({
   as = '',
@@ -9,7 +17,7 @@ export default function FormItem({
   className,
   placeholder = '',
   tabIndex = '0',
-}) {
+}: Props) {
   return (
     <div className={`form-item ${className ? className : ''}`}>
       <label htmlFor={name}>{label}</label>
@@ -24,12 +32,3 @@ export default function FormItem({
     </div>
   );
 }
-
-FormItem.propTypes = {
-  as: PropTypes.string,
-  className: PropTypes.string,
-  placeholder: PropTypes.string,
-  tabIndex: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-};

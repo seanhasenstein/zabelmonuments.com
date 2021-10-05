@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import CouponImage from '../images/coupon.jpg';
+//@ts-ignore
+import CouponImage from '../assets/images/coupon.jpg';
 
 export default function Coupon() {
   return (

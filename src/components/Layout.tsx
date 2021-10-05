@@ -1,11 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
 import Header from './Header';
 import Footer from './Footer';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
-export default function Layout({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function Layout({ children }: Props) {
   return (
     <>
       <GlobalStyles />
@@ -19,7 +22,3 @@ export default function Layout({ children }) {
     </>
   );
 }
-
-Layout.propTypes = {
-  children: PropTypes.any.isRequired,
-};

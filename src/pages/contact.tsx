@@ -19,13 +19,13 @@ const stores = {
 
 export default function Contact() {
   const [store, setStore] = useQueryParam('store', StringParam);
-  const [activeClass, setActiveClass] = React.useState();
+  const [activeClass, setActiveClass] = React.useState<string>();
   const [serverError, setServerError] = React.useState(false);
 
   React.useEffect(() => {
     if (!store) {
       setActiveClass(stores.manitowoc);
-      setStore('manitowoc', StringParam);
+      setStore('manitowoc');
       return;
     }
 

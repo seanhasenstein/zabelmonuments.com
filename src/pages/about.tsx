@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
 import SEO from '../components/Seo';
-import AIOCA from '../images/aioca.png';
-import WAOMB from '../images/waomb.png';
-import MB from '../images/mb.png';
 
 export default function About() {
   return (
@@ -35,9 +33,12 @@ export default function About() {
           </div>
           <div className="item certification">
             <div className="logo">
-              <img
-                src={AIOCA}
-                alt="American Institute of Commemorative Art logo"
+              <StaticImage
+                src="../assets/images/aioca.png"
+                alt="American Institute of Commemorative Art"
+                placeholder="none"
+                width={48}
+                quality={100}
               />
             </div>
             <div className="text">
@@ -72,9 +73,12 @@ export default function About() {
           </div>
           <div className="item certification">
             <div className="logo">
-              <img
-                src={WAOMB}
-                alt="Wisconsin Association of Monument Builders logo"
+              <StaticImage
+                src="../assets/images/waomb.png"
+                alt="Wisconsin Association of Monument Builders"
+                placeholder="none"
+                width={48}
+                quality={100}
               />
             </div>
             <div className="text">
@@ -104,7 +108,13 @@ export default function About() {
           </div>
           <div className="item certification">
             <div className="logo">
-              <img src={MB} alt="Monument Builders of North America logo" />
+              <StaticImage
+                src="../assets/images/mb.png"
+                alt="Monument Builders of North America"
+                placeholder="none"
+                width={48}
+                quality={100}
+              />
             </div>
             <div className="text">
               <h3>Monument Builders of North America</h3>
@@ -163,10 +173,6 @@ const AboutPageStyles = styled.div`
   .logo {
     flex-shrink: 0;
     width: 3rem;
-
-    img {
-      width: 100%;
-    }
   }
 
   .external-link-button {
