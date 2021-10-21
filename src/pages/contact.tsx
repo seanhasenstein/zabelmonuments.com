@@ -248,8 +248,8 @@ const ContactStyles = styled.div`
 
   .grid-col-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0 1rem;
   }
 
   .form-item {
@@ -452,11 +452,6 @@ const ContactStyles = styled.div`
 
     .radio-group li {
       width: 100%;
-    }
-
-    .grid-col-2 {
-      grid-template-columns: 1fr;
-      gap: 0rem;
     }
 
     .submit-button {
