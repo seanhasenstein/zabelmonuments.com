@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function CompanionMonuments() {
   const data = useStaticQuery(graphql`
     query CompanionMonumentsQuery {
-      allCloudinaryMedia(filter: { tags: { eq: "companion" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "companion" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id

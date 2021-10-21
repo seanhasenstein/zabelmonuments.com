@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function JewishMonuments() {
   const data = useStaticQuery(graphql`
     query JewishMonumentsQuery {
-      allCloudinaryMedia(filter: { tags: { eq: "jewish" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "jewish" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id

@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function Etchings() {
   const data = useStaticQuery(graphql`
     query EtchingsQuery {
-      allCloudinaryMedia(filter: { tags: { eq: "etching" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "etching" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id

@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function GardenArt() {
   const data = useStaticQuery(graphql`
     query GardenArtGallery {
-      allCloudinaryMedia(filter: { tags: { eq: "garden-art" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "garden-art" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id

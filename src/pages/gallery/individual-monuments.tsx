@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function IndividualMonuments() {
   const data = useStaticQuery(graphql`
     query IndividualMonumentsQuery {
-      allCloudinaryMedia(filter: { tags: { eq: "individual" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "individual" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id

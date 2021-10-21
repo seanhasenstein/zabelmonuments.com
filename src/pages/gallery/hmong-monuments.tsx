@@ -6,7 +6,10 @@ import SEO from '../../components/Seo';
 export default function HmongMonuments() {
   const data = useStaticQuery(graphql`
     query HmongMonumentsQuery {
-      allCloudinaryMedia(filter: { tags: { eq: "hmong" } }) {
+      allCloudinaryMedia(
+        filter: { tags: { eq: "hmong" } }
+        sort: { fields: public_id, order: ASC }
+      ) {
         edges {
           node {
             id
