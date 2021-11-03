@@ -24,7 +24,7 @@ export default function CompanionMonuments() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Companion Monuments"
       title="Companion Monuments Gallery | Zabel Monuments"
-      description="A gallery of companion monuments that we have made for our customers."
+      description="A photo gallery of companion monuments that we have made for our customers."
       urlPath="gallery/companion-monuments"
     />
   );

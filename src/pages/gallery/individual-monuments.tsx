@@ -24,7 +24,7 @@ export default function IndividualMonuments() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Individual Monuments"
       title="Individual Monuments Gallery | Zabel Monuments"
-      description="A gallery of individual monuments that we have made for our customers."
+      description="A photo gallery of individual monuments that we have made for our customers."
       urlPath="gallery/individual-monuments"
     />
   );

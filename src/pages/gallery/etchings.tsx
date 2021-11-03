@@ -24,7 +24,7 @@ export default function Etchings() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Etchings"
       title="Etchings Gallery | Zabel Monuments"
-      description="A gallery of etchings on monuments that we have made custom for our customers."
+      description="A photo gallery of etchings on monuments that we have made custom for our customers."
       urlPath="gallery/etchings"
     />
   );

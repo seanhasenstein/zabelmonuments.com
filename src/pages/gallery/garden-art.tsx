@@ -24,7 +24,7 @@ export default function GardenArt() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Garden Art"
       title="Garden Art Gallery | Zabel Monuments"
-      description="A gallery of garden art that we have made for our customers."
+      description="A photo gallery of garden art that we have made for our customers."
       urlPath="gallery/garden-art"
     />
   );

@@ -24,7 +24,7 @@ export default function JewishMonuments() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Jewish Monuments"
       title="Jewish Monuments Gallery | Zabel Monuments"
-      description="A gallery of Jewish monuments that we have made for our customers."
+      description="A photo gallery of Jewish monuments that we have made for our customers."
       urlPath="gallery/jewish-monuments"
     />
   );

@@ -24,7 +24,7 @@ export default function HmongMonuments() {
       images={data.allCloudinaryMedia.edges}
       galleryName="Hmong Monuments"
       title="Hmong Monuments Gallery | Zabel Monuments"
-      description="A gallery of Hmong monuments that we have made for our customers."
+      description="A photo gallery of Hmong monuments that we have made for our customers."
       urlPath="gallery/hmong-monuments"
     />
   );
