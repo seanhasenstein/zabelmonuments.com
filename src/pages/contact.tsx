@@ -2,13 +2,8 @@ import React from 'react';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { useQueryParam, StringParam } from 'use-query-params';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
-import { removeNonDigits } from '../utils';
 import Layout from '../components/Layout';
-import SEO from '../components/Seo';
-import FormItem from '../components/FormItem';
 
 const stores = {
   greenBay: 'green-bay',
@@ -20,6 +15,7 @@ const stores = {
 export default function Contact() {
   const [store, setStore] = useQueryParam('store', StringParam);
   const [activeClass, setActiveClass] = React.useState<string>();
+  const [loading, setLoading] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
 
   React.useEffect(() => {
@@ -32,29 +28,42 @@ export default function Contact() {
     setActiveClass(store);
   }, [store]);
 
-  const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    honeypot: '',
-  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    const { name, email, phone, message, honey } = e.target.elements;
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Your name is required'),
-    email: Yup.string()
-      .email('Please provide a valid email address')
-      .required('Email address is required'),
-    phone: Yup.string()
-      .transform(value => removeNonDigits(value))
-      .matches(new RegExp(/^\d{10}$/), 'Phone number must have 10 digits')
-      .required('Phone number is required'),
-    message: Yup.string().required('A message is required'),
-  });
+    if (honey.value) {
+      // honeypot triggered
+      setLoading(false);
+      return;
+    }
+
+    const newMessage = {
+      store,
+      name: name.value.trim(),
+      email: email.value.toLowerCase().trim(),
+      phone: phone.value.trim(),
+      message: message.value.trim(),
+    };
+
+    axios
+      .post('/.netlify/functions/send-message', newMessage)
+      .then(() => {
+        navigate('/success');
+      })
+      .catch(() => {
+        setServerError(true);
+        setLoading(false);
+      });
+  }
 
   return (
-    <Layout>
-      <SEO title="Contact Us | Zabel Monuments" urlPath="contact" />
+    <Layout
+      title="Contact Us | Zabel Monuments"
+      description="Contact our Manitowoc, Green Bay, or Sheboygan store. Or send a message to our Certified Memorialist. We are here to help with anything that you may need."
+      urlPath="contact"
+    >
       <ContactStyles>
         <div className="inner">
           <div className="row">
@@ -65,149 +74,133 @@ export default function Contact() {
                 have or to schedule an appointment.
               </p>
             </div>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={(values, actions) => {
-                if (values.honeypot) return;
-
-                const data = { ...values, store };
-
-                axios
-                  .post('/.netlify/functions/send-message', { ...data })
-                  .then(() => {
-                    navigate('/success');
-                  })
-                  .catch(() => {
-                    setServerError(true);
-                    actions.setSubmitting(false);
-                  });
-              }}
-            >
-              {({ isSubmitting }) => (
-                <Form>
-                  <div className="section">
-                    <h3>Who would you like to contact?</h3>
-                    <ul className="radio-group">
-                      <li>
-                        <label
-                          className={
-                            activeClass === stores.manitowoc ? 'active' : ''
-                          }
-                        >
-                          <input
-                            type="radio"
-                            value={stores.manitowoc}
-                            checked={store === stores.manitowoc}
-                            onChange={() => setStore(stores.manitowoc)}
-                            name="store"
-                          />
-                          Manitowoc Store
-                        </label>
-                      </li>
-                      <li>
-                        <label
-                          className={
-                            activeClass === stores.greenBay ? 'active' : ''
-                          }
-                        >
-                          <input
-                            type="radio"
-                            value={stores.greenBay}
-                            checked={store === stores.greenBay}
-                            onChange={() => setStore(stores.greenBay)}
-                            name="store"
-                          />
-                          Green Bay Store
-                        </label>
-                      </li>
-                      <li>
-                        <label
-                          className={
-                            activeClass === stores.sheboygan ? 'active' : ''
-                          }
-                        >
-                          <input
-                            type="radio"
-                            value={stores.sheboygan}
-                            checked={store === stores.sheboygan}
-                            onChange={() => setStore(stores.sheboygan)}
-                            name="store"
-                          />
-                          Sheboygan Store
-                        </label>
-                      </li>
-                      <li>
-                        <label
-                          className={
-                            activeClass === stores.askOurCM ? 'active' : ''
-                          }
-                        >
-                          <input
-                            type="radio"
-                            value={stores.askOurCM}
-                            checked={store === stores.askOurCM}
-                            onChange={() => setStore(stores.askOurCM)}
-                            name="store"
-                          />
-                          Ask our Certified Memorialist
-                        </label>
-                      </li>
-                    </ul>
+            <form method="post" onSubmit={handleSubmit}>
+              <div className="section">
+                <h3>Who would you like to contact?</h3>
+                <ul className="radio-group">
+                  <li>
+                    <label
+                      className={
+                        activeClass === stores.manitowoc ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.manitowoc}
+                        checked={store === stores.manitowoc}
+                        onChange={() => setStore(stores.manitowoc)}
+                        name="store"
+                      />
+                      Manitowoc Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        activeClass === stores.greenBay ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.greenBay}
+                        checked={store === stores.greenBay}
+                        onChange={() => setStore(stores.greenBay)}
+                        name="store"
+                      />
+                      Green Bay Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        activeClass === stores.sheboygan ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.sheboygan}
+                        checked={store === stores.sheboygan}
+                        onChange={() => setStore(stores.sheboygan)}
+                        name="store"
+                      />
+                      Sheboygan Store
+                    </label>
+                  </li>
+                  <li>
+                    <label
+                      className={
+                        activeClass === stores.askOurCM ? 'active' : ''
+                      }
+                    >
+                      <input
+                        type="radio"
+                        value={stores.askOurCM}
+                        checked={store === stores.askOurCM}
+                        onChange={() => setStore(stores.askOurCM)}
+                        name="store"
+                      />
+                      Ask our Certified Memorialist
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div className="section">
+                <h3>Please fill out this form:</h3>
+                <div className="form-item">
+                  <label htmlFor="name">Your name</label>
+                  <input id="name" required />
+                </div>
+                <div className="grid-col-2">
+                  <div className="form-item">
+                    <label htmlFor="email">Email address</label>
+                    <input type="email" id="email" required />
                   </div>
-                  <div className="section">
-                    <h3>Please fill out this form:</h3>
-                    <FormItem name="name" label="Your name" />
-                    <div className="grid-col-2">
-                      <FormItem name="email" label="Email address" />
-                      <FormItem name="phone" label="Phone number" />
-                    </div>
-                    <FormItem
-                      as="textarea"
-                      name="message"
-                      label="How can we help you?"
-                    />
-                    <FormItem
-                      name="honeypot"
-                      label="Please leave this field blank"
-                      className="sr-only"
-                      tabIndex="-1"
-                    />
+                  <div className="form-item">
+                    <label htmlFor="phone">Phone number</label>
+                    <input id="phone" required />
                   </div>
-                  <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      'Loading...'
-                    ) : (
-                      <>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                          />
-                        </svg>
-                        Send your message
-                      </>
-                    )}
-                  </button>
-                  {serverError && (
-                    <div className="server-error">
-                      Server error: Please try sending your message again.
-                    </div>
-                  )}
-                </Form>
+                </div>
+                <div className="form-item">
+                  <label htmlFor="message">How can we help you?</label>
+                  <textarea id="message" required />
+                </div>
+                <div className="form-item sr-only">
+                  <label htmlFor="honey">Please leave this field empty</label>
+                  <input id="honey" tabIndex={-1} />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className="spinner" />
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Send your message
+                  </>
+                )}
+              </button>
+              {serverError && (
+                <div className="server-error">
+                  Server error: Please try sending your message again.
+                </div>
               )}
-            </Formik>
+            </form>
           </div>
         </div>
       </ContactStyles>
@@ -376,21 +369,12 @@ const ContactStyles = styled.div`
     min-height: 8rem;
   }
 
-  #honeypot {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
-  }
-
-  button {
-    margin: 0.5rem 0 0;
-  }
-
   .submit-button {
-    padding: 0.6875rem 1.5rem;
+    margin: 0.5rem 0 0;
+    padding: 0 1.5rem;
+    position: relative;
+    height: 42px;
+    min-width: 14rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -420,9 +404,36 @@ const ContactStyles = styled.div`
     &:focus {
       outline: 2px solid transparent;
       outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
       box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, #6ea546 0px 0px 0px 4px,
         rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
+  }
+
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border-top: 2px solid #fff;
+    border-right: 2px solid transparent;
+    animation: spinner 0.6s linear infinite;
   }
 
   .error {
