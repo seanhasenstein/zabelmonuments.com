@@ -8,7 +8,7 @@ type Props = {
   setSelectedImg: React.Dispatch<React.SetStateAction<number>>;
   setShowLightbox: React.Dispatch<React.SetStateAction<boolean>>;
   images: Image[];
-  title: string;
+  galleryName: string;
 };
 
 export default function Lightbox({
@@ -17,7 +17,7 @@ export default function Lightbox({
   setSelectedImg,
   setShowLightbox,
   images,
-  title,
+  galleryName,
 }: Props) {
   const prevImgBtn = React.useRef(null);
   const nextImgBtn = React.useRef(null);
@@ -120,7 +120,7 @@ export default function Lightbox({
       <div className="container">
         <img
           src={images[selectedImg].node.secure_url}
-          alt={`${title} photo ${selectedImg + 1} of ${images.length}`}
+          alt={`${galleryName} photo ${selectedImg + 1} of ${images.length}`}
         />
         <button
           onClick={handleClose}

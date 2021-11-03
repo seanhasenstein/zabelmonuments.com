@@ -2,12 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 
 export default function WhyChooseUs() {
   return (
-    <Layout>
-      <SEO title="Why Choose Us? | Zabel Monuments" urlPath="why-choose-us" />
+    <Layout
+      title="Why Choose Us? | Zabel Monuments"
+      description="At Zabel Monuments, a memorial or headstone isn’t just chosen out of a
+      catalog. It's designed to tell a story and reflect the spirit of those
+      being memorialized."
+      urlPath="why-choose-us"
+    >
       <PageShell>
         <h2>Why Choose Us?</h2>
         <p>

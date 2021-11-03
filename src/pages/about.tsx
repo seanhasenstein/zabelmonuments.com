@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 
 export default function About() {
   return (
-    <Layout>
-      <SEO title="About Us | Zabel Monuments" urlPath="about" />
+    <Layout
+      title="About Us | Zabel Monuments"
+      description="Zabel Monuments respectfully serves the Sheboygan, Manitowoc, and
+      Green Bay areas and the surrounding communities of East Central
+      Wisconsin with a selection of beautifully crafted memorials."
+      urlPath="about"
+    >
       <PageShell>
         <AboutPageStyles>
           <h2>About Us</h2>

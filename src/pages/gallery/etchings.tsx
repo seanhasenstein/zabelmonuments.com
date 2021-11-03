@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Gallery from '../../components/Gallery';
-import SEO from '../../components/Seo';
 
 export default function Etchings() {
   const data = useStaticQuery(graphql`
@@ -21,12 +20,12 @@ export default function Etchings() {
   `);
 
   return (
-    <>
-      <SEO
-        title="Etchings Gallery | Zabel Monuments"
-        urlPath="gallery/etchings"
-      />
-      <Gallery images={data.allCloudinaryMedia.edges} title="Etchings" />
-    </>
+    <Gallery
+      images={data.allCloudinaryMedia.edges}
+      galleryName="Etchings"
+      title="Etchings Gallery | Zabel Monuments"
+      description="A gallery of etchings on monuments that we have made custom for our customers."
+      urlPath="gallery/etchings"
+    />
   );
 }

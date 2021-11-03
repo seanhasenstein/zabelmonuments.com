@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Gallery from '../../components/Gallery';
-import SEO from '../../components/Seo';
 
 export default function JewishMonuments() {
   const data = useStaticQuery(graphql`
@@ -21,15 +20,12 @@ export default function JewishMonuments() {
   `);
 
   return (
-    <>
-      <SEO
-        title="Jewish Monuments Gallery | Zabel Monuments"
-        urlPath="gallery/jewish-monuments"
-      />
-      <Gallery
-        images={data.allCloudinaryMedia.edges}
-        title="Jewish Monuments"
-      />
-    </>
+    <Gallery
+      images={data.allCloudinaryMedia.edges}
+      galleryName="Jewish Monuments"
+      title="Jewish Monuments Gallery | Zabel Monuments"
+      description="A gallery of Jewish monuments that we have made for our customers."
+      urlPath="gallery/jewish-monuments"
+    />
   );
 }

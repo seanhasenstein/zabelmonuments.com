@@ -3,7 +3,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 
 export default function GraniteColors() {
   const data = useStaticQuery(graphql`
@@ -25,8 +24,11 @@ export default function GraniteColors() {
   `);
 
   return (
-    <Layout>
-      <SEO title="Granite Colors | Zabel Monuments" urlPath="granite-colors" />
+    <Layout
+      title="Granite Colors | Zabel Monuments"
+      description="A list of the granite colors that we have to offer."
+      urlPath="granite-colors"
+    >
       <PageShell>
         <GraniteColorsStyles>
           <h2>Granite Colors</h2>

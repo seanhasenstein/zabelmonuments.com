@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 
 const servicesArray = [
   {
@@ -42,8 +41,12 @@ const servicesArray = [
 
 export default function Services() {
   return (
-    <Layout>
-      <SEO title="Our Services | Zabel Monuments" urlPath="services" />
+    <Layout
+      title="Our Services | Zabel Monuments"
+      description="Our main focus is to provide the best quality and workmanship for each
+      and every one of our customers. We offer a range of services."
+      urlPath="services"
+    >
       <PageShell>
         <h2>Our Services</h2>
         <p>

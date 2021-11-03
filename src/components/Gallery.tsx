@@ -41,10 +41,19 @@ const galleryLinks = [
 
 type Props = {
   images: Image[];
+  galleryName: string;
   title: string;
+  description: string;
+  urlPath: string;
 };
 
-export default function Gallery({ images, title }: Props) {
+export default function Gallery({
+  images,
+  galleryName,
+  title,
+  description,
+  urlPath,
+}: Props) {
   const [showLightbox, setShowLightbox] = React.useState(false);
   const [selectedImg, setSelectedImg] = React.useState(0);
   const [shouldReturnFocus, setShouldReturnFocus] = React.useState(false);
@@ -70,7 +79,7 @@ export default function Gallery({ images, title }: Props) {
 
   return (
     <>
-      <Layout>
+      <Layout title={title} description={description} urlPath={urlPath}>
         <GalleryPageStyles>
           <div className="wrapper">
             <aside>
@@ -89,10 +98,13 @@ export default function Gallery({ images, title }: Props) {
             </aside>
             <div className="gallery">
               <h2>
-                <span>{title} Gallery</span>
+                <span>{galleryName} Gallery</span>
               </h2>
               <div className="mobile-nav">
-                <select onChange={handleSelectChange} value={slugify(title)}>
+                <select
+                  onChange={handleSelectChange}
+                  value={slugify(galleryName)}
+                >
                   {galleryLinks.map(l => (
                     <option key={l.id} value={l.slug}>
                       {l.label}
@@ -115,7 +127,7 @@ export default function Gallery({ images, title }: Props) {
                       >
                         <img
                           src={image.node.secure_url}
-                          alt={`${title} photo ${index + 1} of ${
+                          alt={`${galleryName} photo ${index + 1} of ${
                             images.length
                           }`}
                         />
@@ -135,7 +147,7 @@ export default function Gallery({ images, title }: Props) {
           setSelectedImg={setSelectedImg}
           setShowLightbox={setShowLightbox}
           images={images}
-          title={title}
+          galleryName={galleryName}
         />
       )}
     </>

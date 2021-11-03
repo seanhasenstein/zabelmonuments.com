@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 //@ts-ignore
 import eric from '../assets/images/staff/eric.jpg';
 //@ts-ignore
@@ -57,8 +56,11 @@ const profiles = [
 
 export default function Staff() {
   return (
-    <Layout>
-      <SEO title="Meet Our Staff | Zabel Monuments" urlPath="staff" />
+    <Layout
+      title="Meet Our Staff | Zabel Monuments"
+      description="Meet our caring staff that is here to help you with anything that you may need."
+      urlPath="staff"
+    >
       <PageShell>
         <StaffPageStyles>
           <h2>Meet our staff</h2>

@@ -1,12 +1,14 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import SEO from '../components/Seo';
 
 export default function History() {
   return (
-    <Layout>
-      <SEO title="Our History | Zabel Monuments" urlPath="history" />
+    <Layout
+      title="Our History | Zabel Monuments"
+      description="The history of Zabel Monuments, currently in the 3rd generation of ownership."
+      urlPath="history"
+    >
       <PageShell>
         <h2>Our History</h2>
         <p>

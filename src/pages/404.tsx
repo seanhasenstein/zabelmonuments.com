@@ -2,13 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Layout from '../components/Layout';
-import SEO from '../components/Seo';
 
 export default function NotFoundPage() {
   return (
-    <Layout>
+    <Layout title="404 | Page Not Found | Zabel Monuments">
       <NotFoundPageStyles>
-        <SEO title="404 Page Not Found | Zabel Monuments" />
         <main>
           <h1>404 - Page not found</h1>
           <p>Sorry, we couldn’t find what you were looking for.</p>

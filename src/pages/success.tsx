@@ -2,18 +2,16 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
-//@ts-ignore
-import logo from '../assets/images/logo-small.png';
 
 export default function Success() {
   return (
     <Layout>
       <SuccessMessageStyles>
         <div className="content">
-          <img src={logo} alt="ZM basic logo with headstone border" />
-          <h4>Thank you for contacting Zabel Monuments</h4>
+          <h4>Message sent!</h4>
           <p>
-            We received your message and will be with you as soon as we can.
+            Thank you for contacting Zabel Monuments. We received your message
+            and will be with you as soon as we can.
           </p>
           <Link to="/contact" className="link-button">
             Send another message
@@ -45,7 +43,7 @@ export default function Success() {
 
 const SuccessMessageStyles = styled.div`
   margin: 6rem auto 8rem;
-  padding: 3rem 2rem 4rem;
+  padding: 4rem 2rem;
   position: relative;
   max-width: 1000px;
   width: 100%;
@@ -91,20 +89,19 @@ const SuccessMessageStyles = styled.div`
     }
   }
 
-  img {
-    margin: 0 0 1rem;
-    width: 2.5rem;
-  }
-
   h4 {
     margin: 0 0 1rem;
-    font-size: 1.25rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
   }
 
   p {
-    margin: 0 auto 1.5rem;
-    max-width: 24rem;
+    margin: 0 auto 1.75rem;
+    max-width: 36rem;
     width: 100%;
+    font-size: 1.125rem;
   }
 
   .link-button {
