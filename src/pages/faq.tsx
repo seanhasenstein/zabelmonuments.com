@@ -169,6 +169,18 @@ const FaqStyles = styled.div`
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        .icon {
+          border-color: #4e46a5;
+          color: #4e46a5;
+        }
+      }
     }
   }
 
@@ -186,13 +198,15 @@ const FaqStyles = styled.div`
 
   .icon {
     margin: 0 0 0 1.25rem;
+    padding: 0.125rem;
     width: 2rem;
     height: 2rem;
     display: flex;
     align-items: center;
+    border: 2px solid transparent;
+    border-radius: 9999px;
 
     svg {
-      padding: 0.25rem;
       height: 2rem;
       width: 2rem;
       display: flex;

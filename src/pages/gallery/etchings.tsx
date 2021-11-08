@@ -21,7 +21,7 @@ export default function Etchings() {
 
   return (
     <Gallery
-      images={data.allCloudinaryMedia.edges}
+      galleryImages={data.allCloudinaryMedia.edges}
       galleryName="Etchings"
       title="Etchings Gallery | Zabel Monuments"
       description="A photo gallery of etchings on monuments that we have made custom for our customers."

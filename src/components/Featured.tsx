@@ -105,28 +105,10 @@ const FeaturedStyles = styled.div`
     width: 46%;
     flex-shrink: 0;
     background-color: #fff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 100 100'%3E%3Crect x='0' y='0' width='30' height='30' fill='%23F4F4F5'/%3E%3C/svg%3E");
     border: 1px solid #f1f5f9;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
       rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background: rgb(255, 255, 255);
-      background: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0.75) 30%,
-        rgba(255, 255, 255, 1) 100%
-      );
-      z-index: 100;
-    }
   }
 
   .content-container {

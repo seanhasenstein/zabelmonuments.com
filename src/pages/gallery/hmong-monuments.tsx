@@ -21,7 +21,7 @@ export default function HmongMonuments() {
 
   return (
     <Gallery
-      images={data.allCloudinaryMedia.edges}
+      galleryImages={data.allCloudinaryMedia.edges}
       galleryName="Hmong Monuments"
       title="Hmong Monuments Gallery | Zabel Monuments"
       description="A photo gallery of Hmong monuments that we have made for our customers."

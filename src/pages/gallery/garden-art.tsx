@@ -21,7 +21,7 @@ export default function GardenArt() {
 
   return (
     <Gallery
-      images={data.allCloudinaryMedia.edges}
+      galleryImages={data.allCloudinaryMedia.edges}
       galleryName="Garden Art"
       title="Garden Art Gallery | Zabel Monuments"
       description="A photo gallery of garden art that we have made for our customers."

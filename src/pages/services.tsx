@@ -87,10 +87,10 @@ const ServicesStyles = styled.ul`
   }
 
   svg {
-    margin: 0.25rem 0.75rem 0 0;
+    margin: 0.125rem 0.75rem 0 0;
     flex-shrink: 0;
-    height: 1.125rem;
-    width: 1.125rem;
+    height: 1.375rem;
+    width: 1.375rem;
     color: #6ea546;
   }
 `;

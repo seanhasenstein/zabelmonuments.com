@@ -3,99 +3,28 @@ import styled from 'styled-components';
 import { Image } from '../types';
 
 type Props = {
+  images: Image[];
   showLightbox: boolean;
+  setShowLightbox: React.Dispatch<React.SetStateAction<boolean>>;
   selectedImg: number;
   setSelectedImg: React.Dispatch<React.SetStateAction<number>>;
-  setShowLightbox: React.Dispatch<React.SetStateAction<boolean>>;
-  images: Image[];
+  prevButton: React.MutableRefObject<HTMLButtonElement | null>;
+  nextButton: React.MutableRefObject<HTMLButtonElement | null>;
+  closeButton: React.MutableRefObject<HTMLButtonElement | null>;
   galleryName: string;
 };
 
 export default function Lightbox({
+  images,
   showLightbox,
+  setShowLightbox,
   selectedImg,
   setSelectedImg,
-  setShowLightbox,
-  images,
+  prevButton,
+  nextButton,
+  closeButton,
   galleryName,
 }: Props) {
-  const prevButton = React.useRef<HTMLButtonElement | null>(null);
-  const nextButton = React.useRef<HTMLButtonElement | null>(null);
-  const closeButton = React.useRef<HTMLButtonElement | null>(null);
-
-  const onKeyDown = (e: KeyboardEvent) => {
-    const { activeElement } = document;
-    const closeBtn = closeButton.current;
-    const prevBtn = prevButton.current;
-    const nextBtn = nextButton.current;
-
-    switch (e.key) {
-      case 'ArrowRight':
-        e.preventDefault();
-        if (selectedImg === images.length - 1) {
-          return;
-        } else {
-          setSelectedImg(selectedImg + 1);
-        }
-        break;
-      case 'ArrowLeft':
-        e.preventDefault();
-        if (selectedImg === 0) {
-          return;
-        } else {
-          setSelectedImg(selectedImg - 1);
-        }
-        break;
-      case 'Tab':
-        // SHIFT + TAB KEYS
-        if (e.shiftKey) {
-          e.preventDefault();
-          if (closeBtn === activeElement) {
-            if (nextBtn) nextBtn.focus();
-            else prevBtn?.focus();
-          } else if (prevBtn === activeElement) closeBtn?.focus();
-          else {
-            if (prevBtn) prevBtn.focus();
-            else closeBtn?.focus();
-          }
-
-          // TAB KEY
-        } else {
-          e.preventDefault();
-          if (nextBtn === activeElement) closeBtn?.focus();
-          else if (prevBtn === activeElement) {
-            if (nextBtn) nextBtn.focus();
-            else closeBtn?.focus();
-          } else {
-            if (prevBtn) prevBtn.focus();
-            else nextBtn?.focus();
-          }
-        }
-        break;
-      case 'Escape':
-        setShowLightbox(false);
-    }
-  };
-
-  React.useEffect(() => {
-    if (showLightbox) {
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('keydown', onKeyDown);
-    }
-
-    return () => {
-      document.body.style.overflow = 'inherit';
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [showLightbox, selectedImg]);
-
-  React.useEffect(() => {
-    if (showLightbox) {
-      const closeBtn = closeButton.current;
-      closeBtn?.focus();
-    }
-  }, [showLightbox]);
-
   return (
     <LightboxStyles
       role="dialog"

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, navigate } from 'gatsby';
-import { slugify } from '../utils';
 import { Image } from '../types';
+import useLightbox from '../hooks/useLightbox';
+import { slugify } from '../utils';
 import Layout from './Layout';
 import Lightbox from './Lightbox';
 
@@ -40,7 +41,7 @@ const galleryLinks = [
 ];
 
 type Props = {
-  images: Image[];
+  galleryImages: Image[];
   galleryName: string;
   title: string;
   description: string;
@@ -48,34 +49,14 @@ type Props = {
 };
 
 export default function Gallery({
-  images,
+  galleryImages,
   galleryName,
   title,
   description,
   urlPath,
 }: Props) {
-  const [showLightbox, setShowLightbox] = React.useState(false);
-  const [selectedImg, setSelectedImg] = React.useState(0);
-  const [shouldReturnFocus, setShouldReturnFocus] = React.useState(false);
-  const [initFocusedImg, setInitFocusedImg] =
-    React.useState<HTMLButtonElement | null>(null);
-
-  React.useEffect(() => {
-    if (!showLightbox && shouldReturnFocus) {
-      initFocusedImg?.focus();
-    }
-  }, [showLightbox, initFocusedImg]);
-
-  const handleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    index: number
-  ) => {
-    e.preventDefault();
-    setShowLightbox(true);
-    setSelectedImg(index);
-    setShouldReturnFocus(true);
-    setInitFocusedImg(e.currentTarget);
-  };
+  const galleryProps = useLightbox(galleryImages);
+  const { handleClick, ...lightboxProps } = galleryProps;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     navigate(`/gallery/${e.target.value}`);
@@ -117,13 +98,13 @@ export default function Gallery({
                 </select>
               </div>
               <div className="grid">
-                {images.length === 0 ? (
+                {galleryProps.images.length === 0 ? (
                   <div className="empty-message">
                     There are currently no photos in this gallery.
                   </div>
                 ) : (
                   <>
-                    {images.map((image, index) => (
+                    {galleryProps.images.map((image, index) => (
                       <button
                         key={image.node.id}
                         onClick={e => handleClick(e, index)}
@@ -132,7 +113,7 @@ export default function Gallery({
                         <img
                           src={image.node.secure_url}
                           alt={`${galleryName} photo ${index + 1} of ${
-                            images.length
+                            galleryProps.images.length
                           }`}
                         />
                       </button>
@@ -144,15 +125,8 @@ export default function Gallery({
           </div>
         </GalleryPageStyles>
       </Layout>
-      {images.length === 0 ? null : (
-        <Lightbox
-          showLightbox={showLightbox}
-          selectedImg={selectedImg}
-          setSelectedImg={setSelectedImg}
-          setShowLightbox={setShowLightbox}
-          images={images}
-          galleryName={galleryName}
-        />
+      {galleryProps.images.length === 0 ? null : (
+        <Lightbox {...lightboxProps} galleryName={galleryName} />
       )}
     </>
   );

@@ -26,7 +26,7 @@ export default function Contact() {
     }
 
     setActiveClass(store);
-  }, [store]);
+  }, [store, setStore]);
 
   function handleSubmit(e: any) {
     e.preventDefault();
