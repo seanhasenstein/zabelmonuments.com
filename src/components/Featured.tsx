@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-//@ts-ignore
 import FeaturedImage from '../assets/images/featured.jpg';
 
 export default function Featured() {

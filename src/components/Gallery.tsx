@@ -57,23 +57,27 @@ export default function Gallery({
   const [showLightbox, setShowLightbox] = React.useState(false);
   const [selectedImg, setSelectedImg] = React.useState(0);
   const [shouldReturnFocus, setShouldReturnFocus] = React.useState(false);
-  const [initFocusedImg, setInitFocusedImg] = React.useState(null);
+  const [initFocusedImg, setInitFocusedImg] =
+    React.useState<HTMLButtonElement | null>(null);
 
   React.useEffect(() => {
     if (!showLightbox && shouldReturnFocus) {
-      initFocusedImg.focus();
+      initFocusedImg?.focus();
     }
   }, [showLightbox, initFocusedImg]);
 
-  const handleClick = (e, key) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    index: number
+  ) => {
     e.preventDefault();
     setShowLightbox(true);
-    setSelectedImg(key);
+    setSelectedImg(index);
     setShouldReturnFocus(true);
     setInitFocusedImg(e.currentTarget);
   };
 
-  const handleSelectChange = e => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     navigate(`/gallery/${e.target.value}`);
   };
 

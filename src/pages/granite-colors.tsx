@@ -4,6 +4,18 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
 
+interface Edge {
+  node: {
+    id: string;
+    secure_url: string;
+    context: {
+      custom: {
+        caption: string;
+      };
+    };
+  };
+}
+
 export default function GraniteColors() {
   const data = useStaticQuery(graphql`
     query GraniteColorsQuery {
@@ -37,7 +49,7 @@ export default function GraniteColors() {
             offer.
           </p>
           <div className="grid">
-            {data.allCloudinaryMedia.edges.map(e => (
+            {data.allCloudinaryMedia.edges.map((e: Edge) => (
               <div key={e.node.id} className="grid-item">
                 <img
                   src={e.node.secure_url}

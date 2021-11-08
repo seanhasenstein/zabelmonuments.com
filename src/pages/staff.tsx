@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-//@ts-ignore
 import eric from '../assets/images/staff/eric.jpg';
-//@ts-ignore
 import jamie from '../assets/images/staff/jamie.jpg';
 
 const profiles = [

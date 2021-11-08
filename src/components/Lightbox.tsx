@@ -19,28 +19,15 @@ export default function Lightbox({
   images,
   galleryName,
 }: Props) {
-  const prevImgBtn = React.useRef(null);
-  const nextImgBtn = React.useRef(null);
-  const closeLightboxBtn = React.useRef(null);
+  const prevButton = React.useRef<HTMLButtonElement | null>(null);
+  const nextButton = React.useRef<HTMLButtonElement | null>(null);
+  const closeButton = React.useRef<HTMLButtonElement | null>(null);
 
-  const handlePrevious = () => {
-    setSelectedImg(selectedImg - 1);
-  };
-
-  const handleNext = () => {
-    setSelectedImg(selectedImg + 1);
-  };
-
-  const handleClose = e => {
-    e.preventDefault();
-    setShowLightbox(false);
-  };
-
-  const onKeyDown = e => {
+  const onKeyDown = (e: KeyboardEvent) => {
     const { activeElement } = document;
-    const closeBtn = closeLightboxBtn.current;
-    const prevBtn = prevImgBtn.current;
-    const nextBtn = nextImgBtn.current;
+    const closeBtn = closeButton.current;
+    const prevBtn = prevButton.current;
+    const nextBtn = nextButton.current;
 
     switch (e.key) {
       case 'ArrowRight':
@@ -65,23 +52,23 @@ export default function Lightbox({
           e.preventDefault();
           if (closeBtn === activeElement) {
             if (nextBtn) nextBtn.focus();
-            else prevBtn.focus();
-          } else if (prevBtn === activeElement) closeBtn.focus();
+            else prevBtn?.focus();
+          } else if (prevBtn === activeElement) closeBtn?.focus();
           else {
             if (prevBtn) prevBtn.focus();
-            else closeBtn.focus();
+            else closeBtn?.focus();
           }
 
           // TAB KEY
         } else {
           e.preventDefault();
-          if (nextBtn === activeElement) closeBtn.focus();
+          if (nextBtn === activeElement) closeBtn?.focus();
           else if (prevBtn === activeElement) {
             if (nextBtn) nextBtn.focus();
-            else closeBtn.focus();
+            else closeBtn?.focus();
           } else {
             if (prevBtn) prevBtn.focus();
-            else nextBtn.focus();
+            else nextBtn?.focus();
           }
         }
         break;
@@ -104,8 +91,8 @@ export default function Lightbox({
 
   React.useEffect(() => {
     if (showLightbox) {
-      const closeBtn = closeLightboxBtn.current;
-      closeBtn.focus();
+      const closeBtn = closeButton.current;
+      closeBtn?.focus();
     }
   }, [showLightbox]);
 
@@ -115,7 +102,7 @@ export default function Lightbox({
       id="lightbox"
       aria-labelledby="lightbox"
       aria-modal="true"
-      className={showLightbox ? 'active' : null}
+      className={showLightbox ? 'active' : ''}
     >
       <div className="container">
         <img
@@ -123,9 +110,9 @@ export default function Lightbox({
           alt={`${galleryName} photo ${selectedImg + 1} of ${images.length}`}
         />
         <button
-          onClick={handleClose}
+          onClick={() => setShowLightbox(false)}
           className="close-button"
-          ref={closeLightboxBtn}
+          ref={closeButton}
           aria-label="Close Lightbox"
         >
           <svg
@@ -143,9 +130,9 @@ export default function Lightbox({
         <div className="actions">
           {selectedImg === 0 ? null : (
             <button
-              onClick={handlePrevious}
+              onClick={() => setSelectedImg(prevIndex => prevIndex - 1)}
               className="previous-button"
-              ref={prevImgBtn}
+              ref={prevButton}
               area-label="Previous Image"
               disabled={selectedImg === 0}
             >
@@ -165,9 +152,9 @@ export default function Lightbox({
           )}
           {selectedImg === images.length - 1 ? null : (
             <button
-              onClick={handleNext}
+              onClick={() => setSelectedImg(prevIndex => prevIndex + 1)}
               className="next-button"
-              ref={nextImgBtn}
+              ref={nextButton}
               aria-label="Next Image"
               disabled={selectedImg === images.length - 1}
             >

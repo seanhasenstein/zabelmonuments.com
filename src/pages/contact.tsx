@@ -28,7 +28,7 @@ export default function Contact() {
     setActiveClass(store);
   }, [store]);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: any) {
     e.preventDefault();
     setLoading(true);
     const { name, email, phone, message, honey } = e.target.elements;

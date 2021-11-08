@@ -1,4 +1,4 @@
-export function formatPhoneNumber(number) {
+export function formatPhoneNumber(number: string) {
   const split = number.split('');
   const result = split.map((item, index) => {
     if (index === 0) return `(${item}`;
@@ -9,15 +9,11 @@ export function formatPhoneNumber(number) {
   return result.join('');
 }
 
-export function removeNonDigits(input) {
+export function removeNonDigits(input: string) {
   return input.replace(/\D/g, '');
 }
 
-export function slugify(value) {
-  const result = value.toLowerCase().split(' ');
+export function slugify(input: string) {
+  const result = input.toLowerCase().split(' ');
   return result.join('-');
-}
-
-export function emailIsValid(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }

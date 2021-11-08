@@ -2,11 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { removeNonDigits, slugify } from '../utils';
-//@ts-ignore
 import greenbay from '../assets/images/greenbay.jpg';
-//@ts-ignore
 import manitowoc from '../assets/images/manitowoc.jpg';
-//@ts-ignore
 import sheboygan from '../assets/images/sheboygan.jpg';
 
 const stores = [

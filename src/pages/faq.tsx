@@ -50,12 +50,14 @@ const frequentlyAskedQuestions = [
 ];
 
 export default function Faq() {
-  const [activeItem, setActiveItem] = React.useState(undefined);
+  const [activeItem, setActiveItem] = React.useState<number | undefined>(
+    undefined
+  );
 
-  const handleClick = item => {
-    setActiveItem(item);
+  const handleClick = (index: number) => {
+    setActiveItem(index);
 
-    if (item === activeItem) {
+    if (index === activeItem) {
       setActiveItem(undefined);
     }
   };
@@ -98,7 +100,7 @@ export default function Faq() {
                   </button>
                 </dt>
                 <dd
-                  className={activeItem === f.id ? 'active' : null}
+                  className={activeItem === f.id ? 'active' : ''}
                   id={`accordion-panel-${f.id}`}
                   aria-labelledby={`accordion-item-${f.id}`}
                   role="region"
