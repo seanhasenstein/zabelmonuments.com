@@ -228,6 +228,16 @@ const FooterStyles = styled.footer`
       &:hover {
         color: rgba(255, 255, 255, 1);
       }
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        text-decoration: underline;
+        color: #fff;
+      }
     }
   }
 

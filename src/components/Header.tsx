@@ -142,6 +142,16 @@ const HeaderStyles = styled.header`
       &:hover {
         text-decoration: underline;
       }
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        text-decoration: underline;
+        color: #fff;
+      }
     }
   }
 
@@ -167,6 +177,17 @@ const HeaderStyles = styled.header`
   .logo {
     padding-bottom: 0.375rem;
     width: 12.5rem;
+
+    a {
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        outline: 2px solid #4f46e5;
+      }
+    }
   }
 
   nav {
@@ -179,10 +200,6 @@ const HeaderStyles = styled.header`
       color: rgba(255, 255, 255, 0.7);
       transition: color 200ms ease-in-out;
 
-      &:hover {
-        color: #fff;
-      }
-
       &:first-of-type {
         margin-left: 0;
         padding-left: 0;
@@ -191,6 +208,20 @@ const HeaderStyles = styled.header`
       &:last-of-type {
         margin-right: 0;
         padding-right: 0;
+      }
+
+      &:hover {
+        color: #fff;
+      }
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        text-decoration: underline;
+        color: #fff;
       }
     }
   }

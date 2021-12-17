@@ -223,13 +223,18 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
   .next-button {
     padding: 0.5rem;
     position: absolute;
+    top: calc(50% - 2rem);
     color: #94a3b8;
     background-color: #f8fafc;
     border: none;
-    top: calc(50% - 2rem);
+    border-radius: 9999px;
 
     &:hover {
       color: #171717;
+    }
+
+    &:focus {
+      outline-color: #0369a1;
     }
 
     &:disabled {

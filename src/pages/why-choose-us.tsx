@@ -27,35 +27,35 @@ export default function WhyChooseUs() {
           help you through this process and create lasting tributes to your
           loved ones.
         </p>
-        <WhyChooseUsListStyles>
-          <WhyChooseUsItem>
+        <ListStyles>
+          <ListItem>
             We are a family business that cares about our customers and our
             reputation.
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We've been in business since 1970 and are in our third generation of
             ownership.
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We have a Certified Memorialist (CM) on staff (one of only three in
             the state of Wisconsin).
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We are well respected in the industry. We have had three generations
             serve as President of the{' '}
             <a href="http://wambonline.org/">
               Wisconsin Association of Monument Builders
             </a>
             .
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We are members and active participants of our national association -{' '}
             <a href="https://monumentbuilders.org/">
               Monument Builders of North America
             </a>
             .
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             <>
               We are proud members of the{' '}
               <a href="https://www.monuments-aica.com/">
@@ -65,24 +65,24 @@ export default function WhyChooseUs() {
               designers in North America. Membership is by invitation only and
               we are the only member in the state of Wisconsin.
             </>
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We were selected to construct the Manitowoc County Veterans
             Memorial.
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We were selected to construct the Sheboygan County Veterans
             Memorial.
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We have award winning designs through the American Institute of
             Commemorative Art.
-          </WhyChooseUsItem>
-          <WhyChooseUsItem>
+          </ListItem>
+          <ListItem>
             We've been featured in several trade publications including Stone in
             America.
-          </WhyChooseUsItem>
-        </WhyChooseUsListStyles>
+          </ListItem>
+        </ListStyles>
       </PageShell>
     </Layout>
   );
@@ -92,7 +92,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function WhyChooseUsItem({ children }: Props) {
+function ListItem({ children }: Props) {
   return (
     <li>
       <svg
@@ -111,7 +111,7 @@ function WhyChooseUsItem({ children }: Props) {
   );
 }
 
-const WhyChooseUsListStyles = styled.ul`
+const ListStyles = styled.ul`
   padding: 0 !important;
 
   li {

@@ -270,6 +270,16 @@ const StoreLocationStyles = styled.div`
         &:hover {
           text-decoration: underline;
         }
+
+        &:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+        }
+
+        &:focus-visible {
+          color: #0369a1;
+          text-decoration: underline;
+        }
       }
 
       svg {
@@ -351,6 +361,7 @@ const StoreLocationStyles = styled.div`
     color: #0369a1;
     background-color: #fff;
     border-radius: 0.25rem;
+    border: 1px solid transparent;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
       rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -366,10 +377,20 @@ const StoreLocationStyles = styled.div`
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.15) 0px 1px 3px 0px,
         rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      border-color: #f8fafc;
 
       svg {
-        transform: translateX(1px);
+        transform: translateX(2px);
       }
+    }
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      text-decoration: underline;
     }
   }
 
