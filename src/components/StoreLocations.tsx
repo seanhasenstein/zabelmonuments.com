@@ -63,10 +63,7 @@ export default function StoreLocations() {
             <div className="details">
               <div className="hours">
                 <div className="title">{store.name} Store</div>
-                <div className="data">
-                  Open {store.hours}
-                  <span>(or by appointment)</span>
-                </div>
+                <div className="data">Open {store.hours}</div>
               </div>
               <div className="address">
                 <div className="icon">
@@ -277,7 +274,7 @@ const StoreLocationStyles = styled.div`
         }
 
         &:focus-visible {
-          color: #0369a1;
+          color: #1967d2;
           text-decoration: underline;
         }
       }
@@ -333,12 +330,6 @@ const StoreLocationStyles = styled.div`
     .data {
       font-size: 0.875rem;
       color: #0f172a;
-
-      span {
-        margin-top: 0.125rem;
-        display: block;
-        font-size: 0.75rem;
-      }
     }
   }
 
@@ -390,7 +381,9 @@ const StoreLocationStyles = styled.div`
     }
 
     &:focus-visible {
-      text-decoration: underline;
+      border: 1px solid #f1f5f9;
+      box-shadow: #fff 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
   }
 

@@ -271,6 +271,16 @@ const GalleryPageStyles = styled.div`
         color: #000;
       }
 
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        box-shadow: #fff 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
+          rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+      }
+
       &.current,
       &.current:hover {
         margin-top: -1px;

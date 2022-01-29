@@ -113,6 +113,15 @@ const SidebarNavStyles = styled.div`
       color: #000;
     }
 
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline-color: #1967d2;
+    }
+
     &.current,
     &.current:hover {
       margin-top: -1px;

@@ -76,8 +76,8 @@ export const GlobalStyles = createGlobalStyle`
     &:focus {
       outline: none;
       outline-offset: 2px;
-      border-color: #4F46E5;
-      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+      border-color: #bacbe2;
+      box-shadow: 0 0 0 4px #e3eaf3;
     }
   }
 

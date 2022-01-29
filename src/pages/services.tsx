@@ -91,6 +91,6 @@ const ServicesStyles = styled.ul`
     flex-shrink: 0;
     height: 1.375rem;
     width: 1.375rem;
-    color: #6ea546;
+    color: #466ea5;
   }
 `;

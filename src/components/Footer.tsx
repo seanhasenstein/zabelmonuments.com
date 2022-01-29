@@ -207,8 +207,20 @@ const FooterStyles = styled.footer`
       width: 100%;
     }
 
-    a:hover {
-      border-color: #4b463b;
+    a {
+      &:hover {
+        border-color: #4b463b;
+      }
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+
+      &:focus-visible {
+        box-shadow: #2a2721 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
+          rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+      }
     }
   }
 
@@ -223,7 +235,6 @@ const FooterStyles = styled.footer`
       font-family: 'Poppins', sans-serif;
       font-size: 0.9375rem;
       color: rgba(255, 255, 255, 0.6);
-      transition: color 200ms ease-in-out;
 
       &:hover {
         color: rgba(255, 255, 255, 1);
@@ -236,7 +247,7 @@ const FooterStyles = styled.footer`
 
       &:focus-visible {
         text-decoration: underline;
-        color: #fff;
+        color: #1967d2;
       }
     }
   }

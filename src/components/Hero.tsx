@@ -67,7 +67,7 @@ const HeroStyles = styled.div`
   }
 
   p {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .row {
@@ -113,7 +113,7 @@ const HeroStyles = styled.div`
     }
 
     &:focus-visible {
-      box-shadow: #2a2721 0px 0px 0px 2px, #4f46e5 0px 0px 0px 4px,
+      box-shadow: #2a2721 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
         rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
 

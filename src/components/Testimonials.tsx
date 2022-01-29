@@ -203,7 +203,7 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
 
   .source {
     margin: 2rem 0 0;
-    color: #64748b;
+    color: #346bb7;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -234,7 +234,7 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
     }
 
     &:focus {
-      outline-color: #0369a1;
+      outline-color: #1967d2;
     }
 
     &:disabled {

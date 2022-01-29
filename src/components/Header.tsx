@@ -150,7 +150,7 @@ const HeaderStyles = styled.header`
 
       &:focus-visible {
         text-decoration: underline;
-        color: #fff;
+        color: #1967d2;
       }
     }
   }
@@ -185,7 +185,7 @@ const HeaderStyles = styled.header`
       }
 
       &:focus-visible {
-        outline: 2px solid #4f46e5;
+        outline: 2px solid #1967d2;
       }
     }
   }
@@ -221,7 +221,7 @@ const HeaderStyles = styled.header`
 
       &:focus-visible {
         text-decoration: underline;
-        color: #fff;
+        color: #1967d2;
       }
     }
   }

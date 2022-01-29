@@ -13,9 +13,14 @@ export default function Success() {
             Thank you for contacting Zabel Monuments. We received your message
             and will be with you as soon as we can.
           </p>
-          <Link to="/contact" className="link-button">
-            Send another message
-          </Link>
+          <div className="actions">
+            <Link to="/contact" className="primary-button">
+              Send another message
+            </Link>
+            <Link to="/" className="secondary-button">
+              Back to home
+            </Link>
+          </div>
         </div>
         <div aria-hidden="true" className="background">
           <svg
@@ -104,31 +109,56 @@ const SuccessMessageStyles = styled.div`
     font-size: 1.125rem;
   }
 
-  .link-button {
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .primary-button,
+  .secondary-button {
     padding: 0.6875rem 1.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #6ea546;
     font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.025rem;
+    border-radius: 0.3125rem;
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      box-shadow: #fff 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    }
+  }
+
+  .primary-button {
+    background-color: #6ea546;
     color: rgba(255, 255, 255, 1);
     border: 1px solid #569740;
-    border-radius: 0.3125rem;
     box-shadow: inset 0 1px 1px #89c475;
     transition: background-color 150ms ease-in-out;
 
     &:hover {
       background-color: #77b34c;
     }
+  }
 
-    &:focus {
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-      box-shadow: #fff 0px 0px 0px 2px, #6ea546 0px 0px 0px 4px,
-        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  .secondary-button {
+    color: #1f2937;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    box-shadow: inset 0 2px 2px #fff, 0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    &:hover {
+      background-color: #f3f4f6;
     }
   }
 
@@ -139,6 +169,12 @@ const SuccessMessageStyles = styled.div`
 
   @media (max-width: 767px) {
     margin: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+    }
   }
 
   @media (max-width: 350px) {
