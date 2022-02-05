@@ -79,11 +79,17 @@ const GraniteColorsStyles = styled.div`
     width: calc(16.6666666667% - 0.8333333333rem);
   }
 
+  .grid-item,
+  .grid-item img {
+    border-radius: 0.125rem;
+  }
+
   .caption {
     font-size: 0.75rem;
+    font-weight: 500;
+    color: #111827;
     line-height: 1.25;
     text-align: center;
-    color: #1e293b;
   }
 
   @media (max-width: 900px) {

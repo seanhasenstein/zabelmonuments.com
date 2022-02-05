@@ -9,9 +9,9 @@ export default function NotFoundPage() {
       <NotFoundPageStyles>
         <main>
           <h1>404 - Page not found</h1>
-          <p>Sorry, we couldn’t find what you were looking for.</p>
+          <p>Sorry, the page you are looking for does not exist.</p>
           <Link to="/" className="link-button">
-            Go to the homepage
+            Back to the homepage
           </Link>
         </main>
       </NotFoundPageStyles>
@@ -28,11 +28,18 @@ const NotFoundPageStyles = styled.div`
 
   h1 {
     margin: 0;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #111827;
   }
 
   p {
     margin: 1.5rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
   }
 
   .link-button {
@@ -59,7 +66,10 @@ const NotFoundPageStyles = styled.div`
     &:focus {
       outline: 2px solid transparent;
       outline-offset: 2px;
-      box-shadow: #fff 0px 0px 0px 2px, #6ea546 0px 0px 0px 4px,
+    }
+
+    &:focus-visible {
+      box-shadow: #f8fafc 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
         rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
   }

@@ -114,16 +114,22 @@ export default function Footer() {
             <h4>Contact Us</h4>
             <ul>
               <li>
-                <Link to="/contact?store=green-bay">Green Bay Store</Link>
+                <Link to="/contact" state={{ store: 'greenbay' }}>
+                  Green Bay Store
+                </Link>
               </li>
               <li>
-                <Link to="/contact?store=manitowoc">Manitowoc Store</Link>
+                <Link to="/contact" state={{ store: 'manitowoc' }}>
+                  Manitowoc Store
+                </Link>
               </li>
               <li>
-                <Link to="/contact?store=sheboygan">Sheboygan Store</Link>
+                <Link to="/contact" state={{ store: 'sheboygan' }}>
+                  Sheboygan Store
+                </Link>
               </li>
               <li>
-                <Link to="/contact?store=ask-our-cm">
+                <Link to="/contact" state={{ store: 'ask-our-cm' }}>
                   Ask Our Certified Memorialist
                 </Link>
               </li>
@@ -234,7 +240,7 @@ const FooterStyles = styled.footer`
     a {
       font-family: 'Poppins', sans-serif;
       font-size: 0.9375rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.65);
 
       &:hover {
         color: rgba(255, 255, 255, 1);

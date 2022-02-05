@@ -7,9 +7,10 @@ export default function useLightbox(images: Image[]) {
   const [shouldReturnFocus, setShouldReturnFocus] = React.useState(false);
   const [initFocusedImg, setInitFocusedImg] =
     React.useState<HTMLButtonElement | null>(null);
-  const prevButton = React.useRef<HTMLButtonElement | null>(null);
-  const nextButton = React.useRef<HTMLButtonElement | null>(null);
-  const closeButton = React.useRef<HTMLButtonElement | null>(null);
+  const prevButton = React.useRef<HTMLButtonElement>(null);
+  const nextButton = React.useRef<HTMLButtonElement>(null);
+  const closeButton = React.useRef<HTMLButtonElement>(null);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   const handleClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -103,6 +104,26 @@ export default function useLightbox(images: Image[]) {
     }
   }, [showLightbox]);
 
+  React.useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+        !imgRef.current?.contains(e.target as Node) &&
+        !prevButton.current?.contains(e.target as Node) &&
+        !nextButton.current?.contains(e.target as Node)
+      ) {
+        setShowLightbox(false);
+      }
+    };
+
+    if (showLightbox) {
+      document.addEventListener('click', handleClick);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [nextButton, prevButton, setShowLightbox, showLightbox]);
+
   return {
     images,
     showLightbox,
@@ -113,5 +134,6 @@ export default function useLightbox(images: Image[]) {
     prevButton,
     nextButton,
     closeButton,
+    imgRef,
   };
 }

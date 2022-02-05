@@ -9,13 +9,14 @@ const primaryNavItems = [
   { id: 3, slug: '/gallery/individual-monuments', text: 'Gallery' },
   { id: 4, slug: '/staff', text: 'Staff' },
   { id: 5, slug: '/about', text: 'About' },
-  { id: 6, slug: '/contact?store=manitowoc', text: 'Contact Us' },
+  { id: 6, slug: '/contact', store: 'greenbay', text: 'Contact Us' },
 ];
 
 const secondaryNavItems = [
   {
     id: 1,
-    slug: '/contact?store=ask-our-cm',
+    slug: '/contact',
+    store: 'ask-our-cm',
     text: 'Ask Our Certified Memorialist',
   },
   { id: 2, slug: '/faq', text: "FAQ's" },
@@ -41,7 +42,11 @@ export default function Header() {
     <HeaderStyles>
       <div className="secondary-nav">
         {secondaryNavItems.map(i => (
-          <Link key={i.id} to={i.slug}>
+          <Link
+            key={i.id}
+            to={i.slug}
+            state={i.store ? { store: i.store } : null}
+          >
             {i.text}
           </Link>
         ))}
@@ -105,14 +110,23 @@ export default function Header() {
           <div className={`mobile-nav-container ${open ? 'open' : ''}`}>
             <nav>
               {primaryNavItems.map(i => (
-                <Link key={i.id} to={`${i.slug}`}>
+                // <Link key={i.id} to={`${i.slug}`}>
+                <Link
+                  key={i.id}
+                  to={`${i.slug}`}
+                  state={i.store ? { store: i.store } : null}
+                >
                   {i.text}
                 </Link>
               ))}
             </nav>
             <div className="mobile-secondary-nav">
               {secondaryNavItems.map(i => (
-                <Link key={i.id} to={i.slug}>
+                <Link
+                  key={i.id}
+                  to={i.slug}
+                  state={i.store ? { store: i.store } : null}
+                >
                   {i.text}
                 </Link>
               ))}
@@ -179,6 +193,8 @@ const HeaderStyles = styled.header`
     width: 12.5rem;
 
     a {
+      border-radius: 0.125rem;
+
       &:focus {
         outline: 2px solid transparent;
         outline-offset: 2px;

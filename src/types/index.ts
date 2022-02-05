@@ -4,3 +4,5 @@ export type Image = {
     secure_url: string;
   };
 };
+
+export type Contact = 'ask-our-cm' | 'greenbay' | 'manitowoc' | 'sheboygan';

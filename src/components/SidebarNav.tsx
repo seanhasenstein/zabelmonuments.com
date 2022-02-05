@@ -75,10 +75,10 @@ const SidebarNavStyles = styled.div`
   .container {
     padding: 0.5rem 0.375rem 0.5rem 0.5rem;
     background-color: #fff;
-    border: 1px solid #f1f5f9;
     border-radius: 0.25rem;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
+      rgba(17, 24, 39, 0.05) 0px 0px 0px 1px,
+      rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   }
 
   a {
@@ -92,10 +92,10 @@ const SidebarNavStyles = styled.div`
     line-height: 1;
     color: #334155;
     letter-spacing: 0.0125em;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid #e5e7eb;
 
     &:first-of-type {
-      border-top: 1px solid #f1f5f9;
+      border-top: 1px solid #e5e7eb;
     }
 
     &:after {

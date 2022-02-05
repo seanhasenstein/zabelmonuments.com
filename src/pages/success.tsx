@@ -54,11 +54,10 @@ const SuccessMessageStyles = styled.div`
   width: 100%;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #f1f5f9;
   border-radius: 0.125rem;
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-    rgba(0, 0, 0, 0.075) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
+    rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
   .content {
     position: relative;

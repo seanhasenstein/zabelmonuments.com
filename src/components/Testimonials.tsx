@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const testimonialsArray = [
+const slides = [
+  {
+    id: 0,
+    quote:
+      'We saw our stone today. It is even better than I pictured it in my mind. Although we made changes all the way, you were always patient. You were truly concerned with us being pleased with the final outcome. The artist that completed the family tree did superb work. I love the way he made the branches stand out! Beautiful contrast. Thanks to all of you at Zabel.',
+    source: 'Ted & Luanne Bergstrom',
+  },
   {
     id: 1,
     quote:
@@ -62,37 +68,89 @@ const testimonialsArray = [
       'We saw our stone today. It is even better than I pictured it in my mind. Although we made changes all the way, you were always patient. You were truly concerned with us being pleased with the final outcome. The artist that completed the family tree did superb work. I love the way he made the branches stand out! Beautiful contrast. Thanks to all of you at Zabel.',
     source: 'Ted & Luanne Bergstrom',
   },
+  {
+    id: 11,
+    quote:
+      'Thank you for all your help. You were so compassionate and informational. You made a difficult task very easy. We are so pleased with the marker. We tell everyone to go to you for the best looking markers. Thank you again!',
+    source: 'A. Meyer',
+  },
 ];
 
 export default function Testimonials() {
-  const [activeQuote, setActiveQuote] = React.useState(0);
+  const [activeSlide, setActiveSlide] = React.useState(1);
+  const [clickDisabled, setClickDisabled] = React.useState(false);
+  const [hasTransitionClass, setHasTransitionClass] = React.useState(true);
+  const transitionSpeed = 500;
+  const totalSlides = slides.length - 2;
+
+  React.useEffect(() => {
+    if (activeSlide === slides.length - 1) {
+      setClickDisabled(true);
+      setTimeout(() => {
+        setHasTransitionClass(false);
+        setActiveSlide(1);
+      }, transitionSpeed);
+    }
+
+    if (activeSlide === 1) {
+      setTimeout(() => {
+        setHasTransitionClass(true);
+      }, transitionSpeed);
+    }
+
+    if (activeSlide === 0) {
+      setClickDisabled(true);
+      setTimeout(() => {
+        setHasTransitionClass(false);
+        setActiveSlide(slides.length - 2);
+      }, transitionSpeed);
+    }
+
+    if (activeSlide === slides.length - 2) {
+      setTimeout(() => {
+        setHasTransitionClass(true);
+      }, transitionSpeed);
+    }
+  }, [activeSlide]);
+
+  React.useEffect(() => {
+    if (clickDisabled) {
+      setTimeout(() => {
+        setClickDisabled(false);
+      }, transitionSpeed * 2);
+    }
+  }, [clickDisabled]);
 
   const handlePrevClick = () => {
-    if (activeQuote === 0) return;
-    setActiveQuote(prevQuote => prevQuote - 1);
+    setActiveSlide(prevQuote => prevQuote - 1);
   };
 
   const handleNextClick = () => {
-    if (activeQuote === testimonialsArray.length - 1) return;
-    setActiveQuote(activeQuote + 1);
+    setActiveSlide(activeSlide + 1);
   };
 
   return (
-    <TestimonialsStyles activeQuote={activeQuote}>
+    <TestimonialsStyles
+      activeSlide={activeSlide}
+      transitionSpeed={transitionSpeed}
+    >
       <div className="testimonial-container">
         <svg className="quote-svg" fill="currentColor" viewBox="0 0 32 32">
           <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
         </svg>
+        <h3>Hear from our customers</h3>
         <div className="grid">
-          {testimonialsArray.map((t, i) => (
+          {slides.map((t, i) => (
             <div
               key={t.id}
-              className={`grid-item ${activeQuote === i ? 'active' : ''}`}
+              className={`grid-item${activeSlide === i ? ' active' : ''}${
+                hasTransitionClass ? ' transition' : ''
+              }`}
             >
               <div className="quote">{t.quote}</div>
               <div className="source">- {t.source}</div>
               <div className="count">
-                {activeQuote + 1} of {testimonialsArray.length}
+                {activeSlide} of {totalSlides}
               </div>
             </div>
           ))}
@@ -102,7 +160,7 @@ export default function Testimonials() {
             type="button"
             className="previous-button"
             onClick={handlePrevClick}
-            disabled={activeQuote === 0}
+            disabled={clickDisabled}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +181,7 @@ export default function Testimonials() {
             type="button"
             className="next-button"
             onClick={handleNextClick}
-            disabled={activeQuote === testimonialsArray.length - 1}
+            disabled={clickDisabled}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,9 +204,24 @@ export default function Testimonials() {
   );
 }
 
-const TestimonialsStyles = styled.div<{ activeQuote: number }>`
-  padding: 0 1.5rem 4rem;
+type StyleType = {
+  activeSlide: number;
+  transitionSpeed: number;
+};
+
+const TestimonialsStyles = styled.div<StyleType>`
+  padding: 2rem 1.5rem 5rem;
   overflow-x: hidden;
+
+  h3 {
+    margin: 0 0 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    text-align: center;
+  }
 
   .grid {
     margin: 0 auto;
@@ -164,12 +237,16 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: ${props => `translateX(${props.activeQuote * -100}%)`};
+    transform: ${props => `translateX(${props.activeSlide * -100}%)`};
     opacity: 0;
 
     &.active {
       opacity: 1;
-      transition: transform 500ms ease-out, opacity 500ms linear 300ms;
+    }
+
+    &.active.transition {
+      transition: transform ${props => props.transitionSpeed}ms ease-out,
+        opacity ${props => props.transitionSpeed}ms linear 300ms;
     }
   }
 
@@ -193,17 +270,14 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #0f172a;
+    color: #1f2937;
     line-height: 1.75;
     text-align: center;
   }
 
   .source {
     margin: 2rem 0 0;
-    color: #346bb7;
+    color: #406597;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -216,7 +290,7 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
     font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
     font-size: 0.875rem;
     font-style: italic;
-    color: #94a3b8;
+    color: #6b7280;
   }
 
   .previous-button,
@@ -224,10 +298,13 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
     padding: 0.5rem;
     position: absolute;
     top: calc(50% - 2rem);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     color: #94a3b8;
     background-color: #f8fafc;
     border: none;
-    border-radius: 9999px;
+    border-radius: 0.125rem;
 
     &:hover {
       color: #171717;
@@ -235,10 +312,6 @@ const TestimonialsStyles = styled.div<{ activeQuote: number }>`
 
     &:focus {
       outline-color: #1967d2;
-    }
-
-    &:disabled {
-      color: #e2e8f0;
     }
 
     svg {

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
-import eric from '../assets/images/staff/eric.jpg';
-import jamie from '../assets/images/staff/jamie.jpg';
+import Eric from '../assets/images/staff/eric.jpg';
+import Jamie from '../assets/images/staff/jamie.jpg';
 
 const profiles = [
   {
@@ -12,7 +12,7 @@ const profiles = [
     bio: [
       'Eric is a 3rd generation memorialist and current owner of Zabel Monuments. Eric is involved in all aspects of the business with a focus on lay-out, design and customization. Eric and his wife Claire, have three children. Away from work Eric enjoys cooking, camping and spending time with family and friends. Eric is a member of the Kansas City Barbeque Society and is a certified BBQ Judge.',
     ],
-    image: eric,
+    image: Eric,
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const profiles = [
       'Jamie enjoys traveling the National Parks via hiking or riding her Harley, continued education, teaching and living her DASH.',
       'Stop by and meet Jamie, let her document your story in stone at our Green Bay Store.',
     ],
-    image: jamie,
+    image: Jamie,
   },
   {
     id: 4,

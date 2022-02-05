@@ -1,66 +1,117 @@
-import React from 'react';
 import { Link } from 'gatsby';
+import React from 'react';
 import styled from 'styled-components';
-import FeaturedImage from '../assets/images/featured.jpg';
+import Photo from '../assets/images/featured.jpg';
 
 export default function Featured() {
   return (
     <FeaturedStyles>
-      <div className="grid">
-        <div className="grid-image">
-          <img src={FeaturedImage} alt="Pink flowers on top of a gravestone" />
+      <div className="container">
+        <div className="img">
+          <img
+            src={Photo}
+            alt="A monument with pink flowers displayed on top."
+          />
         </div>
-        <div className="grid-content">
-          <div className="content-container">
-            <h3>Every Life is Worth Remembering</h3>
-            <p>
-              A memorial is one of the most personal purchases a family can
-              make. Our family also understands and respects that this is an
-              important part of the grieving and healing process after a death.
-              We are here to help you through this process and create lasting
-              tributes to your loved ones.
-            </p>
-            <div className="links">
-              <Link to="/services" className="primary-link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                Our services
-              </Link>
-              <Link to="/gallery/individual-monuments" className="primary-link">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  />
-                </svg>
-                Product Galleries
-              </Link>
+        <div className="content">
+          <h3>
+            <span>Why Choose Us?</span>
+          </h3>
+          <Link to="/services" className="item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="main-icon"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div>
+              <h4>Our services</h4>
+              <p>
+                We provide the best quality and workmanship for each and every
+                one of our customers.
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon-right"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
-          </div>
+          </Link>
+          <Link to="history" className="item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="main-icon"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div>
+              <h4>Our history</h4>
+              <p>
+                We've been bringing comfort and personalized memorials to
+                generations of families in East Central Wisconsin since 1970
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon-right"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </Link>
+          <Link to="/staff" className="item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="main-icon"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+            </svg>
+            <div>
+              <h4>Our caring staff</h4>
+              <p>
+                We are here to help you through this process and create a
+                lasting tribute to your loved one.
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon-right"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </Link>
         </div>
       </div>
     </FeaturedStyles>
@@ -68,172 +119,125 @@ export default function Featured() {
 }
 
 const FeaturedStyles = styled.div`
-  padding: 8rem 0 6rem;
+  margin: 7rem 1.5rem 4rem;
 
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  .grid {
+  .container {
     margin: 0 auto;
-    position: relative;
-    max-width: 92rem;
+    max-width: 1000px;
     width: 100%;
     display: flex;
     align-items: center;
   }
 
-  .grid-image {
-    width: 54%;
-    height: 580px;
+  .img,
+  .content {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .img {
     flex-shrink: 0;
-    z-index: 300;
 
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      border: 8px solid #fff;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
   }
 
-  .grid-content {
-    position: relative;
-    padding: 4rem 6.5rem 6rem;
-    width: 46%;
-    flex-shrink: 0;
-    background-color: #fff;
-    border: 1px solid #f1f5f9;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  }
-
-  .content-container {
-    position: relative;
-    z-index: 200;
-  }
-
-  .links {
-    margin: 1.5rem 0 0;
+  .content {
+    margin: 0 0 0 4rem;
+    padding: 0 0 1.5rem;
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    border-bottom: 1px solid #cbd5e1;
   }
 
-  .primary-link {
-    padding: 0.6875rem 1.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.025rem;
-    color: rgba(255, 255, 255, 0.9);
-    border-radius: 0.3125rem;
-
-    &:focus {
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-    }
-
-    &:focus-visible {
-      box-shadow: #fff 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
-        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-    }
-  }
-
-  .primary-link {
-    background-color: #6ea546;
-    border: 1px solid #569740;
-    box-shadow: inset 0 1px 1px #89c475;
-    transition: background-color 150ms ease-in-out;
+  .item {
+    position: relative;
+    padding: 1.5rem 0;
+    display: flex;
+    gap: 1.25rem;
 
     &:hover {
-      background-color: #77b34c;
-    }
-
-    svg {
-      margin: 0 0.5rem 0 0;
-      color: #a1ca83;
-      height: 1rem;
-      width: 1rem;
-    }
-  }
-
-  .secondary-link {
-    background-color: transparent;
-    border: 1px solid #6ea546;
-    color: #77b34c;
-
-    &:hover {
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.75);
-    }
-  }
-
-  @media (max-width: 1280px) {
-    .grid-image {
-      width: 44%;
-      flex-shrink: initial;
-    }
-
-    .grid-content {
-      padding: 4rem 5rem 6rem;
-      width: 56%;
-    }
-  }
-
-  @media (max-width: 991px) {
-    padding: 4rem 3rem;
-
-    .grid {
-      flex-direction: column;
-    }
-
-    .grid-image {
-      height: unset;
-      width: 85%;
-
-      img {
-        width: 100%;
-        height: unset;
-        object-fit: unset;
+      .icon-right {
+        opacity: 1;
       }
     }
 
-    .grid-content {
-      padding: 2.5rem 5rem 4.5rem;
-      margin-top: -10rem;
-      width: 100%;
-      z-index: 300;
-    }
-
-    .content-container {
-      text-align: center;
-    }
-
-    .links {
-      justify-content: center;
+    .main-icon {
+      flex-shrink: 0;
+      height: 1.5rem;
+      width: 1.75rem;
+      color: #466ea5;
     }
   }
 
-  @media (max-width: 650px) {
-    .links {
+  h3 {
+    position: relative;
+    margin: 0 0 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    text-align: center;
+
+    span {
+      padding: 0 1.5rem;
+      position: relative;
+      background-color: #f8fafc;
+      z-index: 200;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.875rem;
+      width: 100%;
+      height: 1px;
+      background-color: #cbd5e1;
+      z-index: 10;
+    }
+  }
+
+  h4 {
+    margin: 0 0 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  p {
+    margin: 0;
+    color: #4b5563;
+  }
+
+  .icon-right {
+    position: absolute;
+    top: calc(50% - 0.625rem);
+    right: -2.5rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    color: #466ea5;
+    opacity: 0;
+    transition: all 200ms ease-in-out;
+  }
+
+  @media (max-width: 991px) {
+    .container {
+      margin: 0 auto;
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
       flex-direction: column;
     }
-  }
 
-  @media (max-width: 500px) {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    .img {
+      display: none;
+    }
 
-    .grid-content {
-      padding: 1rem 1.5rem 3rem;
-      margin-top: -4rem;
+    .content {
+      margin: 0;
     }
   }
 `;

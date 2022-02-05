@@ -8,10 +8,12 @@ import Testimonials from '../components/Testimonials';
 export default function Index() {
   return (
     <Layout>
-      <Hero />
-      <StoreLocations />
-      <Featured />
-      <Testimonials />
+      <main>
+        <Hero />
+        <StoreLocations />
+        <Featured />
+        <Testimonials />
+      </main>
     </Layout>
   );
 }

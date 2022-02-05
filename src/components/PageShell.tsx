@@ -8,16 +8,16 @@ type Props = {
 
 export default function PageShell({ children }: Props) {
   return (
-    <PageContainer>
+    <PageShellStyles>
       <div className="page-container">
         <SidebarNav />
         <main>{children}</main>
       </div>
-    </PageContainer>
+    </PageShellStyles>
   );
 }
 
-const PageContainer = styled.div`
+const PageShellStyles = styled.div`
   padding: 5rem 1.5rem;
 
   .page-container {
@@ -35,7 +35,7 @@ const PageContainer = styled.div`
     padding: 0 0 0.875rem;
     font-size: 1.5rem;
     letter-spacing: 0.0125em;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #d1d5db;
   }
 
   p {

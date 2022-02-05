@@ -11,6 +11,7 @@ type Props = {
   prevButton: React.MutableRefObject<HTMLButtonElement | null>;
   nextButton: React.MutableRefObject<HTMLButtonElement | null>;
   closeButton: React.MutableRefObject<HTMLButtonElement | null>;
+  imgRef: React.MutableRefObject<HTMLImageElement | null>;
   galleryName: string;
 };
 
@@ -23,6 +24,7 @@ export default function Lightbox({
   prevButton,
   nextButton,
   closeButton,
+  imgRef,
   galleryName,
 }: Props) {
   return (
@@ -35,6 +37,7 @@ export default function Lightbox({
     >
       <div className="container">
         <img
+          ref={imgRef}
           src={images[selectedImg].node.secure_url}
           alt={`${galleryName} photo ${selectedImg + 1} of ${images.length}`}
         />
@@ -57,52 +60,55 @@ export default function Lightbox({
           </svg>
         </button>
         <div className="actions">
-          {selectedImg === 0 ? null : (
-            <button
-              onClick={() => setSelectedImg(prevIndex => prevIndex - 1)}
-              className="previous-button"
-              ref={prevButton}
-              area-label="Previous Image"
-              disabled={selectedImg === 0}
+          <button
+            onClick={() => setSelectedImg(prevIndex => prevIndex - 1)}
+            className="previous-button"
+            ref={prevButton}
+            area-label="Previous Image"
+            disabled={selectedImg === 0}
+          >
+            <span className="sr-only">Previous Image</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <span className="sr-only">Previous Image</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          )}
-          {selectedImg === images.length - 1 ? null : (
-            <button
-              onClick={() => setSelectedImg(prevIndex => prevIndex + 1)}
-              className="next-button"
-              ref={nextButton}
-              aria-label="Next Image"
-              disabled={selectedImg === images.length - 1}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={() => setSelectedImg(prevIndex => prevIndex + 1)}
+            className="next-button"
+            ref={nextButton}
+            aria-label="Next Image"
+            disabled={selectedImg === images.length - 1}
+          >
+            <span className="sr-only">Next Image</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <span className="sr-only">Next Image</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </button>
         </div>
       </div>
+      <p className="count">
+        {selectedImg + 1} / {images.length}
+      </p>
     </LightboxStyles>
   );
 }
@@ -118,7 +124,7 @@ const LightboxStyles = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(15, 15, 15, 0.95);
 
   &.active {
     display: flex;
@@ -138,27 +144,35 @@ const LightboxStyles = styled.div`
   }
 
   .close-button {
-    width: 2.125rem;
-    height: 2.125rem;
+    padding: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    color: #18181b;
+    top: 1.25rem;
+    right: 1.25rem;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.85);
     border-radius: 9999px;
     border: none;
     cursor: pointer;
 
     svg {
-      height: 1.25rem;
-      width: 1.25rem;
+      height: 1.5rem;
+      width: 1.5rem;
     }
 
     &:hover {
-      transform: scale(106%);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline-color: #fff;
     }
   }
 
@@ -170,24 +184,33 @@ const LightboxStyles = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
-    color: #262626;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.85);
     border-radius: 9999px;
     border: none;
     cursor: pointer;
 
     svg {
-      height: 1.375rem;
-      width: 1.375rem;
+      height: 1.5rem;
+      width: 1.5rem;
     }
 
     &:hover {
-      color: #171717;
-      transform: scale(106%);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline-color: #fff;
     }
 
     &:disabled {
-      color: #e2e8f0;
+      color: rgba(255, 255, 255, 0.25);
+      cursor: default;
     }
   }
 
@@ -199,36 +222,45 @@ const LightboxStyles = styled.div`
     right: 2rem;
   }
 
-  @media (max-width: 600px) {
-    background-color: #fafafa;
+  .count {
+    position: absolute;
+    top: 1rem;
+    left: 2.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
 
+  @media (max-width: 600px) {
     .container {
       width: 100%;
       height: 75%;
+
+      img {
+        max-height: 90%;
+      }
     }
 
     .actions {
-      margin: 0.875rem 1.5rem 0 0;
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
       display: flex;
       justify-content: flex-end;
-      gap: 0.75rem;
+      gap: 1rem;
     }
 
     .close-button,
     .previous-button,
     .next-button {
-      background-color: #fafafa;
-      color: #a3a3a3;
+      padding: 0.625rem;
+      background-color: #3f3f46;
+      color: #fff;
     }
 
-    .close-button {
-      width: 2.5rem;
-      height: 2.5rem;
-
-      svg {
-        height: 1.75rem;
-        width: 1.75rem;
-      }
+    .close-button svg {
+      height: 1.25rem;
+      width: 1.25rem;
     }
 
     .previous-button,
@@ -238,11 +270,6 @@ const LightboxStyles = styled.div`
       left: unset;
       right: unset;
       bottom: unset;
-
-      svg {
-        height: 1.75rem;
-        width: 1.75rem;
-      }
     }
   }
 `;

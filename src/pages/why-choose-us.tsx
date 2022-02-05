@@ -28,60 +28,63 @@ export default function WhyChooseUs() {
           loved ones.
         </p>
         <ListStyles>
-          <ListItem>
-            We are a family business that cares about our customers and our
-            reputation.
-          </ListItem>
-          <ListItem>
-            We've been in business since 1970 and are in our third generation of
-            ownership.
-          </ListItem>
-          <ListItem>
-            We have a Certified Memorialist (CM) on staff (one of only three in
-            the state of Wisconsin).
-          </ListItem>
-          <ListItem>
-            We are well respected in the industry. We have had three generations
-            serve as President of the{' '}
-            <a href="http://wambonline.org/">
-              Wisconsin Association of Monument Builders
-            </a>
-            .
-          </ListItem>
-          <ListItem>
-            We are members and active participants of our national association -{' '}
-            <a href="https://monumentbuilders.org/">
-              Monument Builders of North America
-            </a>
-            .
-          </ListItem>
-          <ListItem>
-            <>
-              We are proud members of the{' '}
-              <a href="https://www.monuments-aica.com/">
-                American Institute of Commemorative Art
-              </a>{' '}
-              (AICA). An Institute consisting of 55 of the top memorial
-              designers in North America. Membership is by invitation only and
-              we are the only member in the state of Wisconsin.
-            </>
-          </ListItem>
-          <ListItem>
-            We were selected to construct the Manitowoc County Veterans
-            Memorial.
-          </ListItem>
-          <ListItem>
-            We were selected to construct the Sheboygan County Veterans
-            Memorial.
-          </ListItem>
-          <ListItem>
-            We have award winning designs through the American Institute of
-            Commemorative Art.
-          </ListItem>
-          <ListItem>
-            We've been featured in several trade publications including Stone in
-            America.
-          </ListItem>
+          <ul>
+            <ListItem>
+              We are a family business that cares about our customers and our
+              reputation.
+            </ListItem>
+            <ListItem>
+              We've been in business since 1970 and are in our third generation
+              of ownership.
+            </ListItem>
+            <ListItem>
+              We have a Certified Memorialist (CM) on staff (one of only three
+              in the state of Wisconsin).
+            </ListItem>
+            <ListItem>
+              We are well respected in the industry. We have had three
+              generations serve as President of the{' '}
+              <a href="http://wambonline.org/">
+                Wisconsin Association of Monument Builders
+              </a>
+              .
+            </ListItem>
+            <ListItem>
+              We are members and active participants of our national association
+              -{' '}
+              <a href="https://monumentbuilders.org/">
+                Monument Builders of North America
+              </a>
+              .
+            </ListItem>
+            <ListItem>
+              <>
+                We are proud members of the{' '}
+                <a href="https://www.monuments-aica.com/">
+                  American Institute of Commemorative Art
+                </a>{' '}
+                (AICA). An Institute consisting of 55 of the top memorial
+                designers in North America. Membership is by invitation only and
+                we are the only member in the state of Wisconsin.
+              </>
+            </ListItem>
+            <ListItem>
+              We were selected to construct the Manitowoc County Veterans
+              Memorial.
+            </ListItem>
+            <ListItem>
+              We were selected to construct the Sheboygan County Veterans
+              Memorial.
+            </ListItem>
+            <ListItem>
+              We have award winning designs through the American Institute of
+              Commemorative Art.
+            </ListItem>
+            <ListItem>
+              We've been featured in several trade publications including Stone
+              in America.
+            </ListItem>
+          </ul>
         </ListStyles>
       </PageShell>
     </Layout>
@@ -111,24 +114,30 @@ function ListItem({ children }: Props) {
   );
 }
 
-const ListStyles = styled.ul`
-  padding: 0 !important;
+const ListStyles = styled.div`
+  ul {
+    padding: 0;
+  }
 
   li {
+    margin: 0;
+    padding: 0.75rem 0;
     display: flex;
-    list-style-type: none !important;
+    list-style-type: none;
+    line-height: 1.35;
+    color: #111827;
 
     svg {
-      margin: 0.125rem 0.75rem 0 0;
+      margin: 0.125rem 1rem 0 0;
       flex-shrink: 0;
-      height: 1.375rem;
-      width: 1.375rem;
+      height: 1.25rem;
+      width: 1.25rem;
       color: #466ea5;
     }
 
     a {
       text-decoration: underline;
-      color: #346bb7;
+      color: #466ea5;
     }
   }
 `;

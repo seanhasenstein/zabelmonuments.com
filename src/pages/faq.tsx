@@ -6,7 +6,7 @@ import PageShell from '../components/PageShell';
 const frequentlyAskedQuestions = [
   {
     id: 1,
-    q: 'Can we purchase a memorial while we are living? Does it go into the cemetery?',
+    q: 'Can we purchase a memorial while we are living?',
     a: 'It is always a good idea to pre-plan your memorial. By doing so, all of your thoughts and wishes can be conveyed. It also takes the burden off of your survivors wondering what you would have wanted. The consultation is often more light hearted also. Upon the purchase, the memorial is engraved and placed into the cemetery or location of your choosing. When a death occurs, we go out to the memorial and engrave the date on site.',
     isLink: false,
   },
@@ -73,7 +73,10 @@ export default function Faq() {
           <h2>Frequently Asked Questions</h2>
           <dl>
             {frequentlyAskedQuestions.map(f => (
-              <div key={f.id} className="item">
+              <div
+                key={f.id}
+                className={`item${activeItem === f.id ? ' active' : ''}`}
+              >
                 <dt>
                   <button
                     aria-expanded={activeItem === f.id}
@@ -83,19 +86,35 @@ export default function Faq() {
                   >
                     <span className="question">{f.q}</span>
                     <span className="icon">
-                      <svg
-                        className={`${activeItem === f.id ? 'rotate' : ''}`}
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
+                      {activeItem === f.id ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          stroke="currentColor"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      )}
                     </span>
                   </button>
                 </dt>
@@ -141,34 +160,68 @@ export default function Faq() {
 
 const FaqStyles = styled.div`
   padding: 0 1.5rem;
+  margin-left: -1.5rem;
+
+  h2 {
+    margin: 0 0 1.5rem 2rem !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+  }
 
   .item {
-    margin: 1.25rem 0 0;
-    padding: 1.5rem 0 0;
-    border-top: 1px solid #dfe1e6;
+    padding: 0 2rem;
 
-    &:first-of-type {
-      margin: 0;
-      padding: 0;
+    &.active {
+      background-color: #fff;
       border: none;
+      border-radius: 0.375rem;
+      box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
+        rgba(17, 24, 39, 0.05) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+      + .item dt button {
+        border-top: none;
+      }
+
+      dt button {
+        padding-bottom: 0.125rem;
+        border-top: none;
+      }
+
+      .question,
+      .icon {
+        color: #34527c;
+      }
+    }
+
+    &:last-of-type:not(.active) {
+      dt button {
+        border-bottom: 1px solid #dfe1e6;
+      }
     }
   }
 
   dt {
     button {
-      padding: 0;
+      padding: 1.5rem 0.375rem;
       width: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       color: #8d95a3;
       text-align: left;
       font-family: 'Merriweather';
       font-size: 1rem;
-      line-height: 1.75rem;
+      line-height: 1;
       background-color: transparent;
       border: none;
       cursor: pointer;
+      border-top: 1px solid #dfe1e6;
+
+      &:hover svg {
+        color: #1f2937;
+      }
 
       &:focus {
         outline: 2px solid transparent;
@@ -176,9 +229,13 @@ const FaqStyles = styled.div`
       }
 
       &:focus-visible {
+        .question {
+          color: #466ea5;
+          text-decoration: underline;
+        }
+
         .icon {
-          border-color: #4e46a5;
-          color: #4e46a5;
+          color: #466ea5;
         }
       }
     }
@@ -186,14 +243,14 @@ const FaqStyles = styled.div`
 
   dd {
     margin: 0.5rem 0 0;
-    padding: 0 3rem 0 0;
+    padding: 0 3rem 1.625rem 0.375rem;
   }
 
   .question {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9375rem;
     font-weight: 500;
-    color: #475569;
+    color: #111827;
   }
 
   .icon {
@@ -204,7 +261,7 @@ const FaqStyles = styled.div`
     display: flex;
     align-items: center;
     border: 2px solid transparent;
-    border-radius: 9999px;
+    border-radius: 0.25rem;
 
     svg {
       height: 2rem;
@@ -212,11 +269,7 @@ const FaqStyles = styled.div`
       display: flex;
       align-items: center;
       border: 2px solid transparent;
-      border-radius: 9999px;
-
-      &.rotate {
-        transform: rotate(180deg);
-      }
+      border-radius: 0.25rem;
     }
   }
 
@@ -226,24 +279,22 @@ const FaqStyles = styled.div`
   }
 
   p {
+    margin: 0.875rem 0 0;
     font-size: 0.9375rem;
+    color: #4b5563;
   }
 
   a {
     display: flex;
     align-items: center;
-    color: #4f46e5;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    color: #466ea5;
+    text-decoration: underline;
   }
 
   .external-link-icon {
-    margin: 0 0 0 0.3125rem;
-    height: 0.8125rem;
-    width: 0.8125rem;
-    color: #94a3b8;
+    margin: 0.1875rem 0 0 0.375rem;
+    height: 0.75rem;
+    width: 0.75rem;
   }
 
   @media (min-width: 768px) {

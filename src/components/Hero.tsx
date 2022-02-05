@@ -15,7 +15,11 @@ export default function Hero() {
             tell a story that will reflect the spirit of your loved ones.
           </p>
           <div className="links">
-            <Link to="/contact?store=manitowoc" className="primary-link">
+            <Link
+              to="/contact"
+              state={{ store: 'greenbay' }}
+              className="primary-link"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -142,6 +146,7 @@ const HeroStyles = styled.div`
   .secondary-link {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
     &:hover {
       color: rgba(255, 255, 255, 1);
@@ -174,6 +179,11 @@ const HeroStyles = styled.div`
       a:first-of-type {
         margin: 0;
       }
+    }
+
+    .primary-link,
+    .secondary-link {
+      padding: 0.6875rem 0rem;
     }
   }
 `;

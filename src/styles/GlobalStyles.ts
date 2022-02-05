@@ -16,12 +16,12 @@ export const GlobalStyles = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', serif;
-    color: #323842;
+    color: #111827;
   }
 
   p {
       font-size: 1rem;
-      color: #6b7280;
+      color: #374151;
       line-height: 1.65;
     }
 

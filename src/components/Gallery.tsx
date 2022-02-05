@@ -144,9 +144,13 @@ const GalleryPageStyles = styled.div`
   }
 
   h2 {
-    margin: 0 0 2rem;
+    margin: 0 0 3rem;
     position: relative;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
     text-align: center;
 
     span {
@@ -177,19 +181,15 @@ const GalleryPageStyles = styled.div`
   }
 
   .grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(8rem, 1fr));
     gap: 0.875rem;
   }
 
   .grid-item {
-    padding: 0;
     position: relative;
-    height: 9.6875rem;
-    width: calc(25% - 0.65625rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    aspect-ratio: 4/3;
     background-color: transparent;
     border: 1px solid transparent;
     cursor: pointer;
@@ -201,6 +201,8 @@ const GalleryPageStyles = styled.div`
     &::after {
       content: '';
       position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
       width: 100%;
       box-shadow: inset 0 -70px 70px rgba(20, 20, 20, 0.25);
@@ -212,6 +214,7 @@ const GalleryPageStyles = styled.div`
     }
 
     img {
+      display: flex;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -304,9 +307,13 @@ const GalleryPageStyles = styled.div`
       padding: 0 3rem 0 0;
       max-width: 19rem;
     }
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 767px) {
     .wrapper {
       padding: 3.5rem 0;
     }
@@ -321,14 +328,34 @@ const GalleryPageStyles = styled.div`
       display: none;
     }
 
-    .grid-item {
-      width: calc(33.33% - 0.5833rem);
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     }
   }
 
-  @media (max-width: 500px) {
-    .grid-item {
-      width: calc(50% - 0.4375rem);
+  @media (max-width: 560px) {
+    h2 {
+      span {
+        padding: 0;
+        position: relative;
+        background-color: transparent;
+        z-index: 1;
+      }
+
+      &::after {
+        content: '';
+        position: static;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 0px;
+        background-color: transparent;
+        z-index: 0;
+      }
+    }
+
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 `;

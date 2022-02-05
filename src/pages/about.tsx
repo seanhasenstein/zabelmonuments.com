@@ -160,7 +160,7 @@ const AboutPageStyles = styled.div`
 
   .item {
     padding: 2.25rem 0;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #d1d5db;
 
     p {
       &:last-of-type {
@@ -181,31 +181,41 @@ const AboutPageStyles = styled.div`
 
   .external-link-button {
     margin: 1rem 0 0;
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 1.25rem;
     display: inline-flex;
     align-items: flex-end;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 400;
-    color: #64748b;
+    color: #1f2937;
     line-height: 1;
-    background-color: #fff;
-    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    border: 1px solid #d1d5db;
     border-radius: 0.25rem;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
     svg {
-      margin: 0 0 0 0.25rem;
+      margin: 0 0 0 0.375rem;
       height: 0.75rem;
       width: 0.75rem;
-      color: #cbd5e1;
+      color: #9ca3af;
     }
 
     &:hover {
-      border-color: #d5dee9;
-      color: #546174;
+      border-color: #bbc1ca;
+      color: #111827;
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;
+    }
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      box-shadow: #f8fafc 0px 0px 0px 2px, #1967d2 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     }
   }
 `;
