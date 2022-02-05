@@ -332,16 +332,16 @@ const StoreLocationStyles = styled.div`
 
   @media (max-width: 991px) {
     .row {
-      flex-direction: column-reverse;
-      gap: 2.5rem;
+      flex-direction: column;
+      gap: 0;
     }
 
     .location {
-      margin: 0 auto;
+      margin: 0 auto 3rem;
       max-width: 25rem;
       width: 100%;
 
-      &:last-of-type {
+      &:first-of-type {
         margin-top: -5rem;
       }
     }

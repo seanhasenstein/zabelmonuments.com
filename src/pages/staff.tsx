@@ -66,16 +66,28 @@ export default function Staff() {
             {profiles.map(p => (
               <div key={p.id} className="grid-item">
                 {p.image && (
-                  <div className="photo">
+                  <div className="large-photo">
                     <img src={p.image} alt={p.name} />
                   </div>
                 )}
 
                 <div className="details">
                   <h3>{p.name}</h3>
-                  {p.bio.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
+                  {p.bio.map((line, i) => {
+                    if (i === 0) {
+                      return (
+                        <p key={i}>
+                          {p.image && (
+                            <div className="mobile-photo">
+                              <img src={p.image} alt={p.name} />
+                            </div>
+                          )}
+                          {line}
+                        </p>
+                      );
+                    }
+                    return <p key={i}>{line}</p>;
+                  })}
                 </div>
               </div>
             ))}
@@ -91,7 +103,7 @@ const StaffPageStyles = styled.div`
     padding: 2.25rem 0 2rem;
     display: flex;
     gap: 2.5rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #d1d5db;
 
     &:first-of-type {
       padding-top: 1.125rem;
@@ -103,7 +115,7 @@ const StaffPageStyles = styled.div`
     }
   }
 
-  .photo {
+  .large-photo {
     max-width: 10rem;
     width: 100%;
     flex-shrink: 0;
@@ -133,9 +145,33 @@ const StaffPageStyles = styled.div`
     }
   }
 
+  .mobile-photo {
+    display: none;
+  }
+
   @media (max-width: 991px) {
-    .photo {
+    .large-photo {
       max-width: 8rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .grid-item {
+      flex-direction: column;
+    }
+
+    .large-photo {
+      display: none;
+    }
+
+    .mobile-photo {
+      margin: 0 1.25rem 0.5rem 0;
+      display: inline-flex;
+      float: left;
+      width: 7rem;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
     }
   }
 `;

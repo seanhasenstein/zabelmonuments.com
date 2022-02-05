@@ -325,11 +325,8 @@ const HeaderStyles = styled.header`
     }
 
     .mobile-secondary-nav {
+      margin: 3rem 0 0;
       padding: 0.5rem 1.5rem;
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
       display: flex;
       flex-direction: column;
       background-color: #1a1915;
@@ -351,6 +348,12 @@ const HeaderStyles = styled.header`
       }
     }
   }
+
+  /* @media (max-width: 500px) {
+    .mobile-nav-container a:first-of-type {
+      display: none;
+    }
+  } */
 
   @media (max-width: 350px) {
     .mobile-nav-container a {

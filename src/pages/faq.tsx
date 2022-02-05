@@ -70,7 +70,7 @@ export default function Faq() {
     >
       <PageShell>
         <FaqStyles>
-          <h2>Frequently Asked Questions</h2>
+          <h2 className="page-title">Frequently Asked Questions</h2>
           <dl>
             {frequentlyAskedQuestions.map(f => (
               <div
@@ -159,14 +159,9 @@ export default function Faq() {
 }
 
 const FaqStyles = styled.div`
-  padding: 0 1.5rem;
   margin-left: -1.5rem;
-
-  h2 {
-    margin: 0 0 1.5rem 2rem !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-  }
+  padding-right: 0;
+  padding-left: 0;
 
   .item {
     padding: 0 2rem;
@@ -251,6 +246,7 @@ const FaqStyles = styled.div`
     font-size: 0.9375rem;
     font-weight: 500;
     color: #111827;
+    line-height: 1.35;
   }
 
   .icon {
@@ -274,8 +270,9 @@ const FaqStyles = styled.div`
   }
 
   h2 {
-    margin: 0 0 1.5rem;
-    padding: 0 0 1.875rem;
+    margin: 0 0 1.5rem 2rem !important;
+    padding: 0 !important;
+    border-bottom: none;
   }
 
   p {
@@ -292,13 +289,48 @@ const FaqStyles = styled.div`
   }
 
   .external-link-icon {
+    flex-shrink: 0;
     margin: 0.1875rem 0 0 0.375rem;
     height: 0.75rem;
     width: 0.75rem;
   }
 
-  @media (min-width: 768px) {
-    padding-left: 0;
-    padding-right: 0;
+  @media (max-width: 768px) {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+
+    h2 {
+      margin-left: 0 !important;
+    }
+
+    .item {
+      position: relative;
+
+      &:not(.active) {
+        padding: 0;
+      }
+    }
+
+    .item.active {
+      .question {
+        padding-right: 1.5rem;
+      }
+
+      .icon {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+      }
+    }
+
+    dd {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .external-link-icon {
+      display: none;
+    }
   }
 `;

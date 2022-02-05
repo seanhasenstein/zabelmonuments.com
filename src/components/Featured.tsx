@@ -239,5 +239,13 @@ const FeaturedStyles = styled.div`
     .content {
       margin: 0;
     }
+
+    .item {
+      pointer-events: none;
+    }
+
+    .icon-right {
+      display: none;
+    }
   }
 `;

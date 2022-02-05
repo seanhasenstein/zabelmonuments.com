@@ -282,6 +282,11 @@ const ContactFormStyles = styled.div`
   }
 
   @media (max-width: 550px) {
+    input,
+    textarea {
+      font-size: 1rem;
+    }
+
     .actions {
       flex-direction: column-reverse;
     }
