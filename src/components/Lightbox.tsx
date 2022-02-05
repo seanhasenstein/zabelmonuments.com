@@ -265,7 +265,7 @@ const LightboxStyles = styled.div`
 
     .previous-button,
     .next-button {
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
       position: relative;
       top: unset;
       left: unset;

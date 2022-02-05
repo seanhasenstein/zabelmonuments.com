@@ -28,16 +28,6 @@ const secondaryNavItems = [
 export default function Header() {
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.body.style.overflow = 'inherit';
-    };
-  }, [open]);
-
   return (
     <HeaderStyles>
       <div className="secondary-nav">

@@ -292,6 +292,10 @@ const FooterStyles = styled.footer`
   @media (max-width: 600px) {
     .nav {
       flex-direction: column;
+
+      a {
+        line-height: 1.25;
+      }
     }
 
     .section {

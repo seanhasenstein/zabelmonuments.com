@@ -171,6 +171,9 @@ const HeroStyles = styled.div`
   }
 
   @media (max-width: 650px) {
+    background-size: cover;
+    background-position: bottom center;
+
     .links {
       display: flex;
       flex-direction: column;

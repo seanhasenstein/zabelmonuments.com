@@ -187,7 +187,7 @@ const StoreLocationStyles = styled.div`
         width: 100%;
         height: 100%;
         border-radius: 0.125rem 0.125rem 0 0;
-        box-shadow: inset 0 30px 40px rgba(0, 0, 0, 0.7);
+        box-shadow: inset 0 30px 40px rgba(0, 0, 0, 0.2);
       }
     }
   }
