@@ -13,7 +13,7 @@ type Props = {
 
 export default function ContactManitowoc({ location }: Props) {
   const [activeContact, setActiveContact] = React.useState<Contact>(() => {
-    const store = location.state.store || 'greenbay';
+    const store = location?.state?.store || 'greenbay';
     return store;
   });
   const [contactDetails, setContactDetails] = React.useState(contactInfo[0]);
