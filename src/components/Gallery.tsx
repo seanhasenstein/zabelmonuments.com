@@ -66,9 +66,9 @@ export default function Gallery({
     <>
       <Layout title={title} description={description} urlPath={urlPath}>
         <GalleryPageStyles>
-          <div className="wrapper">
+          <div className="container">
             <aside>
-              <div className="container">
+              <div className="sidebar-box">
                 {galleryLinks.map(l => (
                   <Link
                     key={l.id}
@@ -135,7 +135,7 @@ export default function Gallery({
 const GalleryPageStyles = styled.div`
   padding: 0 1.5rem;
 
-  .wrapper {
+  .container {
     margin: 0 auto;
     padding: 5rem 0 6rem;
     display: flex;
@@ -233,13 +233,13 @@ const GalleryPageStyles = styled.div`
     max-width: 21rem;
     width: 100%;
 
-    .container {
+    .sidebar-box {
       padding: 0.5rem 0.375rem 0.5rem 0.5rem;
       background-color: #fff;
-      border: 1px solid #f1f5f9;
-      border-radius: 0.25rem;
+      border-radius: 0.125rem;
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     }
 
     a {
@@ -314,7 +314,7 @@ const GalleryPageStyles = styled.div`
   }
 
   @media (max-width: 767px) {
-    .wrapper {
+    .container {
       padding: 3.5rem 0;
     }
 
@@ -322,6 +322,10 @@ const GalleryPageStyles = styled.div`
       margin: 0 auto 2rem;
       display: flex;
       justify-content: center;
+
+      select {
+        min-width: 15rem;
+      }
     }
 
     aside {
