@@ -124,7 +124,7 @@ const LightboxStyles = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 9999;
-  background-color: rgba(15, 15, 15, 0.95);
+  background-color: rgba(15, 15, 15, 0.97);
 
   &.active {
     display: flex;
@@ -153,7 +153,7 @@ const LightboxStyles = styled.div`
     right: 1.25rem;
     background-color: transparent;
     color: rgba(255, 255, 255, 0.85);
-    border-radius: 9999px;
+    border-radius: 0.125rem;
     border: none;
     cursor: pointer;
 
@@ -172,7 +172,7 @@ const LightboxStyles = styled.div`
     }
 
     &:focus-visible {
-      outline-color: #fff;
+      outline-color: #1967d2;
     }
   }
 
@@ -186,7 +186,7 @@ const LightboxStyles = styled.div`
     align-items: center;
     background-color: transparent;
     color: rgba(255, 255, 255, 0.85);
-    border-radius: 9999px;
+    border-radius: 0.125rem;
     border: none;
     cursor: pointer;
 
@@ -205,7 +205,7 @@ const LightboxStyles = styled.div`
     }
 
     &:focus-visible {
-      outline-color: #fff;
+      outline-color: #1967d2;
     }
 
     &:disabled {
@@ -226,7 +226,7 @@ const LightboxStyles = styled.div`
     position: absolute;
     top: 1rem;
     left: 2.25rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.875rem;
     font-weight: 400;
   }
@@ -244,18 +244,19 @@ const LightboxStyles = styled.div`
     .actions {
       position: absolute;
       bottom: 2rem;
-      right: 2rem;
+      right: 1.25rem;
       display: flex;
       justify-content: flex-end;
       gap: 1rem;
     }
 
-    .close-button,
-    .previous-button,
-    .next-button {
+    .close-button {
       padding: 0.625rem;
-      background-color: #3f3f46;
-      color: #fff;
+      background-color: #232327;
+      border: 1px solid #111112;
+      box-shadow: inset 0 1px 1px #3f3f46;
+      border-radius: 0.3125rem;
+      color: #d3d3d8;
     }
 
     .close-button svg {
@@ -263,14 +264,35 @@ const LightboxStyles = styled.div`
       width: 1.25rem;
     }
 
+    .actions {
+      margin-bottom: 4rem;
+      background-color: #232327;
+      border: 1px solid #111112;
+      box-shadow: inset 0 1px 1px #3f3f46;
+      border-radius: 0.3125rem;
+      color: #d3d3d8;
+      gap: 0;
+      z-index: 9999;
+    }
+
     .previous-button,
     .next-button {
-      margin-bottom: 3rem;
+      padding: 0.75rem 1.25rem;
       position: relative;
       top: unset;
       left: unset;
       right: unset;
       bottom: unset;
+      border-radius: 0;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+
+    .previous-button {
+      border-right: 1px solid #111112;
     }
   }
 `;
