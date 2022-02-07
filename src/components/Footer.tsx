@@ -272,8 +272,6 @@ const FooterStyles = styled.footer`
     padding: 1.5rem 0;
     font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
-    color: #78889e;
-    border-top: 1px solid #d7dfe8;
     color: rgba(255, 255, 255, 0.25);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }

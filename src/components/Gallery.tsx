@@ -357,5 +357,9 @@ const GalleryPageStyles = styled.div`
     .grid {
       grid-template-columns: repeat(3, 1fr);
     }
+
+    .mobile-nav select {
+      width: 100%;
+    }
   }
 `;

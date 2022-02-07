@@ -2819,13 +2819,13 @@ var require_date_fns_tz = __commonJS({
 // functions/utils/index.ts
 __export(exports, {
   createEmailTemplate: () => createEmailTemplate,
-  createReceiptNumber: () => createReceiptNumber,
+  createMessageId: () => createMessageId,
   formatPhoneNumber: () => formatPhoneNumber
 });
 var crypto = __toModule(require("crypto"));
 var import_date_fns_tz = __toModule(require_date_fns_tz());
 var NUM = "0123456789";
-function createReceiptNumber() {
+function createMessageId() {
   const rnd = crypto.randomBytes(11);
   const value = new Array(11);
   const charsLength = NUM.length;
@@ -2853,7 +2853,14 @@ function formatPhoneNumber(number) {
   });
   return result.join("");
 }
-function createEmailTemplate({ id, store, name, email, phone, message }) {
+function createEmailTemplate({
+  id,
+  store,
+  name,
+  email,
+  phone,
+  message
+}) {
   const createdAt = new Date();
   const timeZone = "America/Chicago";
   const zonedDate = (0, import_date_fns_tz.utcToZonedTime)(createdAt, timeZone);
@@ -2894,7 +2901,7 @@ function createEmailTemplate({ id, store, name, email, phone, message }) {
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   createEmailTemplate,
-  createReceiptNumber,
+  createMessageId,
   formatPhoneNumber
 });
 //# sourceMappingURL=index.js.map

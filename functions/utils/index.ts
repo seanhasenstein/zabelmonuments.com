@@ -3,7 +3,7 @@ import { utcToZonedTime, format } from 'date-fns-tz';
 
 const NUM = '0123456789';
 
-export function createReceiptNumber() {
+export function createMessageId() {
   const rnd = crypto.randomBytes(11);
   const value = new Array(11);
   const charsLength = NUM.length;
@@ -19,7 +19,7 @@ export function createReceiptNumber() {
   return value.join('');
 }
 
-function formatPhoneNumber(number) {
+export function formatPhoneNumber(number) {
   const digits = number.replace(/\D/g, '');
   const split = digits.split('');
   const result = split.map((item, index) => {
@@ -31,7 +31,14 @@ function formatPhoneNumber(number) {
   return result.join('');
 }
 
-function createEmailTemplate({ id, store, name, email, phone, message }) {
+export function createEmailTemplate({
+  id,
+  store,
+  name,
+  email,
+  phone,
+  message,
+}) {
   const createdAt = new Date();
   const timeZone = 'America/Chicago';
   const zonedDate = utcToZonedTime(createdAt, timeZone);
@@ -60,5 +67,3 @@ function createEmailTemplate({ id, store, name, email, phone, message }) {
 
   return { html, text };
 }
-
-export { createEmailTemplate, formatPhoneNumber };

@@ -74,10 +74,10 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
 
     &:focus {
-      outline: none;
+      outline: 2px solid transparent;
       outline-offset: 2px;
-      border-color: #bacbe2;
-      box-shadow: 0 0 0 4px #e3eaf3;
+      border-color: #1967d2;
+      box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, #1967d2 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
     }
   }
 

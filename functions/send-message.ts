@@ -2,7 +2,7 @@ import { Handler } from '@netlify/functions';
 import { sendEmail } from './utils/mailgun';
 import {
   createEmailTemplate,
-  createReceiptNumber,
+  createMessageId,
   formatPhoneNumber,
 } from './utils';
 
@@ -20,10 +20,10 @@ const stores = {
   ['ask-our-cm']: 'Ask Our Certified Memorialist',
 };
 
-const handler: Handler = async function (event) {
+export const handler: Handler = async event => {
   try {
     const body = JSON.parse(event.body);
-    const id = createReceiptNumber();
+    const id = createMessageId();
 
     const message = {
       id,
@@ -36,7 +36,7 @@ const handler: Handler = async function (event) {
 
     const { text, html } = createEmailTemplate(message);
 
-    const result = await sendEmail({
+    await sendEmail({
       to: toStoreAddresses[body.store],
       from: process.env.FROM_EMAIL_ADDRESS,
       subject: `Contact form message [#${id}]`,
@@ -45,8 +45,6 @@ const handler: Handler = async function (event) {
       text,
       html,
     });
-
-    console.log(result);
 
     return {
       statusCode: 200,
@@ -59,5 +57,3 @@ const handler: Handler = async function (event) {
     };
   }
 };
-
-export { handler };

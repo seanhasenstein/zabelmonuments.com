@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Contact } from '../types';
+import { Contact as ContactType } from '../types';
 import { contactInfo } from '../data';
 import { formatPhoneNumber } from '../utils';
 import Layout from '../components/Layout';
@@ -11,8 +11,8 @@ type Props = {
   location: any;
 };
 
-export default function ContactManitowoc({ location }: Props) {
-  const [activeContact, setActiveContact] = React.useState<Contact>(() => {
+export default function Contact({ location }: Props) {
+  const [activeContact, setActiveContact] = React.useState<ContactType>(() => {
     const store = location?.state?.store || 'greenbay';
     return store;
   });

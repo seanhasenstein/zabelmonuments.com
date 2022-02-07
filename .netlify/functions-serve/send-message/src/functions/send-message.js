@@ -15024,7 +15024,7 @@ async function sendEmail({
 var crypto = __toModule(require("crypto"));
 var import_date_fns_tz = __toModule(require_date_fns_tz());
 var NUM = "0123456789";
-function createReceiptNumber() {
+function createMessageId() {
   const rnd = crypto.randomBytes(11);
   const value = new Array(11);
   const charsLength = NUM.length;
@@ -15052,7 +15052,14 @@ function formatPhoneNumber(number) {
   });
   return result.join("");
 }
-function createEmailTemplate({ id, store, name, email, phone, message }) {
+function createEmailTemplate({
+  id,
+  store,
+  name,
+  email,
+  phone,
+  message
+}) {
   const createdAt = new Date();
   const timeZone = "America/Chicago";
   const zonedDate = (0, import_date_fns_tz.utcToZonedTime)(createdAt, timeZone);
@@ -15104,10 +15111,10 @@ var stores = {
   sheboygan: "Sheboygan",
   ["ask-our-cm"]: "Ask Our Certified Memorialist"
 };
-var handler = async function(event) {
+var handler = async (event) => {
   try {
     const body = JSON.parse(event.body);
-    const id = createReceiptNumber();
+    const id = createMessageId();
     const message = {
       id,
       store: stores[body.store],
@@ -15117,7 +15124,7 @@ var handler = async function(event) {
       message: body.message.trim()
     };
     const { text, html } = createEmailTemplate(message);
-    const result = await sendEmail({
+    await sendEmail({
       to: toStoreAddresses[body.store],
       from: process.env.FROM_EMAIL_ADDRESS,
       subject: `Contact form message [#${id}]`,
@@ -15126,7 +15133,6 @@ var handler = async function(event) {
       text,
       html
     });
-    console.log(result);
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true })

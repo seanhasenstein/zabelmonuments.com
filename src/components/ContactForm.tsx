@@ -18,7 +18,10 @@ export default function ContactForm({ activeContact }: Props) {
     const elements = e.currentTarget;
 
     // honeypot triggered
-    if (elements.honey.value) return;
+    if (elements.honey.value) {
+      setIsLoading(false);
+      return;
+    }
 
     const newMessage = {
       store: activeContact,
