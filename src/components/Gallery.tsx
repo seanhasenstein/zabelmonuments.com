@@ -189,7 +189,7 @@ const GalleryPageStyles = styled.div`
   .grid-item {
     position: relative;
     padding: 0;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
     background-color: transparent;
     border: 1px solid transparent;
     cursor: pointer;
@@ -214,7 +214,7 @@ const GalleryPageStyles = styled.div`
     }
 
     img {
-      display: flex;
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
