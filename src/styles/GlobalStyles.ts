@@ -86,4 +86,10 @@ export const GlobalStyles = createGlobalStyle`
       background-color: transparent;
     }
   }
+
+  @media (max-width: 500px) {
+    select {
+      font-size: 1rem;
+    }
+  }
 `;

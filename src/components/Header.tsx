@@ -100,7 +100,6 @@ export default function Header() {
           <div className={`mobile-nav-container ${open ? 'open' : ''}`}>
             <nav>
               {primaryNavItems.map(i => (
-                // <Link key={i.id} to={`${i.slug}`}>
                 <Link
                   key={i.id}
                   to={`${i.slug}`}
@@ -295,7 +294,10 @@ const HeaderStyles = styled.header`
       display: none;
 
       &.open {
-        display: block;
+        padding-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
 
@@ -338,12 +340,6 @@ const HeaderStyles = styled.header`
       }
     }
   }
-
-  /* @media (max-width: 500px) {
-    .mobile-nav-container a:first-of-type {
-      display: none;
-    }
-  } */
 
   @media (max-width: 350px) {
     .mobile-nav-container a {
