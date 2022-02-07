@@ -59,51 +59,53 @@ export default function Lightbox({
             />
           </svg>
         </button>
-        <div className="actions">
-          <button
-            onClick={() => setSelectedImg(prevIndex => prevIndex - 1)}
-            className="previous-button"
-            ref={prevButton}
-            area-label="Previous Image"
-            disabled={selectedImg === 0}
-          >
-            <span className="sr-only">Previous Image</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="actions-container">
+          <div className="actions">
+            <button
+              onClick={() => setSelectedImg(prevIndex => prevIndex - 1)}
+              className="previous-button"
+              ref={prevButton}
+              area-label="Previous Image"
+              disabled={selectedImg === 0}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16l-4-4m0 0l4-4m-4 4h18"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={() => setSelectedImg(prevIndex => prevIndex + 1)}
-            className="next-button"
-            ref={nextButton}
-            aria-label="Next Image"
-            disabled={selectedImg === images.length - 1}
-          >
-            <span className="sr-only">Next Image</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              <span className="sr-only">Previous Image</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                />
+              </svg>
+            </button>
+            <button
+              onClick={() => setSelectedImg(prevIndex => prevIndex + 1)}
+              className="next-button"
+              ref={nextButton}
+              aria-label="Next Image"
+              disabled={selectedImg === images.length - 1}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
+              <span className="sr-only">Next Image</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <p className="count">
@@ -122,9 +124,10 @@ const LightboxStyles = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow-y: auto;
   z-index: 9999;
-  background-color: rgba(15, 15, 15, 0.97);
+  background-color: rgba(15, 15, 15, 0.98);
 
   &.active {
     display: flex;
@@ -241,15 +244,6 @@ const LightboxStyles = styled.div`
       }
     }
 
-    .actions {
-      position: absolute;
-      bottom: 2rem;
-      right: 1.25rem;
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-    }
-
     .close-button {
       padding: 0.625rem;
       background-color: #232327;
@@ -264,30 +258,43 @@ const LightboxStyles = styled.div`
       width: 1.25rem;
     }
 
+    .actions-container {
+      margin-bottom: 5rem;
+      padding: 0 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      z-index: 9999;
+    }
+
     .actions {
-      margin-bottom: 4rem;
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
       background-color: #232327;
       border: 1px solid #111112;
       box-shadow: inset 0 1px 1px #3f3f46;
       border-radius: 0.3125rem;
-      color: #d3d3d8;
-      gap: 0;
-      z-index: 9999;
     }
 
     .previous-button,
     .next-button {
-      padding: 0.75rem 1.25rem;
+      padding: 1rem 1.5rem;
+      width: 100%;
       position: relative;
       top: unset;
       left: unset;
       right: unset;
       bottom: unset;
       border-radius: 0;
+      color: #d3d3d8;
 
       svg {
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 1.625rem;
+        width: 1.625rem;
       }
     }
 
