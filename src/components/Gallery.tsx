@@ -360,6 +360,11 @@ const GalleryPageStyles = styled.div`
 
     .grid {
       grid-template-columns: repeat(3, 1fr);
+      gap: 0.625rem;
+    }
+
+    .grid-item {
+      border: 3px solid #fff;
     }
 
     .mobile-nav select {
