@@ -149,11 +149,16 @@ export default function Testimonials() {
             >
               <div className="quote">{t.quote}</div>
               <div className="source">- {t.source}</div>
-              <div className="count">
-                {activeSlide} of {totalSlides}
-              </div>
             </div>
           ))}
+        </div>
+        <div aria-live="polite" aria-atomic="true" className="count">
+          {activeSlide === 0
+            ? totalSlides
+            : activeSlide === slides.length - 1
+            ? '1'
+            : activeSlide}{' '}
+          of {totalSlides}
         </div>
         <div className="actions">
           <button
@@ -291,6 +296,7 @@ const TestimonialsStyles = styled.div<StyleType>`
     font-size: 0.875rem;
     font-style: italic;
     color: #6b7280;
+    text-align: center;
   }
 
   .previous-button,
@@ -329,12 +335,14 @@ const TestimonialsStyles = styled.div<StyleType>`
   }
 
   @media (max-width: 600px) {
+    padding-bottom: 6.5rem;
+
     .testimonial-container {
       padding: 0 2rem;
     }
 
     .actions {
-      margin: 1rem 0 0;
+      margin: 2rem 0 0;
       display: flex;
       justify-content: center;
       gap: 1rem;
@@ -347,6 +355,15 @@ const TestimonialsStyles = styled.div<StyleType>`
       top: unset;
       left: unset;
       right: unset;
+      background-color: #fff;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    }
+
+    .count {
+      position: absolute;
+      bottom: -2.75rem;
+      left: 0;
+      width: 100%;
     }
   }
 `;
