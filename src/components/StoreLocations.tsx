@@ -139,7 +139,7 @@ export default function StoreLocations() {
   );
 }
 
-const StoreLocationStyles = styled.div`
+const StoreLocationStyles = styled.section`
   padding: 0 1.5rem;
   width: 100%;
   background-color: #f8fafc;

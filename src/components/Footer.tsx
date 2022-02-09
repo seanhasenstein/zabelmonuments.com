@@ -56,7 +56,7 @@ export default function Footer() {
             />
           </a>
         </div>
-        <div className="nav">
+        <nav className="nav">
           <div className="section">
             <h4>Learn More</h4>
             <ul className="nav-list">
@@ -146,7 +146,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-        </div>
+        </nav>
         <div className="copyright">
           &copy; {new Date().getFullYear()} Zabel Monuments. All Rights
           Reserved.
@@ -231,6 +231,7 @@ const FooterStyles = styled.footer`
   }
 
   .nav {
+    margin: 0;
     padding: 3rem 0 1.75rem;
     display: flex;
     justify-content: space-between;

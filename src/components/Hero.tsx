@@ -56,7 +56,7 @@ export default function Hero() {
   );
 }
 
-const HeroStyles = styled.div`
+const HeroStyles = styled.section`
   padding: 0 1.5rem;
   background-color: #2a2721;
   background-image: url(${BackgroundImage});

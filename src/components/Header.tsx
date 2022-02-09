@@ -99,27 +99,28 @@ export default function Header() {
           </div>
           <div className={`mobile-nav-container ${open ? 'open' : ''}`}>
             <nav>
-              {primaryNavItems.map(i => (
-                <Link
-                  key={i.id}
-                  to={`${i.slug}`}
-                  state={i.store ? { store: i.store } : null}
-                >
-                  {i.text}
-                </Link>
-              ))}
+              <ul>
+                {primaryNavItems.map(i => (
+                  <li key={i.id}>
+                    <Link
+                      to={`${i.slug}`}
+                      state={i.store ? { store: i.store } : null}
+                    >
+                      {i.text}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
-            <div className="mobile-secondary-nav">
+            <ul className="mobile-secondary-nav">
               {secondaryNavItems.map(i => (
-                <Link
-                  key={i.id}
-                  to={i.slug}
-                  state={i.store ? { store: i.store } : null}
-                >
-                  {i.text}
-                </Link>
+                <li key={i.id}>
+                  <Link to={i.slug} state={i.store ? { store: i.store } : null}>
+                    {i.text}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
@@ -196,24 +197,39 @@ const HeaderStyles = styled.header`
   }
 
   nav {
-    a {
+    ul {
+      margin: 0;
+      display: flex;
+    }
+
+    li {
       margin: 0 1.5rem;
+
+      &:first-of-type {
+        margin-left: 0;
+
+        a {
+          padding-left: 0;
+        }
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+
+        a {
+          padding-right: 0;
+        }
+      }
+    }
+
+    a {
       padding: 0 0.25rem;
+      display: block;
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       letter-spacing: 0.025em;
       color: rgba(255, 255, 255, 0.7);
       transition: color 200ms ease-in-out;
-
-      &:first-of-type {
-        margin-left: 0;
-        padding-left: 0;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
-        padding-right: 0;
-      }
 
       &:hover {
         color: #fff;
@@ -306,12 +322,21 @@ const HeaderStyles = styled.header`
       width: 100%;
       display: flex;
       flex-direction: column;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+      ul {
+        display: block;
+      }
+
+      li {
+        margin: 0;
+      }
 
       a,
       a:first-of-type {
         margin: 0;
         padding: 0.75rem 0;
+        display: block;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
     }
@@ -325,6 +350,7 @@ const HeaderStyles = styled.header`
 
       a {
         padding: 0.625rem 0;
+        display: block;
         font-family: 'Poppins', sans-serif;
         font-size: 0.875rem;
         letter-spacing: 0.05em;

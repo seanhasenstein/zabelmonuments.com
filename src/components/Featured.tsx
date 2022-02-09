@@ -118,7 +118,7 @@ export default function Featured() {
   );
 }
 
-const FeaturedStyles = styled.div`
+const FeaturedStyles = styled.section`
   margin: 7rem 1.5rem 4rem;
 
   .container {

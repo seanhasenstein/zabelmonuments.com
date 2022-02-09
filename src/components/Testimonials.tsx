@@ -133,15 +133,16 @@ export default function Testimonials() {
     <TestimonialsStyles
       activeSlide={activeSlide}
       transitionSpeed={transitionSpeed}
+      aria-labelledby="carousel-heading"
     >
       <div className="testimonial-container">
         <svg className="quote-svg" fill="currentColor" viewBox="0 0 32 32">
           <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
         </svg>
-        <h3>Hear from our customers</h3>
-        <div className="grid">
+        <h3 id="carousel-heading">Hear from our customers</h3>
+        <ul className="grid">
           {slides.map((t, i) => (
-            <div
+            <li
               key={t.id}
               className={`grid-item${activeSlide === i ? ' active' : ''}${
                 hasTransitionClass ? ' transition' : ''
@@ -149,9 +150,9 @@ export default function Testimonials() {
             >
               <div className="quote">{t.quote}</div>
               <div className="source">- {t.source}</div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <div aria-live="polite" aria-atomic="true" className="count">
           {activeSlide === 0
             ? totalSlides
@@ -214,7 +215,7 @@ type StyleType = {
   transitionSpeed: number;
 };
 
-const TestimonialsStyles = styled.div<StyleType>`
+const TestimonialsStyles = styled.section<StyleType>`
   padding: 2rem 1.5rem 5rem;
   overflow-x: hidden;
 
