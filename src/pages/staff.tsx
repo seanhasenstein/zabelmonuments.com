@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import PageShell from '../components/PageShell';
 import Eric from '../assets/images/staff/eric.jpg';
 import Jamie from '../assets/images/staff/jamie.jpg';
+import Jennifer from '../assets/images/staff/jennifer.jpg';
 
 const profiles = [
   {
@@ -33,6 +34,12 @@ const profiles = [
       'Stop by and meet Jamie, let her document your story in stone at our Green Bay Store.',
     ],
     image: Jamie,
+  },
+  {
+    id: 6,
+    name: 'Jennifer Wynveen',
+    bio: [],
+    image: Jennifer,
   },
   {
     id: 4,
@@ -73,21 +80,27 @@ export default function Staff() {
 
                 <div className="details">
                   <h3>{p.name}</h3>
-                  {p.bio.map((line, i) => {
-                    if (i === 0) {
-                      return (
-                        <p key={i}>
-                          {p.image && (
-                            <div className="mobile-photo">
-                              <img src={p.image} alt={p.name} />
-                            </div>
-                          )}
-                          {line}
-                        </p>
-                      );
-                    }
-                    return <p key={i}>{line}</p>;
-                  })}
+                  {p.bio.length > 0 ? (
+                    p.bio.map((line, i) => {
+                      if (i === 0) {
+                        return (
+                          <p key={i}>
+                            {p.image && (
+                              <div className="mobile-photo-with-bio">
+                                <img src={p.image} alt={p.name} />
+                              </div>
+                            )}
+                            {line}
+                          </p>
+                        );
+                      }
+                      return <p key={i}>{line}</p>;
+                    })
+                  ) : (
+                    <div className="mobile-photo-no-bio">
+                      <img src={p.image} alt={p.name} />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -145,7 +158,11 @@ const StaffPageStyles = styled.div`
     }
   }
 
-  .mobile-photo {
+  .mobile-photo-with-bio {
+    display: none;
+  }
+
+  .mobile-photo-no-bio {
     display: none;
   }
 
@@ -164,11 +181,19 @@ const StaffPageStyles = styled.div`
       display: none;
     }
 
-    .mobile-photo {
+    .mobile-photo-with-bio {
       margin: 0 1.25rem 0.5rem 0;
       display: inline-flex;
       float: left;
       width: 7rem;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    .mobile-photo-no-bio {
+      display: flex;
+      width: 200px;
       border: 5px solid #fff;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
         0 2px 4px -2px rgb(0 0 0 / 0.1);
